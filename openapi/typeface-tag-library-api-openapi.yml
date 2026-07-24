@@ -1,0 +1,539 @@
+openapi: 3.0.1
+info:
+  title: Typeface Audiences Tag Library API
+  version: v0
+servers:
+- url: https://api-us.typeface.ai
+  description: Generated server url
+security:
+- BearerAuth: []
+tags:
+- name: Tag Library
+paths:
+  /profile-service/accounts/{accountId}/tags:
+    post:
+      tags:
+      - Tag Library
+      operationId: createTags
+      description: 'Creates one or more tags in a single request. Each tag in the request is processed independently, so some tags may succeed while others fail. The response contains a per-item result for every tag in the request, each marked with `success: true` or `success: false`.
+
+
+        For each tag, provide a `name` and `displayName`. Optionally include `parentId` to nest the tag under an existing parent, and `properties` to attach metadata such as `description`. Tags without a `parentId` are created as top-level tags.
+
+
+        The top-level `success` field in the response is `true` only when every tag was created successfully. If any tag fails, `success` is `false` (partial success).'
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the account
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTagsRequestBody'
+            examples:
+              createTopLevelTags:
+                summary: Create top-level tags
+                value:
+                  tags:
+                  - name: marketing
+                    displayName: Marketing
+                    description: Marketing related content
+                  - name: sales
+                    displayName: Sales
+                    description: Sales related content
+              createChildTag:
+                summary: Create a child tag
+                value:
+                  tags:
+                  - name: social_media
+                    displayName: Social Media
+                    parentId: 100
+                    description: Social media related content
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateTagsResponseBody'
+              examples:
+                allSucceeded:
+                  summary: All succeeded
+                  value:
+                    success: true
+                    tags:
+                    - success: true
+                      tag:
+                        id: 100
+                        name: marketing
+                        displayName: Marketing
+                        ref: eyJhY2NvdW50...
+                        parentId: null
+                        status: ACTIVE
+                        description: Marketing related content
+                        createdAt: '2026-01-15T10:00:00Z'
+                        modifiedAt: '2026-01-15T10:00:00Z'
+                        createdBy: user-1
+                        modifiedBy: user-1
+                    - success: true
+                      tag:
+                        id: 102
+                        name: sales
+                        displayName: Sales
+                        ref: eyJhY2NvdW50...
+                        parentId: null
+                        status: ACTIVE
+                        description: Sales related content
+                        createdAt: '2026-01-15T10:00:00Z'
+                        modifiedAt: '2026-01-15T10:00:00Z'
+                        createdBy: user-1
+                        modifiedBy: user-1
+                partialSuccess:
+                  summary: Partial success
+                  value:
+                    success: false
+                    tags:
+                    - success: true
+                      tag:
+                        id: 101
+                        name: social_media
+                        displayName: Social Media
+                        ref: eyJhY2NvdW50...
+                        parentId: 100
+                        status: ACTIVE
+                        description: Social media related content
+                        createdAt: '2026-01-15T10:35:00Z'
+                        modifiedAt: '2026-01-15T10:35:00Z'
+                        createdBy: user-1
+                        modifiedBy: user-1
+                    - success: false
+                      tag:
+                        name: social_media
+                        displayName: Social Media
+                      errorMessage: Tag with name 'social_media' already exists in this account
+      summary: Create Tags
+  /search-service/accounts/{accountId}/tags:
+    post:
+      tags:
+      - Tag Library
+      operationId: searchTags
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the account
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SearchTagsRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchTagsResponseBody'
+      summary: Search Tags
+      description: "Search for tags within an account. Use this to browse the tag taxonomy, find tags by name, or list tags filtered by status.\n\n- **`query`** — Filters tags by name or display name. Searching for a parent tag also returns all of its descendants. When omitted or empty, all tags are returned.\n- **`status`** — Filters tags by status (`ACTIVE`, `INACTIVE`, `DEPRECATED`, `REJECTED`, `PENDING`). Defaults to `ACTIVE`. Set to `PENDING` to list newly discovered tag candidates awaiting review.\n- **`limit`** / **`cursor`** — Use cursor-based pagination for large result sets.\n\nEach tag in the response includes:\n- `fullPath` — a `::` delimited path of tag names from root to the tag (e.g., `marketing::social_media::instagram`).\n- `pathIds` — an ordered list of tag IDs matching each segment in `fullPath` (e.g., `[100, 101, 103]`).\n\nThese fields let you reconstruct the full hierarchy position of any tag.\n\nThe examples below assume a tag hierarchy: **Marketing > Social Media > Instagram**.\n\n#### List all active tags\n```json\n{\n  \"limit\": 20\n}\n```\n\n#### Response\n```json\n{\n  \"tags\": [\n    {\n      \"id\": 100,\n      \"name\": \"marketing\",\n      \"displayName\": \"Marketing\",\n      \"ref\": \"eyJhY2NvdW50...\",\n      \"parentId\": null,\n      \"status\": \"ACTIVE\",\n      \"description\": \"Marketing related content\",\n      \"fullPath\": \"marketing\",\n      \"pathIds\": [100],\n      \"createdAt\": \"2026-01-15T10:00:00Z\",\n      \"modifiedAt\": \"2026-01-15T10:00:00Z\",\n      \"createdBy\": \"user-1\",\n      \"modifiedBy\": \"user-1\"\n    },\n    {\n      \"id\": 101,\n      \"name\": \"social_media\",\n      \"displayName\": \"Social Media\",\n      \"ref\": \"eyJhY2NvdW50...\",\n      \"parentId\": 100,\n      \"status\": \"ACTIVE\",\n      \"description\": \"Social media related content\",\n      \"fullPath\": \"marketing::social_media\",\n      \"pathIds\": [100, 101],\n      \"createdAt\": \"2026-01-15T10:35:00Z\",\n      \"modifiedAt\": \"2026-01-15T10:35:00Z\",\n      \"createdBy\": \"user-1\",\n      \"modifiedBy\": \"user-1\"\n    },\n    {\n      \"id\": 103,\n      \"name\": \"instagram\",\n      \"displayName\": \"Instagram\",\n      \"ref\": \"eyJhY2NvdW50...\",\n      \"parentId\": 101,\n      \"status\": \"ACTIVE\",\n      \"description\": \"Instagram specific content\",\n      \"fullPath\": \"marketing::social_media::instagram\",\n      \"pathIds\": [100, 101, 103],\n      \"createdAt\": \"2026-01-16T09:00:00Z\",\n      \"modifiedAt\": \"2026-01-16T09:00:00Z\",\n      \"createdBy\": \"user-1\",\n      \"modifiedBy\": \"user-1\"\n    }\n  ],\n  \"nextCursor\": \".....\"\n}\n```\n\n#### Search for a tag and its descendants\nSearching for `Social Media` returns the matching tag and all tags nested under it (e.g., `Instagram`).\n```json\n{\n  \"query\": \"Social Media\",\n  \"limit\": 20\n}\n```\n\n#### Response\n```json\n{\n  \"tags\": [\n    {\n      \"id\": 101,\n      \"name\": \"social_media\",\n      \"displayName\": \"Social Media\",\n      \"ref\": \"eyJhY2NvdW50...\",\n      \"parentId\": 100,\n      \"status\": \"ACTIVE\",\n      \"description\": \"Social media related content\",\n      \"fullPath\": \"marketing::social_media\",\n      \"pathIds\": [100, 101],\n      \"createdAt\": \"2026-01-15T10:35:00Z\",\n      \"modifiedAt\": \"2026-01-15T10:35:00Z\",\n      \"createdBy\": \"user-1\",\n      \"modifiedBy\": \"user-1\"\n    },\n    {\n      \"id\": 103,\n      \"name\": \"instagram\",\n      \"displayName\": \"Instagram\",\n      \"ref\": \"eyJhY2NvdW50...\",\n      \"parentId\": 101,\n      \"status\": \"ACTIVE\",\n      \"description\": \"Instagram specific content\",\n      \"fullPath\": \"marketing::social_media::instagram\",\n      \"pathIds\": [100, 101, 103],\n      \"createdAt\": \"2026-01-16T09:00:00Z\",\n      \"modifiedAt\": \"2026-01-16T09:00:00Z\",\n      \"createdBy\": \"user-1\",\n      \"modifiedBy\": \"user-1\"\n    }\n  ],\n  \"nextCursor\": \".....\"\n}\n```\n\n#### List newly discovered tag candidates (pending review)\nTags with `PENDING` status are auto-discovered tags that have not yet been approved or rejected. Use this to power editorial review and governance workflows.\n```json\n{\n  \"status\": \"PENDING\",\n  \"limit\": 50\n}\n```\n\n#### Response\n```json\n{\n  \"tags\": [\n    {\n      \"id\": 215,\n      \"name\": \"bedroom_pop\",\n      \"displayName\": \"Bedroom Pop\",\n      \"ref\": \"eyJhY2NvdW50...\",\n      \"parentId\": 100,\n      \"status\": \"PENDING\",\n      \"description\": \"Lo-fi pop music produced in home studios\",\n      \"fullPath\": \"marketing::bedroom_pop\",\n      \"pathIds\": [100, 215],\n      \"createdAt\": \"2026-02-08T14:30:00Z\",\n      \"modifiedAt\": \"2026-02-08T14:30:00Z\",\n      \"createdBy\": \"user-1\",\n      \"modifiedBy\": \"user-1\"\n    }\n  ],\n  \"nextCursor\": \"cursor-abc123\"\n}\n```"
+  /profile-service/accounts/{accountId}/tags/{tagId}:
+    get:
+      tags:
+      - Tag Library
+      operationId: getTag
+      description: Retrieves the full definition of a single tag by its ID. The response includes the tag's name, display name, status, parent reference, and description.
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the account
+        schema:
+          type: string
+      - name: tagId
+        in: path
+        required: true
+        description: Unique identifier for the tag
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/TagDetails'
+              example:
+                id: 101
+                name: social_media
+                displayName: Social Media
+                ref: eyJhY2NvdW50SWQiOiJhY2NvdW50LTEiLCJlbnRpdHlJZCI6MTAxLCJ3b3Jrc3BhY2VJZCI6MSwid29ya3NwYWNlVHlwZSI6IkxJQlJBUlkiLCJlbnRpdHlUeXBlIjoiVEFHIiwidmVyc2lvbiI6IjIuMCJ9
+                parentId: 100
+                status: ACTIVE
+                description: Social media related content
+                createdAt: '2026-01-15T10:35:00Z'
+                modifiedAt: '2026-01-15T10:35:00Z'
+                createdBy: user-1
+                modifiedBy: user-1
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: string
+              example:
+                error: Tag not found.
+                details: Tag with id 999 not found in the account
+      summary: Get Tag by ID
+    patch:
+      tags:
+      - Tag Library
+      operationId: patchTag
+      description: 'Partially updates an existing tag using JSON Patch-style operations. Supported paths are `/name`, `/displayName`, `/status`, and `/description`.
+
+
+        Common use cases include renaming a tag, deactivating it, updating its description, or approving / rejecting a pending tag candidate (set status to `ACTIVE` to approve, `REJECTED` to reject).'
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the account
+        schema:
+          type: string
+      - name: tagId
+        in: path
+        required: true
+        description: Unique identifier for the tag
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchTagRequestBody'
+            examples:
+              renameDisplayName:
+                summary: Rename display name
+                value:
+                  operations:
+                  - op: replace
+                    path: /displayName
+                    value: Social Media Ads
+              renameName:
+                summary: Rename tag name
+                value:
+                  operations:
+                  - op: replace
+                    path: /name
+                    value: social_media_ads
+              changeStatus:
+                summary: Change status
+                value:
+                  operations:
+                  - op: replace
+                    path: /status
+                    value: INACTIVE
+              approveTag:
+                summary: Approve pending tag
+                value:
+                  operations:
+                  - op: replace
+                    path: /status
+                    value: ACTIVE
+              rejectTag:
+                summary: Reject pending tag
+                value:
+                  operations:
+                  - op: replace
+                    path: /status
+                    value: REJECTED
+              updateDescription:
+                summary: Update tag description
+                value:
+                  operations:
+                  - op: replace
+                    path: /description
+                    value: Updated description for the tag
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request – Validation failed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: string
+              examples:
+                unsupportedOperation:
+                  summary: Unsupported patch operation
+                  value:
+                    error: Unsupported patch operation.
+                    details: Only 'replace' operation is supported
+                unsupportedPath:
+                  summary: Unsupported patch path
+                  value:
+                    error: Unsupported patch path.
+                    details: Only '/name', '/displayName', '/status', and '/description' paths are supported
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: string
+              example:
+                error: Tag not found.
+                details: Tag with id 999 not found in the account
+      summary: Patch Tag
+    delete:
+      tags:
+      - Tag Library
+      operationId: deleteTag
+      description: Permanently deletes a tag and all of its child tags. Any assets that were tagged with the deleted tag will have that tag association removed.
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the account
+        schema:
+          type: string
+      - name: tagId
+        in: path
+        required: true
+        description: Unique identifier for the tag to delete
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: No Content
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: string
+              example:
+                error: Tag not found.
+                details: Tag with id 999 not found in the account
+      summary: Delete Tag
+components:
+  schemas:
+    SearchTagsRequestBody:
+      type: object
+      properties:
+        query:
+          type: string
+          description: 'Search query string. If a tag has child tags, searching for it also returns all tags under it. When omitted or empty, all tags are returned.
+
+            '
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - DEPRECATED
+          - REJECTED
+          - PENDING
+          description: 'Filter tags by status. When omitted, defaults to ACTIVE. Use PENDING to list newly discovered tag candidates that have not yet been reviewed.
+
+            '
+        cursor:
+          type: string
+          description: 'Cursor for pagination.
+
+            '
+        limit:
+          type: integer
+          description: 'Maximum number of tags to return.
+
+            '
+    PatchTagRequestBody:
+      type: object
+      description: Request body for patching a tag. Supports 'replace' operation on '/name', '/displayName', '/status', and '/description' paths.
+      properties:
+        operations:
+          type: array
+          items:
+            type: object
+            properties:
+              op:
+                type: string
+                enum:
+                - replace
+              path:
+                type: string
+                enum:
+                - /name
+                - /displayName
+                - /status
+                - /description
+                description: 'The field to update.
+
+                  - `/name` — Update the tag''s identifier name.
+
+                  - `/displayName` — Update the tag''s human-readable display name.
+
+                  - `/status` — Update the tag''s status. Allowed values are `ACTIVE`, `INACTIVE`, `DEPRECATED`, `REJECTED`, or `PENDING`.
+
+                  - `/description` — Update the tag''s description.
+
+                  '
+              value:
+                type: string
+                description: 'The new value for the field specified in `path`.
+
+                  '
+    CreateTagsRequestBody:
+      type: object
+      required:
+      - tags
+      properties:
+        tags:
+          type: array
+          description: List of tags to create
+          items:
+            type: object
+            required:
+            - name
+            - displayName
+            properties:
+              name:
+                type: string
+                description: Identifier of the tag (e.g., social_media)
+              displayName:
+                type: string
+                description: Human-readable display name of the tag (e.g., Social Media)
+              parentId:
+                type: integer
+                format: int64
+                description: Optional parent tag ID. If omitted, creates a top-level tag.
+              description:
+                type: string
+                description: Human-readable description of what the tag represents
+    CreateTagsResponseBody:
+      type: object
+      description: Response for bulk tag creation. Each tag in the request is processed independently. The top-level `success` field is `true` only when every tag was created successfully. If any tag fails, `success` is `false` and the failed items include an `errorMessage`.
+      properties:
+        success:
+          type: boolean
+          description: '`true` if all tags were created successfully, `false` if one or more tags failed (partial success).'
+        tags:
+          type: array
+          description: Per-item results in the same order as the request
+          items:
+            type: object
+            properties:
+              success:
+                type: boolean
+                description: Whether this individual tag was created successfully
+              tag:
+                $ref: '#/components/schemas/TagDetails'
+              errorMessage:
+                type: string
+                description: Error detail when `success` is `false`. Not present on successful items.
+    TagDetails:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique tag identifier
+        name:
+          type: string
+          description: Identifier of the tag (e.g., social_media)
+        displayName:
+          type: string
+          description: Human-readable display name of the tag (e.g., Social Media)
+        ref:
+          type: string
+          description: Reference to the tag
+        parentId:
+          type: integer
+          format: int64
+          description: Parent tag ID (null for top-level tags)
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - DEPRECATED
+          - REJECTED
+          - PENDING
+          description: Current status of the tag
+        description:
+          type: string
+          description: Human-readable description of what the tag represents
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+    SearchTagDetails:
+      description: Tag details returned when searching tags. Includes all fields from TagDetails plus the full hierarchy path.
+      allOf:
+      - $ref: '#/components/schemas/TagDetails'
+      - type: object
+        properties:
+          fullPath:
+            type: string
+            description: ':: delimited path of tag names from root to this tag. E.g., marketing::social_media::instagram
+
+              '
+          pathIds:
+            type: array
+            items:
+              type: integer
+              format: int64
+            description: 'Ordered list of tag IDs corresponding to each segment in fullPath, from root to this tag. E.g., [100, 101, 103]
+
+              '
+    SearchTagsResponseBody:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchTagDetails'
+        nextCursor:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

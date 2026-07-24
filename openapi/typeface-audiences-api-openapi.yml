@@ -1,0 +1,401 @@
+openapi: 3.0.1
+info:
+  title: Typeface Audiences API
+  version: v0
+servers:
+- url: https://api-us.typeface.ai
+  description: Generated server url
+security:
+- BearerAuth: []
+tags:
+- name: Audiences
+paths:
+  /workspace-resolver-service/accounts/{accountId}/libraries/sub-types/AUDIENCE_LIBRARY:
+    get:
+      description: This API endpoint lists all available Audiences in the given team.
+      tags:
+      - Audiences
+      operationId: queryAudienceCatalogsInAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLibrariesResponseBody'
+      summary: List Audience Catlogs
+  /profile-service/accounts/{accountId}/audience-catalogs/{audienceCatalogId}/audience-segments:
+    get:
+      description: Lists the available audience segments in given audience catalog
+      tags:
+      - Audiences
+      operationId: queryAudiencesInAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: audienceCatalogId
+        in: path
+        required: true
+        description: Unique identifier for the audience library
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryAudienceResponseBody'
+      summary: List Audiences
+    post:
+      description: "Create a new audience segment within the given catalog\n\n**Sample request body**\n```json\n{\n  \"workspaceId\": 43672,\n  \"name\": \"Adults in Chicago\",\n  \"properties\": {\n    \"name\": \"Adults in Chicago\",\n    \"ageRangeMin\": 45,\n    \"ageRangeMax\": 65,\n    \"gender\": \"Neutral\",\n    \"preferences\": [\n      \"loves technology\", \"big on startups\"\n    ],\n    \"spendingBehavior\": [\n      \"Luxury\",\n      \"Experimental\"\n    ]\n  }\n}\n```"
+      tags:
+      - Audiences
+      operationId: createAudienceInAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: audienceCatalogId
+        in: path
+        required: true
+        description: Unique identifier for the audience library
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAudienceRequestBody'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateAudienceResponseBody'
+      summary: Create Audience
+  /profile-service/accounts/{accountId}/audience-catalogs/{audienceCatalogId}/audience-segments/{audienceId}:
+    put:
+      description: "Manage the Audience within catalog.\n\n\n**Sample request body**\n```json\n{\n  \"workspaceId\": 43672,\n  \"name\": \"Adults in Chicago\",\n  \"properties\": {\n    \"name\": \"Adults in Chicago\",\n    \"ageRangeMin\": 45,\n    \"ageRangeMax\": 60,\n    \"gender\": \"Male\",\n    \"preferences\": [\n      \"loves technology\", \"sports enthusiast\"\n    ],\n    \"spendingBehavior\": [\n      \"Luxury\",\n      \"Impulsive\"\n    ]\n  }\n}\n```"
+      tags:
+      - Audiences
+      operationId: manageAudienceInAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: audienceCatalogId
+        in: path
+        required: true
+        description: Unique identifier for the audience library
+        schema:
+          type: integer
+      - name: audienceId
+        in: path
+        required: true
+        description: Unique identifier for the audience
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateAudienceRequestBody'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UpdateAudienceResponseBody'
+      summary: Manage Audience
+    delete:
+      description: Deletes the given audience segment from audience catalog
+      tags:
+      - Audiences
+      operationId: deleteAudienceInAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: audienceCatalogId
+        in: path
+        required: true
+        description: Unique identifier for the audience library
+        schema:
+          type: integer
+      - name: audienceId
+        in: path
+        required: true
+        description: Unique identifier for the audience
+        schema:
+          type: integer
+      responses:
+        '204':
+          description: No Content
+      summary: Delete Audience
+components:
+  schemas:
+    WorkspaceId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    ImageProperties:
+      type: object
+      properties:
+        blobId:
+          $ref: '#/components/schemas/BlobId'
+    AudienceSegmentProperties:
+      type: object
+      properties:
+        name:
+          type: string
+        ageRangeMin:
+          type: integer
+          format: int32
+          minimum: 0
+        ageRangeMax:
+          type: integer
+          format: int32
+          minimum: 0
+        gender:
+          type: string
+          enum:
+          - Male
+          - Female
+          - Neutral
+        preferences:
+          type: array
+          items:
+            type: string
+        spendingBehavior:
+          type: array
+          items:
+            type: string
+            enum:
+            - Budget-Conscious
+            - Value-Oriented
+            - Aspirational
+            - Luxury
+            - Experimental
+            - Impulsive
+    BlobId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    LibraryProperties:
+      type: object
+      properties:
+        hideBrandKit:
+          type: boolean
+        defaultTextStyleId:
+          type: integer
+          format: int64
+        defaultImageStyleId:
+          type: integer
+          format: int64
+        defaultColorPaletteId:
+          type: integer
+          format: int64
+        defaultLanguage:
+          type: string
+    Image:
+      type: object
+      properties:
+        workspaceId:
+          $ref: '#/components/schemas/WorkspaceId'
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/ImageProperties'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+    UpdateAudienceRequestBody:
+      type: object
+      properties:
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/AudienceSegmentProperties'
+        name:
+          type: string
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        entitySubType:
+          type: string
+          enum:
+          - DEFAULT
+          - GENERATED_IMAGE_PARENT
+          - DOCUMENT_INTERMEDIATE
+          - DOCUMENT_LAYOUT_HTML
+    LibraryDetails:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/WorkspaceId'
+        ownerId:
+          type: string
+        name:
+          type: string
+        image:
+          $ref: '#/components/schemas/Image'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        discarded:
+          type: boolean
+        properties:
+          $ref: '#/components/schemas/LibraryProperties'
+        workspaceSubType:
+          type: string
+          enum:
+          - ALCHEMIST
+          - WEAVER
+          - BATCH_OUTPUT
+          - DEFAULT
+          - BRAND_KIT_LIBRARY
+          - DECORATION_LIBRARY
+          - AUDIENCE_LIBRARY
+          - LOGO_LIBRARY
+    QueryAudienceResponseBody:
+      type: object
+      properties:
+        audienceSegments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceSegment'
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    GetLibrariesResponseBody:
+      type: object
+      properties:
+        libraries:
+          type: array
+          items:
+            $ref: '#/components/schemas/LibraryDetails'
+    UpdateAudienceResponseBody:
+      type: object
+      properties:
+        audienceSegment:
+          $ref: '#/components/schemas/AudienceSegment'
+    CreateAudienceResponseBody:
+      required:
+      - audienceSegment
+      type: object
+      properties:
+        audienceSegment:
+          $ref: '#/components/schemas/AudienceSegment'
+    AudienceSegment:
+      type: object
+      properties:
+        workspaceId:
+          $ref: '#/components/schemas/WorkspaceId'
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/AudienceSegmentProperties'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        ref:
+          type: string
+        entitySubType:
+          type: string
+          enum:
+          - DEFAULT
+          - GENERATED_IMAGE_PARENT
+          - DOCUMENT_INTERMEDIATE
+          - DOCUMENT_LAYOUT_HTML
+    CreateAudienceRequestBody:
+      type: object
+      properties:
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/AudienceSegmentProperties'
+        name:
+          type: string
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        entitySubType:
+          type: string
+          enum:
+          - DEFAULT
+          - GENERATED_IMAGE_PARENT
+          - DOCUMENT_INTERMEDIATE
+          - DOCUMENT_LAYOUT_HTML
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

@@ -1,0 +1,63 @@
+openapi: 3.0.1
+info:
+  title: Typeface Audiences Basic Services API
+  version: v0
+servers:
+- url: https://api-us.typeface.ai
+  description: Generated server url
+security:
+- BearerAuth: []
+tags:
+- name: Basic Services
+paths:
+  /basic-services/document-export-service/accounts/{accountId}/workspaces/{projectId}/document/{documentId}/export/pdf:
+    get:
+      summary: Get Document Content in PDF
+      description: Retrieve a document's content in PDF format.
+      operationId: getDocumentPdf
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the account
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the workspace/project
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the document
+      responses:
+        '200':
+          description: Successfully retrieved the PDF document
+          content:
+            application/pdf:
+              schema:
+                type: string
+                format: byte
+        '400':
+          description: Bad Request - Invalid input data
+        '401':
+          description: Unauthorized - Authentication failed
+        '404':
+          description: Document not found - The specified document could not be found
+      security:
+      - bearerAuth: []
+      tags:
+      - Basic Services
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

@@ -1,0 +1,430 @@
+openapi: 3.0.1
+info:
+  title: Typeface Audiences Projects API
+  version: v0
+servers:
+- url: https://api-us.typeface.ai
+  description: Generated server url
+security:
+- BearerAuth: []
+tags:
+- name: Projects
+paths:
+  /workspace-service/accounts/{accountId}/projects:
+    get:
+      tags:
+      - Projects
+      operationId: queryProjectsInAccount_1
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: workspaceSubType
+        in: query
+        required: false
+        schema:
+          type: string
+          default: DEFAULT
+          enum:
+          - ALCHEMIST
+          - WEAVER
+          - BATCH_OUTPUT
+          - DEFAULT
+          - BRAND_KIT_LIBRARY
+          - DECORATION_LIBRARY
+          - AUDIENCE_LIBRARY
+          - LOGO_LIBRARY
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/QueryProjectsResponseBody'
+                - $ref: '#/components/schemas/QueryProjectResponseBody'
+      summary: List Projects
+    post:
+      tags:
+      - Projects
+      operationId: createProjectInAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateProjectRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelProject'
+      summary: Create a Project
+  /workspace-service/accounts/{accountId}/projects/{projectId}:
+    get:
+      tags:
+      - Projects
+      operationId: getProjectInAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        description: Unique identifier for the specific project
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelProject'
+      summary: Get a Project
+    put:
+      tags:
+      - Projects
+      operationId: updateProjectInAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        description: Unique identifier for the specific project
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateProjectRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelProject'
+      summary: Update Project
+    delete:
+      tags:
+      - Projects
+      operationId: deleteProjectInAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        description: Unique identifier for the specific project
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+      summary: Delete Project
+  /content-service/workspace/{projectId}/layout-manifests:
+    get:
+      tags:
+      - Projects
+      operationId: queryLayoutManifestsInProject
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        description: Unique identifier for the specific project
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/QueryLayoutManifestResponseBody'
+      summary: Project - List Layouts
+  /content-service/workspace/{projectId}/layout-manifests/{layoutId}:
+    get:
+      tags:
+      - Projects
+      operationId: getLayoutManifestsInProject
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        description: Unique identifier for the specific project
+        schema:
+          type: integer
+          format: int64
+      - name: layoutId
+        in: path
+        required: true
+        description: Unique identifier for the specific layout manifest
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/GetLayoutManifestResponseBody'
+      summary: Project - Get Layout
+components:
+  schemas:
+    ImageProperties:
+      type: object
+      properties:
+        blobId:
+          $ref: '#/components/schemas/BlobId'
+    BlobId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    WorkspaceId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    EntityModelProject:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    GetLayoutManifestResponseBody:
+      type: object
+      properties:
+        layoutManifest:
+          $ref: '#/components/schemas/LayoutManifest'
+    Image:
+      type: object
+      properties:
+        workspaceId:
+          $ref: '#/components/schemas/WorkspaceId'
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/ImageProperties'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+    QueryLayoutManifestResponseBody:
+      type: object
+      properties:
+        layoutManifests:
+          type: array
+          properties:
+            empty:
+              type: boolean
+          items:
+            $ref: '#/components/schemas/LayoutManifest'
+    CreateProjectRequestBody:
+      type: object
+      properties:
+        name:
+          type: string
+    QueryProjectsResponseBody:
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectDetails'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+    ProjectDetails:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/WorkspaceId'
+        ownerId:
+          type: string
+        name:
+          type: string
+        image:
+          $ref: '#/components/schemas/Image'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        discarded:
+          type: boolean
+        properties:
+          $ref: '#/components/schemas/JsonNode'
+        workspaceSubType:
+          type: string
+          enum:
+          - ALCHEMIST
+          - WEAVER
+          - BATCH_OUTPUT
+          - DEFAULT
+          - BRAND_KIT_LIBRARY
+          - DECORATION_LIBRARY
+          - AUDIENCE_LIBRARY
+          - LOGO_LIBRARY
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    JsonNode:
+      type: object
+    LayoutManifestProperties:
+      type: object
+      properties:
+        layoutData:
+          type: object
+          additionalProperties:
+            type: object
+        blobId:
+          $ref: '#/components/schemas/BlobId'
+    QueryProjectResponseBody:
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelProject'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    LayoutManifest:
+      required:
+      - id
+      - workspaceId
+      type: object
+      properties:
+        workspaceId:
+          $ref: '#/components/schemas/WorkspaceId'
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        sourcePath:
+          type: string
+        ref:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/LayoutManifestProperties'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+        indexed:
+          type: boolean
+        entitySubType:
+          type: string
+          enum:
+          - DEFAULT
+          - GENERATED_IMAGE_PARENT
+          - DOCUMENT_INTERMEDIATE
+          - DOCUMENT_LAYOUT_HTML
+    UpdateProjectRequestBody:
+      type: object
+      properties:
+        name:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

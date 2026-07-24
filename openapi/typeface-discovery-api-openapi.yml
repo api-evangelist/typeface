@@ -1,0 +1,228 @@
+openapi: 3.0.1
+info:
+  title: Typeface Audiences Discovery API
+  version: v0
+servers:
+- url: https://api-us.typeface.ai
+  description: Generated server url
+security:
+- BearerAuth: []
+tags:
+- name: Discovery
+paths:
+  /identity-service/discover:
+    get:
+      tags:
+      - Discovery
+      operationId: discoverIdentity
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetUserResponseBody'
+      summary: Discovery API
+      description: 'Retrieve all teams the app has access to.
+
+
+        If the app has access to some specific teams, the links for operating on these teams can be found under each team. Otherwise, if the app has access has access to entire Org, use the Query teams API.'
+  /orgs/{orgId}/accounts:
+    get:
+      tags:
+      - Discovery
+      operationId: queryAccountsInOrg
+      parameters:
+      - name: orgId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryAccountsInOrgResponseBody'
+      summary: Query Teams
+      description: "**Sample Response**\n```json \n\n{\n  \"accounts\": [\n    {\n      \"accountId\": \"a4c16a3c-e945-4af9-9932-9cce26c42474\",\n      \"displayName\": \"Team 1\",\n      \"createdBy\": {\n        \"id\": \"e0812ff6-d285-42ef-b0bf-3f5987311e7b\",\n        \"name\": \"John Doe\",\n        \"picture\": \"https://s.gravatar.com/avatar/bb4894e8d57f4c49f81a37eaa4009467?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fag.png\",\n        \"email\": \"john.doe@typeface.ai\"\n      },\n      \"accountCreatedAt\": \"2024-06-13T08:48:13Z\",\n      \"accountModifiedAt\": \"2024-06-13T08:48:13Z\",\n      \"scaleUnitId\": 1,\n      \"orgId\": \"8b66d551-58f2-4060-adeb-e19b0b07f65d\",\n      \"activeMembers\": 2,\n      \"accountUser\": false\n    },\n    {\n      \"accountId\": \"ae858617-c14d-46d1-b1cf-23daf4928032\",\n      \"displayName\": \"Team 2\",\n      \"createdBy\": {\n        \"id\": \"6597ef22-5d9d-42b3-8780-6ba43519496f\",\n        \"name\": \"Alice Doe\",\n        \"picture\": \"https://s.gravatar.com/avatar/47360b4957d175a102a4f7d0947ae868?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fnd.png\",\n        \"email\": \"alice.doe@typeface.ai\"\n      },\n      \"accountCreatedAt\": \"2024-06-13T08:36:56Z\",\n      \"accountModifiedAt\": \"2024-06-13T08:36:56Z\",\n      \"scaleUnitId\": 1,\n      \"orgId\": \"8b66d551-58f2-4060-adeb-e19b0b07f65d\",\n      \"activeMembers\": 1,\n      \"accountUser\": false\n    }\n  ],\n  \"page\": 1,\n  \"size\": 10,\n  \"totalAccounts\": 2,\n  \"totalPages\": 1\n}\n```"
+components:
+  schemas:
+    EntityModelUserAccount:
+      type: object
+      properties:
+        accountId:
+          type: string
+        displayName:
+          type: string
+        createdBy:
+          type: string
+        accountCreatedAt:
+          type: string
+          format: date-time
+        accountModifiedAt:
+          type: string
+          format: date-time
+        scaleUnitId:
+          type: integer
+          format: int64
+        subscriptionProvider:
+          type: string
+          enum:
+          - STRIPE
+          - GCP
+          - TYPEFACE
+        endpoints:
+          $ref: '#/components/schemas/ScaleUnitEndpoints'
+        orgId:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    GetUserResponseBody:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    QueryAccountsInOrgResponseBody:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrgUser'
+        page:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int64
+        totalAccounts:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int64
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+    OrgCreatedBy:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        picture:
+          type: string
+        email:
+          type: string
+    UserOrg:
+      type: object
+      properties:
+        orgId:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+          enum:
+          - MEMBER
+          - ADMIN
+        storageId:
+          type: string
+        endpoints:
+          $ref: '#/components/schemas/ScaleUnitEndpoints'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    ScaleUnitEndpoints:
+      type: object
+      properties:
+        socketIOHost:
+          type: string
+        apiWSEndpoint:
+          type: string
+        apiHttpEndpoint:
+          type: string
+    OrgUser:
+      type: object
+      properties:
+        accountId:
+          type: string
+        displayName:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/OrgCreatedBy'
+        accountCreatedAt:
+          type: string
+          format: date-time
+        accountModifiedAt:
+          type: string
+          format: date-time
+        scaleUnitId:
+          type: integer
+          format: int64
+        orgId:
+          type: string
+        activeMembers:
+          type: integer
+          format: int64
+        accountUser:
+          type: boolean
+    User:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        username:
+          type: string
+        picture:
+          type: string
+        email:
+          type: string
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - BLOCKED
+          - WAITLISTED
+        userAccounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelUserAccount'
+        userOrgs:
+          type: array
+          items:
+            $ref: '#/components/schemas/UserOrg'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

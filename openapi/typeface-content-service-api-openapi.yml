@@ -1,0 +1,363 @@
+openapi: 3.0.1
+info:
+  title: Typeface Audiences Content Service API
+  version: v0
+servers:
+- url: https://api-us.typeface.ai
+  description: Generated server url
+security:
+- BearerAuth: []
+tags:
+- name: Content Service
+paths:
+  /content-service/accounts/{accountId}/projects/{projectId}/documents/{documentId}/assignees:
+    get:
+      summary: Get Document Assignees
+      description: Retrieve the list of assignees for a specific document.
+      operationId: getDocumentAssignees
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the account
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the project
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the document
+      responses:
+        '200':
+          description: A list of user details for the assignees of the document.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  assignees:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Assignee'
+        '401':
+          description: Unauthorized access
+        '404':
+          description: Document not found
+      security:
+      - bearerAuth: []
+      tags:
+      - Content Service
+    put:
+      summary: Update Document Assignees
+      description: Update (add or remove) the assignees for a document.
+      operationId: updateDocumentAssignees
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the account
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the project
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the document
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                assigneesToAdd:
+                  type: array
+                  items:
+                    type: string
+                    example: add.user@typeface.ai
+                  example:
+                  - add.user@typeface.ai
+                assigneesToRemove:
+                  type: array
+                  items:
+                    type: string
+                    example: remove.user@narrato.io
+                  example:
+                  - remove.user@narrato.io
+              required:
+              - assigneesToAdd
+              - assigneesToRemove
+            examples:
+              Update document assignees:
+                value:
+                  assigneesToAdd:
+                  - add.user@typeface.ai
+                  assigneesToRemove:
+                  - remove.user@narrato.io
+      responses:
+        '204':
+          description: Successfully updated document assignees
+        '400':
+          description: Bad Request - Invalid input data
+        '401':
+          description: Unauthorized access
+        '404':
+          description: Document not found
+      security:
+      - bearerAuth: []
+      tags:
+      - Content Service
+  /content-service/accounts/{accountId}/projects/{projectId}/documents/{documentId}/workflow:
+    post:
+      summary: Add Document Workflow
+      description: Associate a content workflow with a document.
+      operationId: addDocumentWorkflow
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the account
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the project
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the document
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                workflowId:
+                  type: number
+                  example: 123
+              required:
+              - workflowId
+            examples:
+              Add document workflow:
+                value:
+                  workflowId: 124
+      responses:
+        '200':
+          description: Successfully added the document workflow
+        '201':
+          description: Successfully created the document workflow
+        '400':
+          description: Bad Request - Invalid input data
+        '401':
+          description: Unauthorized access
+        '404':
+          description: Document not found / The specified workflow could not be found
+        '409':
+          description: Workflow already attached to the document
+      security:
+      - bearerAuth: []
+      tags:
+      - Content Service
+    patch:
+      summary: Update Document Workflow and/or Status
+      description: Update the workflow and/or status associated with a document.
+      operationId: updateDocumentWorkflowStatusCopy
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the account
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the project
+      - name: documentId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the document
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                statusId:
+                  type: number
+                  example: 123
+                workflowId:
+                  type: number
+                  example: 124
+              required:
+              - statusId
+              - workflowId
+            examples:
+              Update document workflow / status Copy:
+                value:
+                  statusId: 123
+                  workflowId: 124
+      responses:
+        '200':
+          description: Successfully updated the document workflow/status
+        '204':
+          description: No content - Successfully updated but no content returned
+        '400':
+          description: Bad Request - Invalid input data
+        '401':
+          description: Unauthorized access
+        '404':
+          description: Document not found / The specified workflow or status could not be found
+      security:
+      - bearerAuth: []
+      tags:
+      - Content Service
+  /content-service/workspace/{projectId}/documents:
+    post:
+      summary: Create Document with a Workflow
+      description: Create a new document and attach a content workflow to it.
+      operationId: createDocument
+      parameters:
+      - name: projectId
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The unique ID of the project
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: Hello!
+                properties:
+                  type: object
+                  properties:
+                    blocks:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          content:
+                            type: string
+                            example: This content
+                          id:
+                            type: string
+                            example: xDH0Uj3128
+                          promptId:
+                            type: string
+                            example: ''
+                          styleElements:
+                            type: object
+                            properties: {}
+                          type:
+                            type: string
+                            example: Text
+                      example:
+                      - content: This content
+                        id: xDH0Uj3128
+                        promptId: ''
+                        styleElements: {}
+                        type: Text
+                      - content: "has been \n\nadded while document creation through API!"
+                        id: mkbleHO326
+                        promptId: ''
+                        styleElements: {}
+                        type: Text
+                    prompts:
+                      type: array
+                      items: {}
+                      example: []
+                    status:
+                      type: string
+                      example: COMPLETED
+                    variations:
+                      type: array
+                      items: {}
+                      example: []
+                workflowIdToAttach:
+                  type: number
+                  example: 123
+            examples:
+              Create document:
+                value:
+                  name: Hello!
+                  properties:
+                    blocks:
+                    - content: This content
+                      id: xDH0Uj3128
+                      promptId: ''
+                      styleElements: {}
+                      type: Text
+                    - content: "has been \n\nadded while document creation through API!"
+                      id: mkbleHO326
+                      promptId: ''
+                      styleElements: {}
+                      type: Text
+                    prompts: []
+                    status: COMPLETED
+                    variations: []
+                  workflowIdToAttach: 123
+      responses:
+        '201':
+          description: Successfully created the document and attached the workflow
+        '400':
+          description: Bad Request - Invalid input data
+        '401':
+          description: Unauthorized access
+        '404':
+          description: Project not found
+      security:
+      - bearerAuth: []
+      tags:
+      - Content Service
+components:
+  schemas:
+    Assignee:
+      type: object
+      properties:
+        id:
+          type: string
+          description: The unique ID of the assignee
+        name:
+          type: string
+          description: The name of the assignee
+        email:
+          type: string
+          description: The email of the assignee
+        role:
+          type: string
+          description: The role of the assignee in relation to the team
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

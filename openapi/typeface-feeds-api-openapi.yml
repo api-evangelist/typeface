@@ -1,0 +1,363 @@
+openapi: 3.0.1
+info:
+  title: Typeface Audiences Feeds API
+  version: v0
+servers:
+- url: https://api-us.typeface.ai
+  description: Generated server url
+security:
+- BearerAuth: []
+tags:
+- name: Feeds
+paths:
+  /feed-service/accounts/{accountId}/projects/{projectId}/feeds/{feedId}/feedItems:
+    get:
+      tags:
+      - Feeds
+      operationId: queryFeedItems
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        description: Unique identifier for the specific project
+        schema:
+          type: integer
+          format: int64
+      - name: feedId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: $limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          format: int32
+          default: 0
+      - name: $cursor
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: $filter
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryFeedItemsResponseBody'
+      summary: Query Feed Items
+  /feed-service/accounts/{accountId}/projects/{projectId}/feeds/{feedId}/feedItems/generate:
+    post:
+      tags:
+      - Feeds
+      operationId: generateFeedItemsInFeed
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        description: Unique identifier for the specific project
+        schema:
+          type: integer
+          format: int64
+      - name: feedId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: useMock
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: false
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GenerateFeedItemRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/SseEmitter'
+      summary: Generate On Demand Feed Item
+  /feed-service/accounts/{accountId}/projects/{projectId}/feeds/{feedId}:
+    patch:
+      tags:
+      - Feeds
+      operationId: patchFeed
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        description: Unique identifier for the specific project
+        schema:
+          type: integer
+          format: int64
+      - name: feedId
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PatchFeedRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+      summary: Patch Feed
+  /feed-service/accounts/{accountId}/projects/{projectId}/feeds/{feedId}/feedItems/{feedItemId}:
+    get:
+      tags:
+      - Feeds
+      operationId: getFeedItem
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        description: Unique identifier for the specific project
+        schema:
+          type: integer
+          format: int64
+      - name: feedId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: feedItemId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelFeedItem'
+      summary: Get Feed Item
+    delete:
+      tags:
+      - Feeds
+      operationId: discardFeedItem
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        required: true
+        description: Unique identifier for the specific project
+        schema:
+          type: integer
+          format: int64
+      - name: feedId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: feedItemId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Feed Item
+components:
+  schemas:
+    SseEmitter:
+      type: object
+      properties:
+        timeout:
+          type: integer
+          format: int64
+    EntityModelFeedItem:
+      type: object
+      properties:
+        id:
+          type: string
+        channel:
+          type: string
+          enum:
+          - IMAGE
+          - EMAIL
+          - PUSH_NOTIFICATION
+          - TYPEFACE_APP
+        audience:
+          type: string
+        type:
+          type: string
+          enum:
+          - IMAGE
+          - EMAIL
+          - EMAIL_SUBJECT_LINE
+          - PUSH_NOTIFICATION
+          - DOCUMENT
+        content:
+          $ref: '#/components/schemas/JsonNode'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+        name:
+          type: string
+        assetRef:
+          type: string
+        feedItemStatus:
+          type: string
+          enum:
+          - NEEDS_REVIEW
+          - APPROVED
+        approvedBy:
+          type: string
+        approvedAt:
+          type: string
+          format: date-time
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    GenerateFeedItemRequestBody:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - IMAGE
+          - EMAIL
+          - PUSH_NOTIFICATION
+          - TYPEFACE_APP
+        feedItemType:
+          type: string
+          enum:
+          - IMAGE
+          - EMAIL
+          - EMAIL_SUBJECT_LINE
+          - PUSH_NOTIFICATION
+          - DOCUMENT
+        objective:
+          type: string
+        audience:
+          type: string
+        assetRef:
+          type: string
+        stepId:
+          type: string
+        feedItemProperties:
+          $ref: '#/components/schemas/JsonNode'
+        featureFlags:
+          type: object
+          additionalProperties:
+            type: object
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+    JsonNode:
+      type: object
+    PatchOperation:
+      type: object
+      properties:
+        op:
+          type: string
+          enum:
+          - replace
+          - add
+        path:
+          type: string
+        value:
+          type: object
+    PatchFeedRequestBody:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/PatchOperation'
+    QueryFeedItemsResponseBody:
+      type: object
+      properties:
+        feedItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelFeedItem'
+        nextCursor:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

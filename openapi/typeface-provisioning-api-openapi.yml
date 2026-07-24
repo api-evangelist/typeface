@@ -1,0 +1,101 @@
+openapi: 3.0.1
+info:
+  title: Typeface Audiences Provisioning API
+  version: v0
+servers:
+- url: https://api-us.typeface.ai
+  description: Generated server url
+security:
+- BearerAuth: []
+tags:
+- name: Provisioning
+paths:
+  /provisioning-service/account:
+    post:
+      tags:
+      - Provisioning
+      operationId: createAccount
+      parameters:
+      - name: createSharedWorkspaces
+        in: query
+        required: false
+        schema:
+          type: boolean
+          default: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateAccountRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/CreateAccountResponseBody'
+      summary: Create Team
+      description: '**Note:** Ensure you use the appropriate API endpoint corresponding to the selected cloud provider to avoid errors.
+
+
+        The available endpoints are listed below:
+
+        - **AZURE**: https://api-us.typeface.ai
+
+        - **GOOGLE**: https://api-us2.typeface.ai'
+  /provisioning-service/account/{accountId}:
+    delete:
+      tags:
+      - Provisioning
+      operationId: deleteAccountById
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+      summary: Delete Team
+components:
+  schemas:
+    CreateAccountResponseBody:
+      type: object
+      properties:
+        accountId:
+          type: string
+        displayName:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+    CreateAccountRequestBody:
+      type: object
+      properties:
+        workspaceName:
+          type: string
+          deprecated: true
+        displayName:
+          type: string
+        cloudProvider:
+          type: string
+          description: Specifies the cloud provider where the team's data and resources are hosted (either AZURE or GOOGLE).
+          enum:
+          - AZURE
+          - GOOGLE
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

@@ -1,0 +1,131 @@
+openapi: 3.0.1
+info:
+  title: Typeface Audiences Profile Service API
+  version: v0
+servers:
+- url: https://api-us.typeface.ai
+  description: Generated server url
+security:
+- BearerAuth: []
+tags:
+- name: Profile Service
+paths:
+  /profile-service/accounts/{accountId}/workflows:
+    get:
+      summary: Get Workflows
+      description: Retrieve the list of workflows associated with a specific account.
+      operationId: getWorkflows
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of workflows associated with the account.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  workflows:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EntitySchema'
+      security:
+      - bearerAuth: []
+      tags:
+      - Profile Service
+  /profile-service/accounts/{accountId}/workflows/{workflowId}/workflow-steps:
+    get:
+      summary: Get Workflow Steps
+      description: Retrieve the steps/statuses of a specific workflow.
+      operationId: getWorkflowsSteps
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: workflowId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: A list of steps/statuses in the specified workflow.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  workflowSteps:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/EntitySchema'
+      security:
+      - bearerAuth: []
+      tags:
+      - Profile Service
+components:
+  schemas:
+    EntitySchema:
+      type: object
+      properties:
+        workspaceId:
+          type: object
+          properties:
+            id:
+              type: integer
+          required:
+          - id
+        id:
+          type: object
+          properties:
+            id:
+              type: integer
+          required:
+          - id
+        name:
+          type: string
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          type: object
+          properties:
+            orderedWorkflowStepIds:
+              type: array
+              items:
+                type: integer
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+        renditionId:
+          type: string
+        ref:
+          type: string
+        entitySubType:
+          type: string
+        sourceId:
+          type: string
+        sourceType:
+          type: string
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

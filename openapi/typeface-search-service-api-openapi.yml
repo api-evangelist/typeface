@@ -1,0 +1,243 @@
+openapi: 3.0.1
+info:
+  title: Typeface Audiences Search Service API
+  version: v0
+servers:
+- url: https://api-us.typeface.ai
+  description: Generated server url
+security:
+- BearerAuth: []
+tags:
+- name: Search Service
+paths:
+  /search-service/accounts/{accountId}/projects/{projectId}/all-assets:
+    post:
+      summary: Search & filter documents
+      description: This endpoint allows you to search for documents within a specified project using various filters like created by, workflow status, assignees, etc.
+      operationId: searchDocuments
+      parameters:
+      - name: accountId
+        in: path
+        description: The unique ID of the account.
+        required: true
+        schema:
+          type: string
+      - name: projectId
+        in: path
+        description: The unique ID of the project.
+        required: true
+        schema:
+          type: string
+      security:
+      - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: The search query text. Use empty string to fetch all documents of a project.
+                  x-readme-id: '0.0'
+                assetType:
+                  type: string
+                  default: ''
+                  description: The type of asset to search for. The value to be used is "FILE".
+                  x-readme-id: '0.1'
+                limit:
+                  type: integer
+                  default: ''
+                  description: The maximum number of assets to return. E.g. 16
+                  x-readme-id: '0.2'
+                searchScope:
+                  type: string
+                  default: ''
+                  description: The scope of the search. The value to be used is "ACCOUNT".
+                  x-readme-id: '0.3'
+                assetSubTypes:
+                  type: array
+                  default: ''
+                  description: List of asset subtypes to filter by. The value to be used is ["DOCUMENT"]
+                  items:
+                    type: string
+                  x-readme-id: '0.4'
+                mediaTypes:
+                  type: array
+                  description: 'Filter by document types. Possible values include: ARC_WEB_PAGE, ARC_EMAIL, ARC_PUSH_NOTIFICATION.'
+                  items:
+                    type: string
+                    enum:
+                    - ARC_WEB_PAGE
+                    - ARC_EMAIL
+                    - ARC_PUSH_NOTIFICATION
+                filter:
+                  type: object
+                  description: A filter object to further narrow down the search by 'created by' and 'modified at' fields.
+                  properties:
+                    bool:
+                      type: object
+                      properties:
+                        must:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              terms:
+                                type: object
+                                properties:
+                                  createdBy:
+                                    type: array
+                                    items:
+                                      type: string
+                                    description: List of user IDs who created the assets.
+                                    example:
+                                    - 4b6f0eae-f703-4c5c-xxx-2acyyy42a4c3
+                              range:
+                                type: object
+                                properties:
+                                  modifiedAt:
+                                    type: object
+                                    properties:
+                                      gte:
+                                        type: string
+                                        description: 'Minimum modification date. The values it takes are: `now-1d` for past 24 hours. `now-7d` for past week. `now-30d` for past month. `now/y` for this year. `2025-03-11T18:30:00Z` for custom date range.'
+                                        example: now-7d
+                          example:
+                          - terms:
+                              createdBy:
+                              - 4b6f0eae-f703-4c5c-xxx-2acyyy42a4c3
+                          - range:
+                              modifiedAt:
+                                gte: now-7d
+                          x-readme-id: '2.0'
+                      x-readme-id: '1.0'
+                  x-readme-id: '0.5'
+                additionalFilterProperties:
+                  type: object
+                  description: Additional filter properties to further narrow down the results by workflow status and assignees.
+                  properties:
+                    taskStatusName:
+                      type: string
+                      description: Task status name to filter by.
+                      example: Completed
+                      x-readme-id: '1.0'
+                    taskAssignees:
+                      type: array
+                      description: List of assignee user ids to filter by. Use the `Get team users` endpoint to fetch the user ids for assignees.
+                      items:
+                        type: string
+                      x-readme-id: '1.1'
+                  x-readme-id: '0.6'
+                cursor:
+                  type: string
+                  description: Cursor to fetch the next set of results. This field to be used only for fetching the paginated data. Do not pass this field for the first request. It will take the value of the field `nextCursor` returned in the response.
+                  x-readme-id: '0.7'
+              required:
+              - query
+              - assetType
+              - limit
+              - searchScope
+              - assetSubTypes
+      responses:
+        '200':
+          description: Successfully retrieved the assets matching the search criteria.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  assets:
+                    type: array
+                    items:
+                      type: object
+                      description: The asset object.
+                      properties:
+                        id:
+                          type: integer
+                          description: The asset ID.
+                          example: 12345
+                        name:
+                          type: string
+                          description: The name of the asset.
+                          example: How to Use an AI Writing Assistant for Creating Marketing Content
+                        createdAt:
+                          type: string
+                          format: date-time
+                          description: The creation date of the asset.
+                          example: '2025-03-10T16:01:33Z'
+                        modifiedAt:
+                          type: string
+                          format: date-time
+                          description: The last modification date of the asset.
+                          example: '2025-03-10T16:05:58Z'
+                        createdBy:
+                          type: string
+                          description: The user ID who created the asset.
+                          example: 4b6f0eae-f703-4c5c-accc-2ac3c542a4c3
+                        modifiedBy:
+                          type: string
+                          description: The user ID who last modified the asset.
+                          example: 4b6f0eae-f703-4c5c-accc-2ac3c542a4c3
+                        additionalFilterProperties:
+                          type: object
+                          properties:
+                            taskStatusId:
+                              type: integer
+                              description: The task status ID.
+                              example: 5891455
+                            taskWorkflowId:
+                              type: integer
+                              description: The task workflow ID.
+                              example: 5783486
+                            taskStatusName:
+                              type: string
+                              description: The name of the task status.
+                              example: Next Step First
+                            taskAssignees:
+                              type: array
+                              items:
+                                type: string
+                              description: List of assignees.
+                              example:
+                              - 2f16221d-4cf5-48a6-b630-2fdf47ec33c0
+                              - 4b6f0eae-f703-4c5c-accc-2ac3c542a4c3
+                            taskId:
+                              type: integer
+                              description: The task ID.
+                              example: 69556
+                    example:
+                    - id: 12345
+                      name: How to Use an AI Writing Assistant for Creating Marketing Content
+                      createdAt: '2025-03-10T16:01:33Z'
+                      modifiedAt: '2025-03-10T16:05:58Z'
+                      createdBy: 4b6f0eae-f703-4c5c-accc-2ac3c542a4c3
+                      modifiedBy: 4b6f0eae-f703-4c5c-accc-2ac3c542a4c3
+                      additionalFilterProperties:
+                        taskStatusId: 123
+                        taskWorkflowId: 54321
+                        taskStatusName: Next Step First
+                        taskAssignees:
+                        - 2f16221d-4cf5-48a6-b630-2fdf47ec33c0
+                        - 4b6f0eae-f703-4c5c-accc-2ac3c542a4c3
+                        taskId: 45678
+                  nextCursor:
+                    type: string
+                    description: Cursor for fetching the next set of results.
+                    example: eyJdqwdqwdOiAwLjsqwedddldkakdasdpasjdjwqw
+        '400':
+          description: Bad request due to invalid parameters or malformed request body.
+        '500':
+          description: Internal server error.
+      tags:
+      - Search Service
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

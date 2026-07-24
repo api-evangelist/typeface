@@ -1,0 +1,464 @@
+openapi: 3.0.1
+info:
+  title: Typeface Audiences Brand Kits API
+  version: v0
+servers:
+- url: https://api-us.typeface.ai
+  description: Generated server url
+security:
+- BearerAuth: []
+tags:
+- name: Brand Kits
+paths:
+  /workspace-resolver-service/accounts/{accountId}/libraries/sub-types/BRAND_KIT_LIBRARY:
+    get:
+      description: This API endpoint lists all available Brand kits in the given team.
+      tags:
+      - Brand Kits
+      operationId: queryBrandsInAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetLibrariesResponseBody'
+      summary: List Brand Kits
+  /workspace-resolver-service/accounts/{accountId}/libraries:
+    post:
+      description: "Create Brand-kit within the library\n\n**Sample request body**\n```json\n{\n  \"name\": \"Awesome Brand Kit\",\n  \"workspaceSubType\": \"BRAND_KIT_LIBRARY\"\n}\n```"
+      tags:
+      - Brand Kits
+      operationId: createBrandKitInAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                workspaceSubType:
+                  type: string
+                  default: BRAND_KIT_LIBRARY
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateLibraryResponseBody'
+      summary: Create Brand Kit
+  /workspace-resolver-service/accounts/{accountId}/libraries/{brandKitId}:
+    delete:
+      tags:
+      - Brand Kits
+      operationId: deleteBrandKitInAccount
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: brandKitId
+        in: path
+        required: true
+        description: Unique identifier for the specific brand-kit
+        schema:
+          type: integer
+          format: int64
+      responses:
+        '204':
+          description: No Content
+      summary: Delete Brand Kit
+  /profile-service/accounts/{accountId}/brand-kits/{brandKitId}/style-types/{styleType}:
+    get:
+      description: This API endpoint lists all existing styles of given type (i.e. *Image / Text / Logo*) available in the given Brand Kit.
+      tags:
+      - Brand Kits
+      operationId: getStyleinBrandkit
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: brandKitId
+        in: path
+        required: true
+        description: Unique identifier for the specific brand-kit
+        schema:
+          type: integer
+          format: int64
+      - name: styleType
+        in: path
+        required: true
+        description: Style type of the brand kit
+        schema:
+          type: string
+          enum:
+          - image
+          - text
+          - logo
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QueryBrandKitStylesResponseBody'
+      summary: Get Brand-kit styles
+    post:
+      description: "Create styles within the Brand kit for content genration\n\n**Sample request body for creating Image / Logo style**\n```json\n  {\n    \"name\": \"Bikes style\"\n  }\n```\n\n\n**Sample Request body for creating Text style**\n```json\n  {\n    \"name\": \"Text style\",\n    \"subType\": \"BrandVoice\",\n    \"data\": {\n        \"brandValues\": [\n            {\n                \"name\": \"Innovation\",\n                \"description\": \"We are committed to unlocking the power of technology to create personalized, on-brand images. Our innovative approach allows us to span diverse markets and significantly reduce production time.\"\n            },\n            {\n                \"name\": \"Efficiency\",\n                \"description\": \"We are dedicated to amplifying our content factory initiative. Our focus on efficiency enables us to streamline our processes and deliver high-quality results.\"\n            }\n        ],\n        \"brandTones\": [\n            {\n                \"name\": \"Strategic\",\n                \"description\": \"We are strategic in our ideation and refinement processes. Our focus on strategy ensures we deliver impactful and effective solutions.\"\n            },\n            {\n                \"name\": \"Empowering\",\n                \"description\": \"We believe in the power of our solutions to transform and scale content standards across organizations.\"\n            },\n            {\n                \"name\": \"Visionary\",\n                \"description\": \"From ideation to refinement, we are forward-thinking and innovative in our approach to content creation.\"\n            }\n        ],\n        \"brandRules\": [\n            {\n                \"type\": \"termsToAvoid\",\n                \"value\": [\n                    {\n                        \"source\": \"replace\",\n                        \"replacement\": \"\"\n                    },\n                    {\n                        \"source\": \"typeface\",\n                        \"replacement\": \"TypeFace AI\"\n                    }\n                ]\n            }\n        ]\n    }\n}\n```\n\n**Note**: Only 1 text style and logo style could be created for each Brand Kit"
+      tags:
+      - Brand Kits
+      operationId: createStyleinBrandkit
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: brandKitId
+        in: path
+        required: true
+        description: Unique identifier for the specific brand-kit
+        schema:
+          type: integer
+          format: int64
+      - name: styleType
+        in: path
+        required: true
+        description: Style type of the brand kit
+        schema:
+          type: string
+          enum:
+          - image
+          - text
+          - logo
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateBrandKitStyleRequestBody'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EntityModelBrandKitStyle'
+      summary: Create Brand-kit style
+  /profile-service/accounts/{accountId}/brand-kits/{brandKitId}/style-types/{styleType}/{styleId}/images:
+    post:
+      description: "This API allows you to upload image in the brand kit of given style type. There are two different options available to do so:\n  - `content`: The binary format content of image to be uploaded\n  - `contentUrl`: Publicly accessible url of the required image\n\n**Sample curl request**\n```bash\n  curl --silent --location 'https://api-us.typeface.ai/profile-service/accounts/accountId/brand-kits/brandKitId/style-types/image/styleType/images' \\\n  --header 'Authorization: Bearer <token>' \\\n  --form 'contentUrl=\"image url...\"'\n```\n\n**Note**: It is mandatory to train a Brand-kit image style before it can be utilized in content generation."
+      tags:
+      - Brand Kits
+      operationId: uploadImageInBrandKitStyle
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: brandKitId
+        in: path
+        required: true
+        description: Unique identifier for the specific brand-kit
+        schema:
+          type: integer
+          format: int64
+      - name: styleType
+        in: path
+        required: true
+        description: Style type of the brand kit
+        schema:
+          type: string
+          enum:
+          - image
+          - logo
+      - name: styleId
+        in: path
+        required: true
+        description: Unique identifier for the specific brand-kit style
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              $ref: '#/components/schemas/UploadImageToBrandKitStyleRequestBody'
+        required: true
+      responses:
+        '201':
+          description: Created
+      summary: Update or Manage Brand-kit style
+  /profile-service/accounts/{accountId}/brand-kits/{brandKitId}/style-types/image/{styleId}/train:
+    post:
+      description: "This API enables you to train a Brand-kit image style, which can then be applied within content generation.\n\n**Sample Request Body**\n```json\n  {\n    \"notificationEmail\": \"user.email@test.in\"\n  }\n```\n\n**Note**: It is mandatory to train a Brand-kit image style before it can be utilized in content generation."
+      tags:
+      - Brand Kits
+      operationId: trainBrandKitImagestyle
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Unique identifier for the specific team
+        schema:
+          type: string
+      - name: brandKitId
+        in: path
+        required: true
+        description: Unique identifier for the specific brand-kit
+        schema:
+          type: integer
+          format: int64
+      - name: styleId
+        in: path
+        required: true
+        description: Unique identifier for the specific brand-kit style
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - notificationEmail
+              properties:
+                notificationEmail:
+                  type: string
+      responses:
+        '201':
+          description: Created
+      summary: Train Brand-kit image style
+components:
+  schemas:
+    ImageProperties:
+      type: object
+      properties:
+        blobId:
+          $ref: '#/components/schemas/BlobId'
+    BlobId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    WorkspaceId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    LibraryProperties:
+      type: object
+      properties:
+        hideBrandKit:
+          type: boolean
+        defaultTextStyleId:
+          type: integer
+          format: int64
+        defaultImageStyleId:
+          type: integer
+          format: int64
+        defaultColorPaletteId:
+          type: integer
+          format: int64
+        defaultLanguage:
+          type: string
+    CreateLibraryResponseBody:
+      type: object
+      properties:
+        libraryDetails:
+          $ref: '#/components/schemas/LibraryDetails'
+    Image:
+      type: object
+      properties:
+        workspaceId:
+          $ref: '#/components/schemas/WorkspaceId'
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/ImageProperties'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+    LibraryDetails:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/WorkspaceId'
+        ownerId:
+          type: string
+        name:
+          type: string
+        image:
+          $ref: '#/components/schemas/Image'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        discarded:
+          type: boolean
+        properties:
+          $ref: '#/components/schemas/LibraryProperties'
+        workspaceSubType:
+          type: string
+          enum:
+          - ALCHEMIST
+          - WEAVER
+          - BATCH_OUTPUT
+          - DEFAULT
+          - BRAND_KIT_LIBRARY
+          - DECORATION_LIBRARY
+          - AUDIENCE_LIBRARY
+          - LOGO_LIBRARY
+    CreateBrandKitStyleRequestBody:
+      type: object
+      properties:
+        name:
+          type: string
+        subType:
+          type: string
+          default: BRAND_KIT_LIBRARY
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+    JsonNode:
+      type: object
+    GetLibrariesResponseBody:
+      type: object
+      properties:
+        libraries:
+          type: array
+          items:
+            $ref: '#/components/schemas/LibraryDetails'
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    UploadImageToBrandKitStyleRequestBody:
+      type: object
+      properties:
+        contentUrl:
+          type: string
+          description: URL from where the content can be downloaded. This should be a pre-signed url
+        content:
+          type: string
+          description: File to be uploaded. Either the contentUrl or content field should be passed in a single request
+          format: binary
+    QueryBrandKitStylesResponseBody:
+      type: object
+      properties:
+        styles:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelBrandKitStyle'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    EntityModelBrandKitStyle:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        isDefault:
+          type: boolean
+          deprecated: true
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+        type:
+          type: string
+          enum:
+          - Text
+          - Image
+          - Palette
+        subType:
+          type: string
+        data:
+          $ref: '#/components/schemas/JsonNode'
+        ref:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

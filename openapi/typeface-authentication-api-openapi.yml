@@ -1,0 +1,165 @@
+openapi: 3.0.1
+info:
+  title: Typeface Audiences Authentication API
+  version: v0
+servers:
+- url: https://api-us.typeface.ai
+  description: Generated server url
+security:
+- BearerAuth: []
+tags:
+- name: Authentication
+paths:
+  /oauth2/token:
+    post:
+      security: []
+      summary: Get access token
+      description: "This API endpoint allows authorized client applications to obtain an access token using their Application credentials. The access token is required to authenticate and authorize requests to other Typeface AI API endpoints. \n\n**Token Expiration & Renewal**:  Access tokens are valid for one hour.\n\nTo maintain uninterrupted access to Typeface AI APIs, client applications should implement a mechanism to:\n  - *Periodically Refresh*: Automatically fetch a new access token before\n  the current one expires.\n  - *Error-Based Refresh*: Fetch a new access token when encountering a 401\n  Unauthorized error, indicating token expiration."
+      tags:
+      - Authentication
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              type: object
+              required:
+              - grant_type
+              - applicationId
+              - applicationSecret
+              - tenantId
+              properties:
+                grant_type:
+                  type: string
+                  enum:
+                  - client_credentials
+                applicationId:
+                  type: string
+                applicationSecret:
+                  type: string
+                tenantId:
+                  type: string
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  access_token:
+                    type: string
+                  token_type:
+                    type: string
+                  expires_in:
+                    type: integer
+  /identity-service/applications:
+    post:
+      tags:
+      - Authentication
+      operationId: registerApplication
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateApplicationRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateApplicationResponseBody'
+      summary: Create Application
+  /identity-service/applications/{applicationId}/keys/{ordinal}/rotate:
+    post:
+      tags:
+      - Authentication
+      operationId: rotateApplicationSecret
+      parameters:
+      - name: applicationId
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: ordinal
+        in: path
+        required: true
+        schema:
+          type: string
+          enum:
+          - PRIMARY
+          - SECONDARY
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RotateApplicationKeyRequestBody'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RotateApplicationKeyResponseBody'
+      summary: Rotate Application Secret
+components:
+  schemas:
+    ApplicationCredential:
+      type: object
+      properties:
+        ordinal:
+          type: string
+          enum:
+          - PRIMARY
+          - SECONDARY
+        applicationSecret:
+          type: string
+    CreateApplicationResponseBody:
+      type: object
+      properties:
+        applicationId:
+          type: string
+        displayName:
+          type: string
+        credentials:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationCredential'
+    RotateApplicationKeyResponseBody:
+      type: object
+      properties:
+        applicationId:
+          type: string
+        credential:
+          $ref: '#/components/schemas/ApplicationCredential'
+    CreateApplicationRequestBody:
+      type: object
+      properties:
+        displayName:
+          type: string
+        contactEmailId:
+          type: string
+        scopes:
+          type: array
+          items:
+            type: string
+        redirectUris:
+          type: array
+          items:
+            type: string
+        grantTypes:
+          type: array
+          items:
+            type: string
+    RotateApplicationKeyRequestBody:
+      type: object
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
