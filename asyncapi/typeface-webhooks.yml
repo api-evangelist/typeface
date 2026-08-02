@@ -1,0 +1,59 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.typeface.ai/docs/webhook-events-and-payloads
+type: Webhooks
+description: Typeface publishes outbound webhooks (event-driven HTTP POST
+  deliveries to configured endpoints) and inbound webhooks (external systems
+  trigger Typeface custom agents). No AsyncAPI document is published; this
+  captures the documented webhook catalog.
+outbound:
+  docs:
+    - https://developers.typeface.ai/docs/webhook-overview
+    - https://developers.typeface.ai/docs/how-to-configure-webhooks-in-typeface
+    - https://developers.typeface.ai/docs/webhook-authentication-and-verification
+    - https://developers.typeface.ai/docs/webhook-events-and-payloads
+  delivery: HTTP POST with JSON payload
+  configuration_levels: [organization, team]
+  multiple_endpoints: true
+  authentication: Optional request signing using HMAC-SHA256
+  signature:
+    header: 'X-Webhook-Signature: t=<timestamp>,v1=<base64-signature>'
+    algorithm: HMAC-SHA256 over "{timestamp}.{raw_request_body}" keyed with the
+      shared secret (shown once at webhook creation; rotatable)
+    replay_protection: Verify current_time - t <= tolerance (recommended 5
+      minutes); each delivery attempt is signed with a new timestamp
+    endpoint_requirement: Return 2xx quickly before long-running processing
+  events:
+    - name: document.created
+      description: A new document is created
+    - name: document.deleted
+      description: A document is deleted
+    - name: document.workflow_state_changed
+      description: A document moves between workflow steps
+    - name: generated_image.created
+      description: A new image is generated
+    - name: generated_image.deleted
+      description: A generated image is deleted
+    - name: generated_image.updated
+      description: A generated image is updated
+    - name: image.uploaded
+      description: An image is uploaded to the asset hub
+    - name: image.updated
+      description: An asset image is updated
+    - name: image.deleted
+      description: An asset image is deleted
+  payload_shape:
+    fields: [event_id, event (or event_type), timestamp, data]
+    data_fields: [state, entityId, entityType, entitySubType, name, modifiedAt,
+      workspaceId, accountId, entityUrl]
+    notes: entityUrl for generated/asset images is a time-limited pre-authenticated
+      SignedUrl with embedded authentication tokens.
+inbound:
+  docs:
+    - https://developers.typeface.ai/docs/inbound-webhooks
+    - https://developers.typeface.ai/docs/how-to-configure-inbound-webhooks-in-typeface
+    - https://developers.typeface.ai/docs/inbound-webhook-request-verification
+    - https://developers.typeface.ai/docs/inbound-webhook-activity-logs
+  description: Inbound webhooks enable external systems to securely trigger
+    custom agents in real time using event-based requests, with request
+    verification and activity logs.

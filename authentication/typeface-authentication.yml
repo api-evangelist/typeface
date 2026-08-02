@@ -1,0 +1,52 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.typeface.ai/docs/bearer-authentication
+docs:
+  - https://developers.typeface.ai/docs/bearer-authentication
+  - https://developers.typeface.ai/docs/oauth-21-authorization-code-flow-for-typeface-mcp-apis
+summary:
+  types: [http-bearer, oauth2]
+  oauth2_flows: [clientCredentials, authorizationCode]
+  token_format: JWT
+  token_lifetime_seconds: 3600
+schemes:
+  - name: bearerAuth
+    type: http
+    scheme: bearer
+    bearerFormat: JWT
+    description: All REST APIs (except the token endpoint) require an
+      Authorization Bearer <access_token> header. Tokens are JWTs valid for 60
+      minutes.
+  - name: applicationCredentials
+    type: oauth2
+    flow: clientCredentials
+    tokenUrl: https://api-us.typeface.ai/oauth2/token
+    description: Organization admins create an Application in the Typeface UI
+      to obtain applicationId + applicationSecret. POST
+      grant_type=client_credentials with applicationId, applicationSecret, and
+      tenantId (orgId) to the global endpoint to obtain an access token. The
+      token endpoint must always use the global (Azure) API hostname; subsequent
+      requests use the datacenter hostname where the team is provisioned.
+  - name: mcpOAuth
+    type: oauth2
+    flow: authorizationCode
+    pkce: required
+    authorizationUrl: https://auth-us.typeface.ai/authorize
+    tokenUrl: https://api-us.typeface.ai/mcp/oauth/token
+    registrationUrl: https://api-us.typeface.ai/mcp/oauth/register
+    discoveryUrl: https://api-us.typeface.ai/.well-known/oauth-authorization-server
+    scopes:
+      - openid
+      - profile
+      - email
+      - offline_access
+    description: OAuth 2.1 authorization-code flow with PKCE (per the MCP
+      authentication guidelines) for the Typeface MCP server and MCP APIs, with
+      dynamic client registration and optional SSO connection parameter.
+enterprise_identity:
+  sso: [Microsoft Entra ID, Okta]
+  provisioning: SCIM 2.0 automated user provisioning (Entra ID and Okta)
+  docs:
+    - https://developers.typeface.ai/docs/sso-configuration-microsoft-entra-id
+    - https://developers.typeface.ai/docs/sso-configuration-okta
+    - https://developers.typeface.ai/docs/azure-ad-members-scynchronization-scim-provisioning

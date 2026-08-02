@@ -1,0 +1,45 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.typeface.ai
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: Client-credentials token endpoint (POST /oauth2/token) documented
+      at https://developers.typeface.ai/docs/bearer-authentication
+  - id: oauth2.1
+    conforms: true
+    evidence: OAuth 2.1 authorization-code flow with PKCE and dynamic client
+      registration for MCP APIs, with RFC 8414 discovery at
+      https://api-us.typeface.ai/.well-known/oauth-authorization-server
+      (https://developers.typeface.ai/docs/oauth-21-authorization-code-flow-for-typeface-mcp-apis)
+  - id: oidc
+    conforms: true
+    evidence: openid/profile/email scopes in the authorization request; SSO via
+      Microsoft Entra ID and Okta
+      (https://developers.typeface.ai/docs/sso-configuration-microsoft-entra-id)
+  - id: scim2
+    conforms: true
+    evidence: Automated user provisioning via SCIM 2.0 for Microsoft Entra ID
+      and Okta
+      (https://developers.typeface.ai/docs/azure-ad-members-scynchronization-scim-provisioning)
+  - id: hal
+    conforms: true
+    evidence: Typeface APIs follow the HAL hypermedia model per
+      https://developers.typeface.ai/docs/service-endpoints
+  - id: mcp
+    conforms: true
+    evidence: Published MCP server at https://api-us.typeface.ai/mcp following
+      the MCP standard (JSON-RPC 2.0 over HTTP/SSE)
+      (https://developers.typeface.ai/docs/mcp-overview)
+  - id: json-rpc-2.0
+    conforms: true
+    evidence: MCP API surface follows the JSON-RPC 2.0 specification
+      (https://developers.typeface.ai/docs/mcp-apis-overview)
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Error responses use a custom errorMessage/status envelope, not
+      application/problem+json
+  - id: json-ld
+    conforms: true
+    evidence: typeface_generate_schema_org MCP tool emits Schema.org JSON-LD
+      (https://developers.typeface.ai/docs/tools)

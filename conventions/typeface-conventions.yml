@@ -1,0 +1,45 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.typeface.ai/docs/introduction
+docs:
+  - https://developers.typeface.ai/docs/service-endpoints
+  - https://developers.typeface.ai/docs/bearer-authentication
+  - https://developers.typeface.ai/docs/errors
+authentication:
+  style: Bearer JWT in Authorization header on every API except the token
+    endpoint
+  artifact: authentication/typeface-authentication.yml
+endpoints:
+  global_host: https://api-us.typeface.ai
+  model: Global endpoint serves authentication and discovery (Get Access Token,
+    Discover, Get Teams by OrgId); all other resources are reached through
+    links returned in responses. Teams are provisioned per datacenter (Azure and
+    GCP clouds); subsequent requests must use the datacenter hostname for the
+    team.
+hypermedia:
+  style: HAL
+  docs: https://developers.typeface.ai/docs/service-endpoints
+  notes: Typeface APIs follow the HAL model so clients avoid hardcoding any
+    endpoint except the well-known global APIs.
+idempotency:
+  documented: false
+  notes: No idempotency-key header or replay contract is documented.
+pagination:
+  documented: false
+  notes: List/search endpoints (Search Assets, Search Documents, Search Tags,
+    Query Teams) accept filter parameters; no cross-cutting pagination
+    convention is documented on a dedicated page.
+async_jobs:
+  pattern: Content generation is asynchronous - POST Generate Content returns a
+    batch job; poll Poll Generation Job Status (batch-jobs/{monitorId}) and then
+    fetch Get Generated Content.
+error_envelope:
+  shape: '{"errorMessage": "...", "status": "..."}'
+  artifact: errors/typeface-problem-types.yml
+rate_limiting:
+  signaling: HTTP 429 Too Many Requests on throttling
+  documented_headers: none
+versioning:
+  documented: false
+webhooks:
+  artifact: asyncapi/typeface-webhooks.yml

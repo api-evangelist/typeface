@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: searched
+source: https://www.npmjs.com/package/@typeface-ai/typeface-embed-react
+families:
+  - name: Typeface Embed
+    description: Embed Typeface's content-generation experience inside a host
+      application.
+    components:
+      - name: typeface-embed-react
+        kind: react-sdk
+        package: "@typeface-ai/typeface-embed-react"
+        registry: npm
+        install: npm install @typeface-ai/typeface-embed-react
+        official: true
+notes: Public evidence of the embed surface is the npm React SDK (active,
+  0.9.18, last published 2026-05-06); the embed integration itself is
+  documented to customers privately. No other client-side component libraries
+  were found.

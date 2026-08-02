@@ -1,0 +1,115 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/typeface-api-openapi.json
+entities:
+  - name: Organization
+    id_field: orgId (tenantId)
+  - name: Account
+    aliases: [Team]
+    id_field: accountId (uuid)
+    notes: Teams are provisioned per datacenter (Azure or GCP); discovered via
+      discoverIdentity / queryAccountsInOrg.
+  - name: User
+    notes: Listed per account via getUsers (Team users API).
+  - name: Project
+    aliases: [Workspace]
+    id_field: id (integer), workspaceId in webhook payloads
+  - name: Document
+    id_field: entityId
+    notes: Generated content; carries an optional content workflow and
+      assignees; exported via getReadOnlyDocument / getDocumentPdf.
+  - name: Workflow
+    notes: Content approval workflow with ordered steps (getWorkflows,
+      getWorkflowsSteps).
+  - name: BrandKit
+    notes: Holds styles (Image / Text / Logo) trained on uploaded brand images.
+  - name: Style
+  - name: AudienceCatalog
+  - name: Audience
+  - name: Layout
+    notes: Layout manifests listed per project.
+  - name: Asset
+    notes: Lives in project asset lists and the team asset catalog; carries tag
+      metadata.
+  - name: Tag
+    notes: Hierarchical taxonomy; deleting a tag deletes child tags.
+  - name: Feed
+    notes: Feed items generated in a feed (queryFeedItems,
+      generateFeedItemsInFeed).
+  - name: BatchJob
+    id_field: monitorId
+    notes: Asynchronous content-generation job.
+  - name: Chat
+    notes: MCP surface only - chats group generations within a project.
+  - name: Application
+    notes: API credential principal (registerApplication,
+      rotateApplicationSecret).
+relationships:
+  - from: Organization
+    to: Account
+    kind: has_many
+    via: queryAccountsInOrg
+  - from: Account
+    to: User
+    kind: has_many
+    via: getUsers
+  - from: Account
+    to: Project
+    kind: has_many
+    via: queryProjectsInAccount_1
+  - from: Account
+    to: BrandKit
+    kind: has_many
+    via: queryBrandsInAccount
+  - from: BrandKit
+    to: Style
+    kind: has_many
+    via: getStyleinBrandkit
+  - from: Account
+    to: AudienceCatalog
+    kind: has_many
+    via: queryAudienceCatalogsInAccount
+  - from: AudienceCatalog
+    to: Audience
+    kind: has_many
+    via: queryAudiencesInAccount
+  - from: Project
+    to: Layout
+    kind: has_many
+    via: queryLayoutManifestsInProject
+  - from: Project
+    to: Asset
+    kind: has_many
+    via: queryAssetsInProject
+  - from: Account
+    to: Asset
+    kind: has_many
+    via: queryAssetsInAssetCatalog
+  - from: Asset
+    to: Tag
+    kind: has_many
+    via: getMetadata / patchMetadata
+  - from: Project
+    to: Document
+    kind: has_many
+    via: searchDocuments
+  - from: Document
+    to: Workflow
+    kind: has_one
+    via: addDocumentWorkflow
+  - from: Document
+    to: User
+    kind: has_many
+    via: getDocumentAssignees (assignees)
+  - from: Project
+    to: BatchJob
+    kind: has_many
+    via: generate / batch-jobs/{monitorId}
+  - from: Project
+    to: Chat
+    kind: has_many
+    via: typeface_list_chat (MCP)
+  - from: Feed
+    to: Asset
+    kind: has_many
+    via: queryFeedItems

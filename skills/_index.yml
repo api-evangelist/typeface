@@ -1,0 +1,27 @@
+generated: '2026-07-21'
+method: generated
+skills:
+  - file: typeface-generate-content.md
+    name: Generate on-brand content with Typeface
+    api: openapi/typeface-api-openapi.json
+    operations: [discoverIdentity, queryAccountsInOrg, queryProjectsInAccount_1,
+      createProjectInAccount, getReadOnlyDocument]
+  - file: typeface-manage-brand-kits.md
+    name: Manage Typeface brand kits and styles
+    api: openapi/typeface-api-openapi.json
+    operations: [queryBrandsInAccount, createBrandKitInAccount,
+      deleteBrandKitInAccount, getStyleinBrandkit, createStyleinBrandkit,
+      uploadImageInBrandKitStyle, trainBrandKitImagestyle]
+  - file: typeface-manage-assets-and-tags.md
+    name: Manage Typeface assets and tag taxonomy
+    api: openapi/typeface-api-openapi.json
+    operations: [searchAssets, createAssetInAssetCatalog, getAssetInAssetCatalog,
+      updateAssetInAssetCatalog, deleteAssetInAssetCatalog, getMetadata,
+      patchMetadata, createTags, searchTags, getTag, patchTag, deleteTag]
+  - file: typeface-document-workflow.md
+    name: Run Typeface content approval workflows
+    api: openapi/typeface-content-workflow-openapi.json
+    operations: [getWorkflows, getWorkflowsSteps, createDocument,
+      addDocumentWorkflow, updateDocumentWorkflowStatusCopy,
+      getDocumentAssignees, updateDocumentAssignees, getDocumentPdf,
+      searchDocuments]

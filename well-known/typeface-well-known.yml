@@ -1,0 +1,39 @@
+generated: '2026-07-21'
+method: searched
+hosts:
+  - host: https://api-us.typeface.ai
+    documents:
+      - path: /.well-known/oauth-authorization-server   # RFC 8414
+        status: 200
+        file: typeface-oauth-authorization-server.json
+      - path: /.well-known/openid-configuration
+        status: 401
+      - path: /.well-known/security.txt
+        status: 401
+      - path: /.well-known/api-catalog
+        status: 401
+      - path: /.well-known/ai-plugin.json
+        status: 401
+  - host: https://www.typeface.ai
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+      - path: /llms.txt
+        status: 404
+  - host: https://developers.typeface.ai
+    documents:
+      - path: /llms.txt
+        status: 200
+        file: ../llms/typeface-llms.txt
+notes: Probed 2026-07-21. The RFC 8414 OAuth authorization-server metadata on
+  api-us.typeface.ai is the documented discovery endpoint for the Typeface MCP
+  OAuth 2.1 flow (issuer https://api-us.typeface.ai, PKCE S256, scopes openid
+  email profile offline_access, jwks at auth-us.typeface.ai).

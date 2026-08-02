@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: searched
+source: https://status.typeface.ai
+status_page: https://status.typeface.ai
+versioning:
+  scheme: undocumented
+  notes: The core REST spec is titled "Typeface API v0"; auxiliary specs
+    (Content Workflow, Documents search & filter, Team users) are versioned
+    1.0.0. No public versioning or deprecation policy page is published.
+deprecation:
+  policy_url: null
+  sunset_header: false
+sla: null
+deprecated_operations: []
+notes: Status page (title "Typeface Status") verified live at
+  https://status.typeface.ai on 2026-07-21 (HTTP 200). Docs also publish
+  limitations and known issues at
+  https://developers.typeface.ai/docs/limitations-and-known-issues.

@@ -1,0 +1,14 @@
+# generated: 2026-07-21 | method: generated | source: openapi/typeface-team-users-openapi.json
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Typeface Team Users API
+  version: 1.0.0
+extends: openapi/typeface-team-users-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: typeface
+        portal: https://developers.typeface.ai
+      description: Typeface Team Users API - retrieve the list of users
+        associated with a specified account (team).

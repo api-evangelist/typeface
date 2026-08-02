@@ -1,0 +1,28 @@
+# generated: 2026-07-21 | method: generated | source: openapi/typeface-api-openapi.json
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Typeface API
+  version: 1.0.0
+extends: openapi/typeface-api-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: typeface
+        portal: https://developers.typeface.ai
+        reference: https://developers.typeface.ai/reference
+        status: https://status.typeface.ai
+        trust: https://trust.typeface.ai
+        mcp: https://api-us.typeface.ai/mcp
+      description: Core Typeface API - identity discovery, teams, projects,
+        layouts, assets and asset catalogs, feeds, audiences, brand kits,
+        tags, and asynchronous batch content generation for the Typeface
+        agentic AI content platform.
+  - target: $.info
+    update:
+      x-artifacts:
+        authentication: authentication/typeface-authentication.yml
+        conventions: conventions/typeface-conventions.yml
+        errors: errors/typeface-problem-types.yml
+        webhooks: asyncapi/typeface-webhooks.yml
+        data-model: data-model/typeface-data-model.yml

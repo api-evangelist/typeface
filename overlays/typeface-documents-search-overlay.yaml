@@ -1,0 +1,14 @@
+# generated: 2026-07-21 | method: generated | source: openapi/typeface-documents-search-openapi.json
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Typeface Documents Search API
+  version: 1.0.0
+extends: openapi/typeface-documents-search-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: typeface
+        portal: https://developers.typeface.ai
+      description: Typeface Documents search & filter API - search for
+        documents within a specified project using various filters.

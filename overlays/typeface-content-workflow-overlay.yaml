@@ -1,0 +1,17 @@
+# generated: 2026-07-21 | method: generated | source: openapi/typeface-content-workflow-openapi.json
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for the Typeface Content Workflow API
+  version: 1.0.0
+extends: openapi/typeface-content-workflow-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: typeface
+        portal: https://developers.typeface.ai
+        webhooks: asyncapi/typeface-webhooks.yml
+      description: Typeface Content Workflow API - create documents with
+        attached approval workflows, advance workflow state, and manage
+        document assignees. Workflow transitions emit
+        document.workflow_state_changed webhooks.

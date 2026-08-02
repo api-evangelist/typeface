@@ -1,0 +1,55 @@
+generated: '2026-07-21'
+method: searched
+source: https://developers.typeface.ai/docs/errors
+format: http-status
+description: >-
+  Typeface REST APIs use standard HTTP response codes; some 4xx errors include
+  an error code explaining the reported error. The MCP API surface additionally
+  reports JSON-RPC tool errors inside an HTTP 200 body (result.isError true).
+  Error envelope example observed in docs -
+  {"errorMessage": "...", "status": "Not Found"}.
+problems:
+  - status: 400
+    title: Bad Request
+    detail: The request is invalid or cannot be processed - incorrect or invalid
+      parameters or data.
+  - status: 401
+    title: Unauthorized
+    detail: The request necessitates user authentication - a valid access token
+      is required.
+    remediation: Re-authenticate and retry.
+  - status: 403
+    title: Forbidden
+    detail: The server recognizes the request but denies authorization - the
+      request lacks required permissions.
+  - status: 404
+    title: Not Found
+    detail: The requested resource was not found - missing data or incorrect URL.
+  - status: 406
+    title: Not Acceptable
+    detail: The application can't provide a response that matches the request
+      format.
+    remediation: Validate the Accept header value is correct.
+  - status: 429
+    title: Too Many Requests
+    detail: Too many requests within a certain timeframe - rate limiting is
+      applied; throttled requests return 429.
+  - status: 500
+    title: Internal Server Error
+    detail: The server encountered an unexpected condition.
+    remediation: Retry with backoff (MCP docs mark 500 as retryable).
+  - status: 502
+    title: Bad Gateway
+    detail: Temporary upstream failure (documented for the MCP API surface).
+    remediation: Retryable.
+  - status: 503
+    title: Service Unavailable
+    detail: The server is presently unable to process the request - maintenance
+      or temporarily out of service.
+    remediation: Retryable.
+mcp_json_rpc_errors:
+  docs: https://developers.typeface.ai/docs/mcp-apis-overview
+  detection: result.isError === true in a JSON-RPC 2.0 response with HTTP 200
+  guidance: Treat as failed even though HTTP status is 200; inspect
+    result.content for the error message; fix inputs on validation errors
+    instead of retrying.

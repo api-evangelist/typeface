@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: searched
+source: https://registry.npmjs.org/-/v1/search?text=typeface%20ai
+packages:
+  - language: javascript
+    registry: npm
+    name: "@typeface-ai/typeface-embed-react"
+    url: https://www.npmjs.com/package/@typeface-ai/typeface-embed-react
+    install: npm install @typeface-ai/typeface-embed-react
+    official: true
+    latest: 0.9.18
+    first_published: '2023-04-13'
+    last_published: '2026-05-06'
+    description: React SDK for Typeface Embed Integration.
+    notes: Maintained by Typeface staff npm accounts (krisnik-typeface,
+      mohit_typeface, yasasvee-tf, yash.srivastava).
+notes: 'Probed npm, PyPI (typeface / typeface-api / typeface-ai all 404), and
+  the GitHub orgs TypeFaceAI and Typeface-ai (both exist with 0 public repos)
+  on 2026-07-21. The React embed SDK is the only first-party public client
+  library found; the REST API is otherwise consumed directly over HTTPS.'

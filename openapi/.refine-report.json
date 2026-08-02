@@ -1,0 +1,42 @@
+{
+  "provider": "typeface",
+  "sources": [
+    "typeface-audiences-api-openapi.yml",
+    "typeface-authentication-api-openapi.yml",
+    "typeface-basic-services-api-openapi.yml",
+    "typeface-brand-kits-api-openapi.yml",
+    "typeface-content-generation-api-openapi.yml",
+    "typeface-content-service-api-openapi.yml",
+    "typeface-digital-assets-api-openapi.yml",
+    "typeface-discovery-api-openapi.yml",
+    "typeface-feeds-api-openapi.yml",
+    "typeface-profile-service-api-openapi.yml",
+    "typeface-projects-api-openapi.yml",
+    "typeface-provisioning-api-openapi.yml",
+    "typeface-provisioning-service-api-openapi.yml",
+    "typeface-search-service-api-openapi.yml",
+    "typeface-tag-library-api-openapi.yml"
+  ],
+  "outputs": [
+    "typeface-audiences-api-openapi.yml",
+    "typeface-authentication-api-openapi.yml",
+    "typeface-basic-services-api-openapi.yml",
+    "typeface-brand-kits-api-openapi.yml",
+    "typeface-content-generation-api-openapi.yml",
+    "typeface-content-service-api-openapi.yml",
+    "typeface-digital-assets-api-openapi.yml",
+    "typeface-discovery-api-openapi.yml",
+    "typeface-feeds-api-openapi.yml",
+    "typeface-profile-service-api-openapi.yml",
+    "typeface-projects-api-openapi.yml",
+    "typeface-provisioning-api-openapi.yml",
+    "typeface-provisioning-service-api-openapi.yml",
+    "typeface-search-service-api-openapi.yml",
+    "typeface-tag-library-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

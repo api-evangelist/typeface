@@ -1,24 +1,264 @@
 aid: typeface
 name: Typeface
-description: 'Typeface is a company surfaced as a portfolio company of gv, lightspeed-venture-partners,
-  menlo-ventures and added to the API Evangelist network as a stub for enrichment. Sector: ai. This profile
-  is a lead awaiting the enrichment pipeline.'
+description: 'Typeface is an enterprise marketing AI platform that orchestrates
+  AI agents, brand intelligence, and workflows to create personalized, on-brand
+  campaigns at scale. Its developer platform exposes REST APIs (bearer JWT via
+  application credentials) for identity discovery, teams, projects, brand kits,
+  audiences, layouts, assets, tags, content workflows, document search, and
+  asynchronous batch content generation, plus outbound/inbound webhooks, a
+  hosted MCP server with OAuth 2.1, an A2A agent surface, SCIM 2.0
+  provisioning, and 30+ marketing-stack connectors.'
 url: https://raw.githubusercontent.com/api-evangelist/typeface/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://images.ctfassets.net/x690ow8339ug/g36Rl9hYe43Kx6buA0HBv/752c90259d7655c7accbb0ce0697a67e/Agentic-AI.png
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
 - gv
 - lightspeed-venture-partners
 - menlo-ventures
-x-tier: stub
-x-tier-reason: portfolio-lead
+x-tier: enriched
+x-tier-reason: developer-platform-profiled
 specificationVersion: '0.20'
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 31
+  pass: local-v1
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Ai
-apis: []
+- Artificial Intelligence
+- Content Generation
+- Marketing
+- Agents
+- Generative AI
+- Brand Management
+- Enterprise
+apis:
+- aid: typeface:typeface-audiences-api
+  name: Typeface Audiences API
+  description: The Audiences API from Typeface — 3 operation(s) for audiences.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Audiences
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-audiences-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-authentication-api
+  name: Typeface Authentication API
+  description: The Authentication API from Typeface — 3 operation(s) for authentication.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-basic-services-api
+  name: Typeface Basic Services API
+  description: The Basic Services API from Typeface — 1 operation(s) for basic services.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Basic Services
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-basic-services-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-brand-kits-api
+  name: Typeface Brand Kits API
+  description: The Brand Kits API from Typeface — 6 operation(s) for brand kits.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Brand Kits
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-brand-kits-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-content-generation-api
+  name: Typeface Content Generation API
+  description: The Content Generation API from Typeface — 3 operation(s) for content generation.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Content Generation
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-content-generation-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-content-service-api
+  name: Typeface Content Service API
+  description: The Content Service API from Typeface — 3 operation(s) for content service.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Content Service
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-content-service-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-digital-assets-api
+  name: Typeface Digital Assets API
+  description: The Digital Assets API from Typeface — 7 operation(s) for digital assets.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Digital Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-digital-assets-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-discovery-api
+  name: Typeface Discovery API
+  description: The Discovery API from Typeface — 2 operation(s) for discovery.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Discovery
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-discovery-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-feeds-api
+  name: Typeface Feeds API
+  description: The Feeds API from Typeface — 4 operation(s) for feeds.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Feeds
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-feeds-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-profile-service-api
+  name: Typeface Profile Service API
+  description: The Profile Service API from Typeface — 2 operation(s) for profile service.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Profile Service
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-profile-service-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-projects-api
+  name: Typeface Projects API
+  description: The Projects API from Typeface — 4 operation(s) for projects.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-projects-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-provisioning-api
+  name: Typeface Provisioning API
+  description: The Provisioning API from Typeface — 2 operation(s) for provisioning.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Provisioning
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-provisioning-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-provisioning-service-api
+  name: Typeface Provisioning Service API
+  description: The Provisioning Service API from Typeface — 1 operation(s) for provisioning service.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Provisioning Service
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-provisioning-service-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-search-service-api
+  name: Typeface Search Service API
+  description: The Search Service API from Typeface — 1 operation(s) for search service.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Search Service
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-search-service-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
+- aid: typeface:typeface-tag-library-api
+  name: Typeface Tag Library API
+  description: The Tag Library API from Typeface — 3 operation(s) for tag library.
+  humanURL: https://developers.typeface.ai/reference
+  baseURL: https://api-us.typeface.ai
+  tags:
+  - Tag Library
+  properties:
+  - type: OpenAPI
+    url: openapi/typeface-tag-library-api-openapi.yml
+  - type: Documentation
+    url: https://developers.typeface.ai/docs/getting-started
+  - type: APIReference
+    url: https://developers.typeface.ai/reference
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
@@ -27,3 +267,65 @@ maintainers:
 common:
 - type: Website
   url: https://www.typeface.ai
+- type: DeveloperPortal
+  url: https://developers.typeface.ai
+- type: Documentation
+  url: https://developers.typeface.ai/docs
+- type: APIReference
+  url: https://developers.typeface.ai/reference
+- type: GettingStarted
+  url: https://developers.typeface.ai/docs/getting-started
+- type: Authentication
+  url: authentication/typeface-authentication.yml
+- type: OAuthScopes
+  url: scopes/typeface-scopes.yml
+- type: MCPServer
+  url: mcp/typeface-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/typeface-agentic-access.yml
+- type: Webhooks
+  url: asyncapi/typeface-webhooks.yml
+- type: WellKnown
+  url: well-known/typeface-well-known.yml
+- type: LLMsTxt
+  url: llms/typeface-llms.txt
+- type: Packages
+  url: packages/typeface-packages.yml
+- type: SDKs
+  url: packages/typeface-packages.yml
+- type: Components
+  url: components/typeface-components.yml
+- type: Conformance
+  url: conformance/typeface-conformance.yml
+- type: Compliance
+  url: https://trust.typeface.ai
+- type: TrustCenter
+  url: security/typeface-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/typeface-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.typeface.ai/security-and-governance
+- type: DomainSecurity
+  url: security/typeface-domain-security.yml
+- type: ErrorCatalog
+  url: errors/typeface-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/typeface-lifecycle.yml
+- type: StatusPage
+  url: https://status.typeface.ai
+- type: Conventions
+  url: conventions/typeface-conventions.yml
+- type: DataModel
+  url: data-model/typeface-data-model.yml
+- type: Blog
+  url: https://www.typeface.ai/blog
+- type: Support
+  url: https://support.typeface.ai
+- type: Login
+  url: https://app.typeface.ai/login
+- type: TermsOfService
+  url: https://www.typeface.ai/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.typeface.ai/privacy
