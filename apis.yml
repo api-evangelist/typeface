@@ -32,12 +32,12 @@ x-tier: enriched
 x-tier-reason: developer-platform-profiled
 specificationVersion: '0.20'
 x-enrichment:
-  date: '2026-07-21'
+  date: '2026-08-13'
   status: enriched
-  artifacts_added: 31
+  artifacts_added: 4
   pass: local-v1
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-08-13'
 tags:
 - Company
 - Ai
@@ -283,6 +283,12 @@ common:
   url: scopes/typeface-scopes.yml
 - type: MCPServer
   url: mcp/typeface-mcp.yml
+- type: ToolCrosswalk
+  url: mcp/typeface-tool-crosswalk.yml
+- type: RateLimits
+  url: rate-limits/typeface-rate-limits.yml
+- type: Plans
+  url: plans/typeface-plans-pricing.yml
 - type: AgentSkill
   url: skills/_index.yml
 - type: AgenticAccess
