@@ -1,0 +1,183 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences Content Service API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Document Assignees",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/content-service/accounts/:accountId/projects/:projectId/documents/:documentId/assignees",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the account"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the project"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the document"
+              }
+            ]
+          },
+          "docs": "Retrieve the list of assignees for a specific document."
+        },
+        {
+          "info": {
+            "name": "Update Document Assignees",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-us.typeface.ai/content-service/accounts/:accountId/projects/:projectId/documents/:documentId/assignees",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the account"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the project"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the document"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update (add or remove) the assignees for a document."
+        },
+        {
+          "info": {
+            "name": "Add Document Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/content-service/accounts/:accountId/projects/:projectId/documents/:documentId/workflow",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the account"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the project"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the document"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Associate a content workflow with a document."
+        },
+        {
+          "info": {
+            "name": "Update Document Workflow and/or Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-us.typeface.ai/content-service/accounts/:accountId/projects/:projectId/documents/:documentId/workflow",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the account"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the project"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the document"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the workflow and/or status associated with a document."
+        },
+        {
+          "info": {
+            "name": "Create Document with a Workflow",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/content-service/workspace/:projectId/documents",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new document and attach a content workflow to it."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

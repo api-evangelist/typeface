@@ -1,0 +1,191 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/typeface-mcp.yml + openapi/*.yml
+docs:
+  - https://developers.typeface.ai/docs/tools
+  - https://developers.typeface.ai/docs/mcp-api-tools
+  - https://developers.typeface.ai/reference
+description: >-
+  Binds every published Typeface MCP tool to the REST operation(s) that back it
+  in the harvested OpenAPI, so an agent can read the tool's real input contract
+  (the operation's parameters + requestBody) instead of guessing. Live
+  tools/list introspection is OAuth-gated (HTTP 401 on 2026-08-13), so the tool
+  set comes from the two published tool pages and each binding is mapped by
+  name/semantics against verified operationIds - confidence is recorded
+  honestly and nothing is invented.
+surfaces:
+  openapi:
+    files: openapi/typeface-*-openapi.yml
+    operations: 64
+    gated: false
+  mcp:
+    url: https://api-us.typeface.ai/mcp
+    transport: http (JSON-RPC 2.0, SSE-capable)
+    tools_list_gated: true
+    tools_list_status: 401
+    checked: '2026-08-13'
+  graphql:
+    present: false
+  a2a:
+    present: false
+    note: Docs describe a Typeface A2A agent for Gemini Enterprise; no agent
+      card is served at any well-known path.
+crosswalk:
+  - tool: typeface_discover_identity
+    category: identity
+    rest: [discoverIdentity, queryAccountsInOrg]
+    binding: rest
+    confidence: high
+    note: GET /identity-service/discover returns the user, their teams and orgs
+      (the same shape the tool documents); queryAccountsInOrg is the org-scoped
+      team enumeration.
+  - tool: typeface_list_projects
+    category: projects
+    rest: [queryProjectsInAccount_1]
+    binding: rest
+    confidence: high
+  - tool: typeface_create_project
+    category: projects
+    rest: [createProjectInAccount]
+    binding: rest
+    confidence: high
+  - tool: typeface_list_brand_kits
+    category: brand
+    rest: [queryBrandsInAccount]
+    binding: rest
+    confidence: high
+  - tool: typeface_list_audiences
+    category: audiences
+    rest: [queryAudiencesInAccount, queryAudienceCatalogsInAccount]
+    binding: rest
+    confidence: high
+    note: The tool takes a team; REST requires resolving the audience catalog
+      first, so the tool fans out over both operations.
+  - tool: typeface_list_layouts
+    category: layouts
+    rest: [queryLayoutManifestsInProject]
+    binding: rest
+    confidence: medium
+    note: REST scopes layout manifests to a project; the tool documents team +
+      brand-kit scope, so the mapping is semantic rather than exact.
+  - tool: typeface_list_assets
+    category: assets
+    rest: [queryAssetsInProject, queryAssetsInAssetCatalog, searchAssets]
+    binding: rest
+    confidence: medium
+    note: REST splits asset listing across project scope, asset-catalog scope
+      and a search-service query; the single tool covers all three.
+  - tool: typeface_get_asset
+    category: assets
+    rest: [getAssetInProject, getAssetInAssetCatalog]
+    binding: rest
+    confidence: medium
+    note: Marked DEPRECATED on the MCP API tools page; typeface_resolve_ref is
+      the documented replacement.
+  - tool: typeface_execute
+    category: generation
+    rest: []
+    rest_paths:
+      - 'POST /batch-service/accounts/{accountId}/projects/{projectId}/generate'
+      - 'GET /batch-service/accounts/{accountId}/projects/{projectId}/batch-jobs/{monitorId}'
+    binding: rest
+    confidence: medium
+    note: The backing REST operations (Generate Content, Poll Generation Job
+      Status in openapi/typeface-content-generation-api-openapi.yml) carry NO
+      operationId in the published spec, so they are bound by method+path. The
+      tool is also broader than the REST batch job - it additionally covers Q&A
+      over brand documents, brand-guideline evaluation and asset management by
+      public URL.
+  - tool: typeface_export_document_as_json
+    category: content
+    rest: [getReadOnlyDocument]
+    binding: rest
+    confidence: medium
+    note: GET .../documents/{documentId}/read-only is the documented way to
+      fetch generated content as structured JSON.
+  - tool: typeface_export_content
+    category: content
+    rest: [getDocumentPdf]
+    binding: rest
+    confidence: low
+    note: The only published REST export operation is PDF export; the tool's
+      full format matrix is not described in REST terms.
+  - tool: typeface_resolve_ref
+    category: identity
+    rest: [getAssetInAssetCatalog, getTag, getLayoutManifestsInProject]
+    binding: rest
+    confidence: low
+    note: Generic Base64 ref resolver across entity types (layouts, assets,
+      audiences, collections, brand kits, agents). No single REST equivalent -
+      the listed operations are the per-type REST reads it stands in for.
+mcp_only:
+  - tool: typeface_create_chat
+    reason: Chat sessions are an MCP/product concept; no chat resource is
+      published in the REST API.
+  - tool: typeface_list_chat
+    reason: No REST chat resource.
+  - tool: typeface_list_agents
+    reason: Custom agents (Agent Builder workflows) have no published REST
+      listing operation.
+  - tool: typeface_list_collections
+    reason: Collections are not exposed as a REST resource in the published
+      specs.
+  - tool: typeface_list_connections
+    reason: Connector configuration has no published REST operation.
+  - tool: typeface_publish_journey
+    reason: Publishing to a connected downstream system is MCP/connector-side
+      only.
+  - tool: typeface_generate_schema_org
+    reason: Server-side content transform (Schema.org JSON-LD); no REST
+      operation.
+  - tool: typeface_evaluate_aeo
+    reason: AEO/GEO scoring is an MCP-only capability.
+  - tool: typeface_compute_seo_keyword_suggestions
+    reason: SEO keyword suggestion is an MCP-only capability.
+  - tool: typeface_evaluate_content_seo_score
+    reason: SEO scoring is an MCP-only capability.
+  - tool: typeface_inject_interlinks
+    reason: SEO interlink injection is an MCP-only capability.
+rest_only:
+  - capability: Application credentials / authentication
+    operations: [registerApplication, rotateApplicationSecret]
+    note: Plus POST /oauth2/token, which carries no operationId in the spec.
+  - capability: Team provisioning
+    operations: [createAccount, deleteAccountById, getUsers]
+  - capability: Project lifecycle beyond create/list
+    operations: [getProjectInAccount, updateProjectInAccount,
+      deleteProjectInAccount, getLayoutManifestsInProject]
+  - capability: Brand kit authoring and style training
+    operations: [createBrandKitInAccount, deleteBrandKitInAccount,
+      getStyleinBrandkit, createStyleinBrandkit, uploadImageInBrandKitStyle,
+      trainBrandKitImagestyle]
+  - capability: Audience authoring
+    operations: [createAudienceInAccount, manageAudienceInAccount,
+      deleteAudienceInAccount]
+  - capability: Asset write + metadata
+    operations: [createAssetInProject, updateAssetInProject,
+      deleteAssetInProject, getMetadataOfProjectAssets,
+      patchMetadataOfProjectAssets, createAssetInAssetCatalog,
+      updateAssetInAssetCatalog, deleteAssetInAssetCatalog, getMetadata,
+      patchMetadata]
+  - capability: Tag library
+    operations: [createTags, searchTags, getTag, patchTag, deleteTag]
+  - capability: Document workflow / approvals
+    operations: [getWorkflows, getWorkflowsSteps, createDocument,
+      addDocumentWorkflow, updateDocumentWorkflowStatusCopy,
+      getDocumentAssignees, updateDocumentAssignees]
+  - capability: Document search
+    operations: [searchDocuments]
+  - capability: Feeds
+    operations: [queryFeedItems, generateFeedItemsInFeed, patchFeed,
+      getFeedItem, discardFeedItem]
+coverage:
+  tools_published: 23
+  tools_bound_to_rest: 12
+  mcp_only: 11
+  rest_operations_total: 64
+  rest_operations_with_a_tool: 17
+  rest_operations_without_a_tool: 47
+  note: Counts operations that carry an operationId in the refined specs; three
+    published operations (POST /oauth2/token, Generate Content, Poll Generation
+    Job Status) have no operationId and are excluded from the bound count.

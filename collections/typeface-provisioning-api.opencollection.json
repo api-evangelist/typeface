@@ -1,0 +1,65 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences Provisioning API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Provisioning",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/provisioning-service/account",
+            "params": [
+              {
+                "name": "createSharedWorkspaces",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**Note:** Ensure you use the appropriate API endpoint corresponding to the selected cloud provider to avoid errors.\n\nThe available endpoints are listed below:\n- **AZURE**: https://api-us.typeface.ai\n- **GOOGLE**: https://api-us2.typeface.ai"
+        },
+        {
+          "info": {
+            "name": "Delete Team",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-us.typeface.ai/provisioning-service/account/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              }
+            ]
+          },
+          "docs": "Delete Team"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

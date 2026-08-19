@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences Basic Services API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Basic Services",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Document Content in PDF",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/basic-services/document-export-service/accounts/:accountId/workspaces/:projectId/document/:documentId/export/pdf",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the account"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the workspace/project"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the document"
+              }
+            ]
+          },
+          "docs": "Retrieve a document's content in PDF format."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

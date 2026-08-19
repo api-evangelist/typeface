@@ -1,0 +1,827 @@
+{
+  "item": [
+    {
+      "id": "5918339e-00ca-43f4-8ab6-8e1ae19598df",
+      "name": "Projects",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "eebf0f96-7128-4ba0-8b0b-e26a6c881449",
+          "name": "List Projects",
+          "request": {
+            "name": "List Projects",
+            "description": {},
+            "url": {
+              "path": [
+                "workspace-service",
+                "accounts",
+                ":accountId",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "workspaceSubType",
+                  "value": "DEFAULT"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4a08e407-0a34-41ce-9a18-403fdb8abb23",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspace-service",
+                    "accounts",
+                    ":accountId",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "workspaceSubType",
+                      "value": "DEFAULT"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"projects\": [\n    {\n      \"id\": {\n        \"id\": 3878\n      },\n      \"ownerId\": \"string\",\n      \"name\": \"string\",\n      \"image\": {\n        \"workspaceId\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"id\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"name\": \"string\",\n        \"sourcePath\": \"string\",\n        \"ingestionSource\": \"string\",\n        \"properties\": {\n          \"blobId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"createdAt\": \"2001-04-07T04:08:45.481Z\",\n        \"modifiedAt\": \"1972-05-24T02:02:19.712Z\",\n        \"renditionId\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"createdBy\": \"string\",\n        \"modifiedBy\": \"string\"\n      },\n      \"createdAt\": \"1997-01-06T11:08:11.304Z\",\n      \"modifiedAt\": \"1965-12-29T16:33:42.286Z\",\n      \"discarded\": false,\n      \"properties\": {},\n      \"workspaceSubType\": \"DECORATION_LIBRARY\"\n    },\n    {\n      \"id\": {\n        \"id\": 4229\n      },\n      \"ownerId\": \"string\",\n      \"name\": \"string\",\n      \"image\": {\n        \"workspaceId\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"id\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"name\": \"string\",\n        \"sourcePath\": \"string\",\n        \"ingestionSource\": \"string\",\n        \"properties\": {\n          \"blobId\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"createdAt\": \"1978-04-12T07:56:40.010Z\",\n        \"modifiedAt\": \"1951-12-13T15:06:50.688Z\",\n        \"renditionId\": {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        \"createdBy\": \"string\",\n        \"modifiedBy\": \"string\"\n      },\n      \"createdAt\": \"1967-04-08T03:50:29.702Z\",\n      \"modifiedAt\": \"1999-02-18T13:54:03.278Z\",\n      \"discarded\": true,\n      \"properties\": {},\n      \"workspaceSubType\": \"AUDIENCE_LIBRARY\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f7ef7330-81d2-4c6a-a469-2f2eccd2f060",
+          "name": "Create a Project",
+          "request": {
+            "name": "Create a Project",
+            "description": {},
+            "url": {
+              "path": [
+                "workspace-service",
+                "accounts",
+                ":accountId",
+                "projects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4caa5430-f8b7-4cf9-aac1-220556a11c49",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspace-service",
+                    "accounts",
+                    ":accountId",
+                    "projects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 2448,\n  \"name\": \"string\",\n  \"createdAt\": \"1955-10-30T13:35:30.060Z\",\n  \"modifiedAt\": \"1996-12-03T11:08:48.281Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe55c264-d7f3-4c0e-a109-23a15cacdc93",
+          "name": "Get a Project",
+          "request": {
+            "name": "Get a Project",
+            "description": {},
+            "url": {
+              "path": [
+                "workspace-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7cb7a8f4-c5bc-4b50-896c-3eb36df48283",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspace-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 303,\n  \"name\": \"string\",\n  \"createdAt\": \"1949-04-02T23:13:39.837Z\",\n  \"modifiedAt\": \"2014-06-08T17:19:07.069Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "89634b0a-5cf0-4edf-9d87-ac0a5dc416aa",
+          "name": "Update Project",
+          "request": {
+            "name": "Update Project",
+            "description": {},
+            "url": {
+              "path": [
+                "workspace-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ce9332a7-c43f-412f-b5d3-96bf486ce902",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspace-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 303,\n  \"name\": \"string\",\n  \"createdAt\": \"1949-04-02T23:13:39.837Z\",\n  \"modifiedAt\": \"2014-06-08T17:19:07.069Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "112046ad-cb05-4db0-bfaf-97df5c304ba6",
+          "name": "Delete Project",
+          "request": {
+            "name": "Delete Project",
+            "description": {},
+            "url": {
+              "path": [
+                "workspace-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f6e8f8fa-0826-42b9-9492-b2cac994c67f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspace-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2b2c5937-f7b1-44e2-8517-f38d6b819557",
+          "name": "Project - List Layouts",
+          "request": {
+            "name": "Project - List Layouts",
+            "description": {},
+            "url": {
+              "path": [
+                "content-service",
+                "workspace",
+                ":projectId",
+                "layout-manifests"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0908b634-bee8-423d-9be7-3f8412fc15e5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content-service",
+                    "workspace",
+                    ":projectId",
+                    "layout-manifests"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"layoutManifests\": {\n    \"empty\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "74ff5078-6622-44fb-b8fe-e0806fd97334",
+          "name": "Project - Get Layout",
+          "request": {
+            "name": "Project - Get Layout",
+            "description": {},
+            "url": {
+              "path": [
+                "content-service",
+                "workspace",
+                ":projectId",
+                "layout-manifests",
+                ":layoutId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "layoutId",
+                  "description": "(Required) Unique identifier for the specific layout manifest"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3bf6df34-d41d-4647-9601-75f149126a29",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content-service",
+                    "workspace",
+                    ":projectId",
+                    "layout-manifests",
+                    ":layoutId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "layoutId",
+                      "description": "(Required) Unique identifier for the specific layout manifest"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"layoutManifest\": {\n    \"id\": {\n      \"id\": 7996\n    },\n    \"workspaceId\": {\n      \"id\": 1303\n    },\n    \"name\": \"string\",\n    \"sourcePath\": \"string\",\n    \"ref\": \"string\",\n    \"ingestionSource\": \"string\",\n    \"properties\": {\n      \"layoutData\": {\n        \"key_0\": {},\n        \"key_1\": {}\n      },\n      \"blobId\": {\n        \"id\": 2544\n      }\n    },\n    \"createdAt\": \"1988-07-30T03:08:01.376Z\",\n    \"modifiedAt\": \"1996-05-23T20:23:21.334Z\",\n    \"renditionId\": {\n      \"id\": 5507\n    },\n    \"createdBy\": \"string\",\n    \"modifiedBy\": \"string\",\n    \"indexed\": true,\n    \"entitySubType\": \"DEFAULT\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-us.typeface.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1d106ac0-e0b9-4152-b09f-66d9cd69bdf9",
+    "name": "Typeface Audiences Projects API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

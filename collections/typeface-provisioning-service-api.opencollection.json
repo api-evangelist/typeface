@@ -1,0 +1,47 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences Provisioning Service API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Provisioning Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get team users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/provisioning-service/accounts/:accountId/users",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the account."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint retrieves a list of users associated with a specified account."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

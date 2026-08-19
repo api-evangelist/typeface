@@ -1,0 +1,238 @@
+{
+  "item": [
+    {
+      "id": "1d4c8f13-b79b-4c2a-9f95-fb112782658e",
+      "name": "Provisioning",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "45a3f430-6a71-495e-ab8c-64db4c390f79",
+          "name": "Create Team",
+          "request": {
+            "name": "Create Team",
+            "description": {
+              "content": "**Note:** Ensure you use the appropriate API endpoint corresponding to the selected cloud provider to avoid errors.\n\nThe available endpoints are listed below:\n- **AZURE**: https://api-us.typeface.ai\n- **GOOGLE**: https://api-us2.typeface.ai",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "provisioning-service",
+                "account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "createSharedWorkspaces",
+                  "value": "true"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"workspaceName\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"cloudProvider\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "41a156eb-aab5-4f10-bc84-d3cd34be7ba9",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning-service",
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "createSharedWorkspaces",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"workspaceName\": \"<string>\",\n  \"displayName\": \"<string>\",\n  \"cloudProvider\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"accountId\": \"string\",\n  \"displayName\": \"string\",\n  \"createdAt\": \"2015-09-21T13:00:04.491Z\",\n  \"modifiedAt\": \"2015-08-07T14:58:45.348Z\",\n  \"createdBy\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "72ff0a57-b71b-4d63-b988-10778c94c071",
+          "name": "Delete Team",
+          "request": {
+            "name": "Delete Team",
+            "description": {},
+            "url": {
+              "path": [
+                "provisioning-service",
+                "account",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3dc0d49e-d87f-4356-ac57-377b5523e33e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "provisioning-service",
+                    "account",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-us.typeface.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "552fece0-affd-4368-8faa-14bc85e3bd81",
+    "name": "Typeface Audiences Provisioning API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

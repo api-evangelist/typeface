@@ -1,0 +1,432 @@
+{
+  "item": [
+    {
+      "id": "71f83779-3020-45db-a3af-6eee09dca635",
+      "name": "Content Generation",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "be0b39c1-8af8-47ab-a070-a31972c182d5",
+          "name": "Generate Content",
+          "request": {
+            "name": "Generate Content",
+            "description": {
+              "content": "**templates** is an Array of requests.\n\n**templateType**\n  Supported template types are:\n  - `simple_image` - More details are available [here](#simple-image)\n  - `simple_text` - More details are available [here](#simple-text)\n  - `email` - More details are available [here](#email)\n  - `email_subject` - More details are available [here](#email-subject)\n  - `instagram_ad` - More details are available [here](#instagram-post)\n  - `facebook_post` - More details are available [here](#facebook-post)\n  - `blog_post` - More details are available [here](#blog-post)\n  - `google_responsive_image_ad` - More details are available [here](#google-responsive-display-ad)\n  - `linkedin_image_post` - More details are available [here](#linkedin-social-post)\n  - `file_refiner` - More details are available [here](#doc-transform)\n  - `meta_ad_v2` - More details are available [here](#meta-ad)\n  - `email_sales` - More details are available [here](#sales-email)\n\n  Upcoming template types:\n  - `Web blend`\n  - `Google search`\n  - `Marketing email`\n  - `Press release`\n  - `Job description`\n  - `Text blend`\n  - ...\n\n:information_source: Maximum number of Image variations(`simple_image`) one can generate is capped at 4.\n\nThis API is asynchronous and returns immediately after accepting the request. You can use the `batchJobStatus` link for monitoring the status of the Generation Job.\n\nAn example of bulk generation is available [here](#bulk-generation) to generate multiple contents at once\n\n---\n## Simple Image\n**Sample Payload for Image gen**\n```json\n{\n  \"templates\": [\n    {\n      \"templateType\": \"simple_image\",\n      \"templateParams\": {\n        \"ImageDescription\": \"Prompt to Generate Image\",\n        \"VariationCount\": 2,\n        \"EnhancePrompt\": true,\n        \"AspectRatio\": \"banner_w2048_h512\"\n      }\n    }\n  ],\n  \"workflowName\": \"Generate First Image\",\n  \"requestContext\": {} // You can flow any context information that you want to find in the Monitor API response.\n}\n```\n**Sample Response:**\n```json\n{\n  \"message\": \"Request initiated successfully\",\n  \"monitorId\": \"ed390b26-4d4f-4a27-a3f8-6225e9e84cdd\",\n  \"links\": [\n    {\n      \"rel\": \"batchJobStatus\",\n      \"href\": \"https://api-us.typeface.ai/batch-service/accounts/8f71f690-5404-4862-a3e4-0ebd6cfe6b88/projects/1/batch-jobs/ed390b26-4d4f-4a27-a3f8-6225e9e84cdd\"\n    }\n  ]\n}\n```\n\n**Notes:**\n\n`templateParams.ImageDescription` - Prompt for generating image\n\n`templateParams.VariationCount` - Number of variations to generate\n\n`templateParams.Layout` - **(Optional)** An identifier for a layout which can be used in *simple_image* template flow.\n\n**Layout** value can be obtained by making an API call to fetch Layout details, and capturing the `ref` field in response.  The API to fetch available layouts is documented [here](https://developers.typeface.ai/reference/querylayoutmanifestsinproject)\n\n`templateParams.Assets` - **(Optional)** A list of asset identifiers. For `simple_image` template flow, only a single image asset identifier is allowed.\n\n**Assets** value can be obtained by making an API call to fetch Asset details, and capturing the `ref` field in response.  The API to fetch available assets is documented [here](https://developers.typeface.ai/reference/queryassetsinproject)\n\n\n`templateParams.AudienceSegment` - **(Optional)** An identifier for audience to generate personalized content for specific users.\n\n**AudienceSegment** value can be obtained by making an API call to list Audiences, and capturing the `ref` field in response. The API to fetch available audiences is documented [here](https://developers.typeface.ai/reference/queryaudiencesinaccount)\n\n`templateParams.BrandKitImageStyle` - **(Optional)** An identifier for image style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitImageStyle** value can be obtained by making an API call to fetch Brand Kit image style details, and capturing the `ref` field in response.  The API to fetch available image styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n`templateParams.BrandKitTextStyle` - **(Optional)** An identifier for text style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitTextStyle** value can be obtained by making an API call to fetch Brand Kit text style details, and capturing the `ref` field in response.  The API to fetch available text styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n`templateParams.EnhancePrompt` - true/false. Enhances the user prompt if specified as true.\n\n`templateparams.AspectRatio` - **(Optional)** Determines the aspect ratio for generated images. Allowed values are:\n-    `square_w768_h768` (Square 768x768)\n-    `square_w1024_h1024` (Square 1024x1024)\n-    `landscape_w768_h576` (Landscape 768x576)\n-    `landscape_w1024_h768` (Landscape 1024x768)\n-    `portrait_w576_h768` (Portrait 576x768)\n-    `portrait_w768_h1024` (Portrait 768x1024)\n-    `widescreen_w1024_h576` (Widescreen 1024x576)\n-    `banner_w2048_h512` (Banner 2048x512)\n\n**Note**:  `AspectRatio` should not be used in conjunction with `Layout` field. To define the  aspect ratio with a Logo, the desired aspect ratio can be added via the typeface.ai Web User Interface.\n\n`workflowName` - This will be deprecated, for now flow any label/random number.\n\n`requestContext` - Any additional information (JSON) client wants to receive as part of polling API response.\n\n---\n## Simple Text\n**Sample Payload for Text gen**\n```json\n{\n  \"templates\": [\n    {\n      \"templateType\": \"simple_text\",\n      \"templateParams\": {\n        \"Prompt\": \"Prompt to Generate Text\"\n      }\n    }\n  ],\n  \"workflowName\": \"Generate First Text\",\n  \"requestContext\": {} // You can flow any context information that you want to find in the Monitor API response.\n}\n\n```\n**Sample Response:**\n```json\n{\n  \"message\": \"Request initiated successfully\",\n  \"monitorId\": \"ed390b26-4d4f-4a27-a3f8-6225e9e84cdd\",\n  \"links\": [\n    {\n      \"rel\": \"batchJobStatus\",\n      \"href\": \"https://api-us.typeface.ai/batch-service/accounts/8f71f690-5404-4862-a3e4-0ebd6cfe6b88/projects/1/batch-jobs/ed390b26-4d4f-4a27-a3f8-6225e9e84cdd\"\n    }\n  ]\n}\n```\n**Notes:**\n\n`templateParams.AudienceSegment` - **(Optional)** An identifier for audience to generate personalized content for specific users.\n\n**AudienceSegment** value can be obtained by making an API call to list Audiences, and capturing the `ref` field in response. The API to fetch available audiences is documented [here](https://developers.typeface.ai/reference/queryaudiencesinaccount)\n\n`templateParams.BrandKitImageStyle` - **(Optional)** An identifier for image style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitImageStyle** value can be obtained by making an API call to fetch Brand Kit image style details, and capturing the `ref` field in response.  The API to fetch available image styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n`templateParams.BrandKitTextStyle` - **(Optional)** An identifier for text style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitTextStyle** value can be obtained by making an API call to fetch Brand Kit text style details, and capturing the `ref` field in response.  The API to fetch available text styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n---\n## Email\n**Sample Payload for Email**\n```json\n{\n  \"templates\": [\n    {\n      \"templateType\": \"email\",\n      \"templateParams\": {\n        \"Purpose\": \"recruit for a new role\",\n        \"Context\": \"I am recruiting for a senior marketing manager role for my company\",\n        \"FollowUpResponse\": \"share what time they are available for a meeting\"\n      }\n    }\n  ],\n  \"workflowName\": \"Generate an Email\",\n  \"requestContext\": {} // You can flow any context information that you want to find in the Monitor API response.\n}\n```\n**Notes:**\n\n`templateParams.Purpose` - The main objective or reason for sending the email. This could be to inform, request information, follow up on a previous conversation, schedule a meeting, confirm details, or provide updates.\n\n`templateParams.Context` - The background information and circumstances related to the email. This includes any relevant details that help the recipient understand the reason for the email and its importance.\n\n`templateParams.FollowUpResponse` - The anticipated or requested action that the recipient should take after reading the email. This could be replying with specific information, confirming receipt, providing feedback, scheduling a meeting, or any other response that moves the conversation or process forward.\n\n`templateParams.Assets` - **(Optional)** A list of asset identifiers. For `email` template flow, only file asset identifiers are allowed.\n\n**Assets** value can be obtained by making an API call to fetch Asset details, and capturing the `ref` field in response.  The API to fetch available assets is documented [here](https://developers.typeface.ai/reference/queryassetsinproject)\n\n`templateParams.AudienceSegment` - **(Optional)** An identifier for audience to generate personalized content for specific users.\n\n**AudienceSegment** value can be obtained by making an API call to list Audiences, and capturing the `ref` field in response. The API to fetch available audiences is documented [here](https://developers.typeface.ai/reference/queryaudiencesinaccount)\n\n`templateParams.BrandKitImageStyle` - **(Optional)** An identifier for image style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitImageStyle** value can be obtained by making an API call to fetch Brand Kit image style details, and capturing the `ref` field in response.  The API to fetch available image styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n`templateParams.BrandKitTextStyle` - **(Optional)** An identifier for text style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitTextStyle** value can be obtained by making an API call to fetch Brand Kit text style details, and capturing the `ref` field in response.  The API to fetch available text styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n---\n## Email Subject\n**Sample Payload for Email Subject**\n```json\n{\n  \"templates\": [\n    {\n      \"templateType\": \"email_subject\",\n      \"templateParams\": {\n        \"Purpose\": \"Recruiting email for a new role\",\n        \"Context\": \"I am recruiting for a senior marketing manager role for my company\"\n      }\n    }\n  ],\n  \"workflowName\": \"Generate Email Subject Line\",\n  \"requestContext\": {} // You can flow any context information that you want to find in the Monitor API response.\n}\n```\n**Notes:**\n\n`templateParams.Purpose` - The main objective or reason behind the email. The subject line should clearly reflect the intent of the email, whether it's to inform, request, confirm, invite, or follow up.\n\n`templateParams.Context` - The background or relevant information that provides additional clarity or specificity to the subject line. This helps the recipient understand the importance or urgency of the email.\n\n`templateParams.AudienceSegment` - **(Optional)** An identifier for audience to generate personalized content for specific users.\n\n**AudienceSegment** value can be obtained by making an API call to list Audiences, and capturing the `ref` field in response. The API to fetch available audiences is documented [here](https://developers.typeface.ai/reference/queryaudiencesinaccount)\n\n`templateParams.BrandKitImageStyle` - **(Optional)** An identifier for image style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitImageStyle** value can be obtained by making an API call to fetch Brand Kit image style details, and capturing the `ref` field in response.  The API to fetch available image styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n`templateParams.BrandKitTextStyle` - **(Optional)** An identifier for text style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitTextStyle** value can be obtained by making an API call to fetch Brand Kit text style details, and capturing the `ref` field in response.  The API to fetch available text styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n---\n## Instagram Post\n**Sample Payload for Instagram Post**\n```json\n{\n  \"templates\": [\n    {\n      \"templateType\": \"instagram_ad\",\n      \"templateParams\": {\n        \"Goal\": \"More profile visits\",\n        \"Topic\": \"promote apple juice\",\n        \"ImageDescription\": \"A glass of apple juice on sandy dunes with cocunut and palm trees\",\n        \"EnhancePrompt\": true\n      }\n    }\n  ],\n  \"workflowName\": \"Generate Instagram Post\",\n  \"requestContext\": {} // You can flow any context information that you want to find in the Monitor API response.\n}\n```\n**Notes:**\n\n`templateParams.Goal` - The main objective you want to achieve with the Instagram post. This could be increasing brand awareness, driving traffic, promoting a product, engaging with followers, or growing your audience.\n\n`templateParams.Topic` - The central theme or subject matter of the post such as a product feature, an event, a behind-the-scenes look, a customer testimonial, or an industry trend.\n\n`templateParams.ImageDescription` - A brief explanation or caption of the image being posted. This should provide context to the image, convey the message you want to share, and enhance the viewer's understanding and engagement.\n\n`templateParams.EnhancePrompt` - true/false. Enhances the user prompt if specified as true.\n\n\n`templateParams.Assets` - **(Optional)** A list of asset identifiers. For `instagram_ad` template flow, only a single image asset identifier is allowed.\n\n**Assets** value can be obtained by making an API call to fetch Asset details, and capturing the `ref` field in response.  The API to fetch available assets is documented [here](https://developers.typeface.ai/reference/queryassetsinproject)\n\n\n`templateParams.AudienceSegment` - **(Optional)** An identifier for audience to generate personalized content for specific users.\n\n**AudienceSegment** value can be obtained by making an API call to list Audiences, and capturing the `ref` field in response. The API to fetch available audiences is documented [here](https://developers.typeface.ai/reference/queryaudiencesinaccount)\n\n`templateParams.BrandKitImageStyle` - **(Optional)** An identifier for image style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitImageStyle** value can be obtained by making an API call to fetch Brand Kit image style details, and capturing the `ref` field in response.  The API to fetch available image styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n`templateParams.BrandKitTextStyle` - **(Optional)** An identifier for text style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitTextStyle** value can be obtained by making an API call to fetch Brand Kit text style details, and capturing the `ref` field in response.  The API to fetch available text styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n---\n## Facebook Post\n**Sample Payload for Facebook Post**\n```json\n{\n  \"templates\": [\n    {\n      \"templateType\": \"facebook_post\",\n      \"templateParams\": {\n        \"Goal\": \"Get more visits\",\n        \"Details\": \"The partnership makes it possible for clients to adopt Generative AI technologies to further enhance critical aspects of operationalizing their people strategies, form creating job descriptions that support role clarity and unbiased hiring to crafting employee communications that reach distributed workforces and driven program enhancement.\",\n        \"CTA\": \"Read more today\"\n      }\n    }\n  ],\n  \"workflowName\": \"Generate Facebook Post\",\n  \"requestContext\": {} // You can flow any context information that you want to find in the Monitor API response.\n}\n```\n**Notes:**\n\n`templateParams.Goal` - The primary purpose or objective you want to achieve. This could be increasing engagement, driving traffic to a website, promoting a product or service, gathering leads, announcing an event, or fostering community interaction.\n\n`templateParams.Details` - The specific information and content included in the post. This encompasses the main text, any relevant facts, data, or explanations that support the post's message, as well as any media like images, videos, or links.\n\n`templateParams.CTA` - A directive or prompt in the post encouraging viewers to take a specific action. This could be asking them to like, share, or comment on the post, visit a website, sign up for a newsletter, attend an event, or make a purchase.\n\n`templateParams.AudienceSegment` - **(Optional)** An identifier for audience to generate personalized content for specific users.\n\n**AudienceSegment** value can be obtained by making an API call to list Audiences, and capturing the `ref` field in response. The API to fetch available audiences is documented [here](https://developers.typeface.ai/reference/queryaudiencesinaccount)\n\n`templateParams.BrandKitImageStyle` - **(Optional)** An identifier for image style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitImageStyle** value can be obtained by making an API call to fetch Brand Kit image style details, and capturing the `ref` field in response.  The API to fetch available image styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n`templateParams.BrandKitTextStyle` - **(Optional)** An identifier for text style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitTextStyle** value can be obtained by making an API call to fetch Brand Kit text style details, and capturing the `ref` field in response.  The API to fetch available text styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit) ---\n## Blog Post\n**Sample Payload for Blog Post**\n```json\n{\n  \"templates\": [\n      {\n          \"templateType\": \"blog_post\",\n          \"templateParams\": {\n              \"Name\": \"The benefits of Generative AI technology in marketing\",\n              \"Content\": \"Describe the benefits of Generative AI, and how the technology has re-shaped the marketing industry. Include facts and tips on how a organization can join the AI revolution\",\n              \"ImageDescription\": \"A person in front of a computer, office sitting, highly detailed, warm tones\"\n          }\n      }\n  ],\n  \"workflowName\": \"Simple Blog Post\",\n  \"requestContext\": {} // You can flow any context information that you want to find in the Monitor API response.  \n}\n```\n**Notes:**\n\n`templateParams.Name` - It is a concise phrase or sentence that captures the essence of the blog's topic and grabs the reader's attention.\n\n`templateParams.Content` - The content is the core of the blog post. It provides readers with valuable information, insights, or entertainment. Quality content helps to engage readers, rank higher in search engines, and build credibility in your niche.\n\n`templateParams.ImageDescription` - This field allows the user to provide a detailed description of any images used in the blog post. The description should include the visual content, purpose, and context of the image.\n\n\n`templateParams.AudienceSegment` - **(Optional)** An identifier for audience to generate personalized content for specific users.\n\n**AudienceSegment** value can be obtained by making an API call to list Audiences, and capturing the `ref` field in response. The API to fetch available audiences is documented [here](https://developers.typeface.ai/reference/queryaudiencesinaccount)\n\n`templateParams.BrandKitImageStyle` - **(Optional)** An identifier for image style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitImageStyle** value can be obtained by making an API call to fetch Brand Kit image style details, and capturing the `ref` field in response.  The API to fetch available image styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n`templateParams.BrandKitTextStyle` - **(Optional)** An identifier for text style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitTextStyle** value can be obtained by making an API call to fetch Brand Kit text style details, and capturing the `ref` field in response.  The API to fetch available text styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n---\n## Google Responsive Display Ad\n**Sample Payload for Google Responsive Display Ad**\n```json\n  {\n      \"templates\": [\n          {\n              \"templateType\": \"google_responsive_image_ad\",\n              \"templateParams\": {\n                  \"Goal\": \"leads\",\n                  \"AudienceSegment\": \"eyJhY.....LCJlbnRpdHl....AifQ=\",\n                  \"BusinessName\": \"Indian Premier League\",\n                  \"DisplayURL\": \"www.ipl.co.in\",\n                  \"Summary\": \"Chennai super kings won the last IPL\",\n                  \"NumberOfHeadlines\": 11,\n                  \"NumberOfLongHeadline\": 2,\n                  \"NumberOfDescriptions\": 4,\n                  \"ImageDescription\": \"A glass of apple juice on sandy dunes with cocunut and palm trees\",\n                  \"EnhancePrompt\": true\n              }\n          }\n      ],\n      \"workflowName\": \"Simple Google Responsive Ad\",\n      \"requestContext\": {} // You can flow any context information that you want to find in the Monitor API response.  \n  }\n```\n**Notes:**\n\n`templateParams.Goal` - The primary objective of the ad, such as increasing brand awareness, driving website traffic, or generating leads.\n\n`templateParams.AudienceSegment` - An identifier for audience to generate personalized content for specific users.\n\n**AudienceSegment** value can be obtained by making an API call to list Audiences, and capturing the `ref` field in response. The API to fetch available audiences is documented [here](https://developers.typeface.ai/reference/queryaudiencesinaccount)\n\n`templateParams.BusinessName` - The name of your business as it should appear in the ad, ensuring brand recognition.\n\n`templateParams.DisplayURL` - The web address that will appear in the ad, directing users to your landing page.\n\n`templateParams.Summary` - Describe your product or services.\n\n`templateParams.NumberOfHeadlines` - **(Optional)** An identifier for number of headlines to be generated for google responsive display ad. Default value is 11.\n\n`templateParams.NumberOfLongHeadline` - **(Optional)** An identifier for number of long headlines to be generated for google responsive display ad. Default value is 2.\n\n`templateParams.NumberOfDescriptions` - **(Optional)** An identifier for number of descriptions to be generated for google responsive display ad. Default value is 4.\n\n`templateParams.ImageDescription` - This field allows the user to provide a detailed description of any images used in the ad. The description should include the visual content, purpose, and context of the image.\n\n`templateParams.Assets` - **(Optional)** A list of asset identifiers. For `google_responsive_image_ad` template flow, only a single image asset identifier is allowed.\n\n**Assets** value can be obtained by making an API call to fetch Asset details, and capturing the `ref` field in response.  The API to fetch available assets is documented [here](https://developers.typeface.ai/reference/queryassetsinproject)\n\n`templateParams.BrandKitImageStyle` - **(Optional)** An identifier for image style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitImageStyle** value can be obtained by making an API call to fetch Brand Kit image style details, and capturing the `ref` field in response.  The API to fetch available image styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n`templateParams.BrandKitTextStyle` - **(Optional)** An identifier for text style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitTextStyle** value can be obtained by making an API call to fetch Brand Kit text style details, and capturing the `ref` field in response.  The API to fetch available text styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n---\n## LinkedIn Social Post\n**Sample Payload for LinkedIn Social Post**\n```json\n  {\n      \"templates\": [\n          {\n              \"templateType\": \"linkedin_image_post\",\n              \"templateParams\": {\n                  \"Goal\": \"Announce our latest partnership with a leading PEO\",\n                  \"ContentText\": \"The partnership makes it possible for clients to adopt Generative AI technologies to further enhance critical aspects of operationalizing their people strategies, from creating job descriptions that support role clarity and unbiased hiring to crafting employee communications that reach distributed workforces and drive program engagement.\",\n                  \"DescribeScene\": \"Winding roads at sunset\",\n                  \"AspectRatio\" : \"Square\",\n              }\n          }\n      ],\n      \"workflowName\": \"LinkedIn Social Post\",\n      \"requestContext\": {} // You can flow any context information that you want to find in the Monitor API response.  \n  }\n```\n**Notes:**\n\n`templateParams.Goal` - The main objective you want to achieve with the LinkedIn Social Post. This could be increasing brand awareness, driving traffic, promoting a product, engaging with followers, or growing your audience.\n\n`templateParams.ContentText` - The central theme or subject matter of the post such as a product feature, an event, a behind-the-scenes look, a customer testimonial, or an industry trend.\n\n`templateParams.CTAUrl` - **(Optional)** A directive or prompt in the post encouraging viewers to take a specific action. This could be asking them to like, share, or comment on the post, visit a website, sign up for a newsletter, attend an event, or make a purchase.\n\n`templateParams.DescribeScene` - A brief explanation or caption of the image being posted. This should provide context to the image, convey the message you want to share, and enhance the viewer's understanding and engagement.\n\n`templateParams.Assets` - **(Optional)** A list of asset identifiers. For `linkedin_image_post` template flow, only a single image asset identifier is allowed.\n\n\n **Assets** value can be obtained by making an API call to fetch Asset details, and capturing the `ref` field in response. \n The API to fetch available assets is documented [here](https://developers.typeface.ai/reference/queryassetsinproject)\n\n\n\n`templateParams.AspectRatio` - Determines the aspect ratio for generated images.\nAllowed values are:\n-    `Square`\n\n-    `Portrait`\n-    `Landscape`\n\n\n`templateParams.AudienceSegment` - **(Optional)** An identifier for audience to generate personalized content for specific users.\n\n**AudienceSegment** value can be obtained by making an API call to list Audiences, and capturing the `ref` field in response. The API to fetch available audiences is documented [here](https://developers.typeface.ai/reference/queryaudiencesinaccount)\n\n`templateParams.BrandKitImageStyle` - **(Optional)** An identifier for image style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitImageStyle** value can be obtained by making an API call to fetch Brand Kit image style details, and capturing the `ref` field in response.  The API to fetch available image styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n`templateParams.BrandKitTextStyle` - **(Optional)** An identifier for text style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitTextStyle** value can be obtained by making an API call to fetch Brand Kit text style details, and capturing the `ref` field in response.  The API to fetch available text styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n---\n## Doc transform\n**Sample Payload for Doc transform**\n```json\n  {\n      \"templates\": [\n          {\n              \"templateType\": \"file_refiner\",\n              \"templateParams\": {\n                  \"Action\": \"rewrite\",\n                  \"Assets\":[ \"eyJhY.....LCJlbnRpdHl....AifQ=\"]\n              }\n          }\n      ],\n      \"workflowName\": \"Doc transform\",\n      \"requestContext\": {} // You can flow any context information that you want to find in the Monitor API response.  \n  }\n```\n**Notes:**\n\n`templateParams.Action` - The primary action you intend to execute through the document transformation. This could involve summarizing the content, refining it into a blog post, crafting a sales email, condensing it into a brief social post, or converting it into a newsletter.\n\n`templateParams.Assets` - A list of asset identifiers. For `file_refiner` template flow, only file asset identifiers are allowed.\n\n\n **Assets** value can be obtained by making an API call to fetch Asset details, and capturing the `ref` field in response. \n The API to fetch available assets is documented [here](https://developers.typeface.ai/reference/queryassetsinproject)\n\n\n\n`templateParams.AudienceSegment` - **(Optional)** An identifier for audience to generate personalized content for specific users.\n\n**AudienceSegment** value can be obtained by making an API call to list Audiences, and capturing the `ref` field in response. The API to fetch available audiences is documented [here](https://developers.typeface.ai/reference/queryaudiencesinaccount)\n\n`templateParams.BrandKitImageStyle` - **(Optional)** An identifier for image style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitImageStyle** value can be obtained by making an API call to fetch Brand Kit image style details, and capturing the `ref` field in response.  The API to fetch available image styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n`templateParams.BrandKitTextStyle` - **(Optional)** An identifier for text style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitTextStyle** value can be obtained by making an API call to fetch Brand Kit text style details, and capturing the `ref` field in response.  The API to fetch available text styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n---\n## Meta Ad\n**Sample Payload for Meta Ad**\n```json\n  {\n      \"templates\": [\n          {\n              \"templateType\": \"meta_ad_v2\",\n              \"templateParams\": {\n                  \"Goal\": \"sales\",\n                  \"AdType\": \"carousel_ad\",\n                  \"BusinessName\": \"Cecilié Apple Juice\",\n                  \"DisplayURL\": \"www.cecilie.com\",\n                  \"ProductName\": \"Apple juice for healthy minded people\",\n                  \"AudienceSegment\":\"eyJhY.....LCJlbnRpdHl....AifQ=\",\n              }\n          }\n      ],\n      \"workflowName\": \"Meta ad\",\n      \"requestContext\": {} // You can flow any context information that you want to find in the Monitor API response.  \n  }\n```\n**Notes:**\n\n`templateParams.Goal` - The primary objective of the ad, such as increasing brand awareness, driving website traffic, generating leads, boosting sales, promoting app downloads, or encouraging engagement.\n\n`templateParams.AdType` - The format of the ad, such as a single image ad, a carousel with multiple images, or a collection showcasing multiple products. \n\n  Possible values are: \n  * `single_image_ad`\n\n  * `carousel_ad`\n\n  * `collection_ad`\n\n\n\n`templateParams.BusinessName` - The name of your business as it should appear in the ad, ensuring brand recognition.\n\n`templateParams.DisplayURL` - The web address that will appear in the ad, directing users to your landing page.\n\n`templateParams.ProductName` - Describe your product to help create a compelling and targeted ad.\n\n`templateParams.AudienceSegment` - An identifier for audience to generate personalized content for specific users.\n\n**AudienceSegment** value can be obtained by making an API call to list Audiences, and capturing the `ref` field in response. The API to fetch available audiences is documented [here](https://developers.typeface.ai/reference/queryaudiencesinaccount)\n\n`templateParams.BrandKitImageStyle` - **(Optional)** An identifier for image style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitImageStyle** value can be obtained by making an API call to fetch Brand Kit image style details, and capturing the `ref` field in response.  The API to fetch available image styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n`templateParams.BrandKitTextStyle` - **(Optional)** An identifier for text style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitTextStyle** value can be obtained by making an API call to fetch Brand Kit text style details, and capturing the `ref` field in response.  The API to fetch available text styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n---\n## Sales Email\n**Sample Payload for Sales Email**\n```json\n{\n  \"templates\": [\n    {\n      \"templateType\": \"email_sales\",\n      \"templateParams\": {\n        \"Purpose\": \"Promote new product features to increase engagement.\",\n        \"Context\": \"Follow-up on previous interest in our services.\",\n        \"FollowUpResponse\": \"Schedule a call or provide feedback.\"\n      }\n    }\n  ],\n  \"workflowName\": \"Generate Sales Email.\",\n  \"requestContext\": {} // You can flow any context information that you want to find in the Monitor API response.\n}\n```\n**Notes:**\n\n`templateParams.Purpose` - The primary objective of the email, such as promoting a new product, driving engagement, or generating leads.\n\n`templateParams.Context` - **(Optional)** The background information and circumstances related to the sales email. This includes any relevant details that help the recipient understand the reason for the email.\n\n`templateParams.FollowUpResponse` - **(Optional)** The action you want the recipient to take, such as scheduling a call, requesting details, or confirming interest.\n\n`templateParams.Assets` - **(Optional)** A list of asset identifiers. For `email_sales` template flow, only file asset identifiers are allowed.\n\n**Assets** value can be obtained by making an API call to fetch Asset details, and capturing the `ref` field in response.  The API to fetch available assets is documented [here](https://developers.typeface.ai/reference/queryassetsinproject)\n\n`templateParams.AudienceSegment` - **(Optional)** An identifier for audience to generate personalized content for specific users.\n\n**AudienceSegment** value can be obtained by making an API call to list Audiences, and capturing the `ref` field in response. The API to fetch available audiences is documented [here](https://developers.typeface.ai/reference/queryaudiencesinaccount)\n\n`templateParams.BrandKitImageStyle` - **(Optional)** An identifier for image style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitImageStyle** value can be obtained by making an API call to fetch Brand Kit image style details, and capturing the `ref` field in response.  The API to fetch available image styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n`templateParams.BrandKitTextStyle` - **(Optional)** An identifier for text style in Brand Kit to generate personalized content for specific brands.\n\n**BrandKitTextStyle** value can be obtained by making an API call to fetch Brand Kit text style details, and capturing the `ref` field in response.  The API to fetch available text styles is documented [here](https://developers.typeface.ai/reference/getstyleinbrandkit)\n\n---\n## Bulk Generation\n**Sample request body for Bulk Generation**\n```json\n{\n  \"templates\": [\n      {\n          \"templateType\": \"simple_image\",\n          \"templateParams\": {\n              \"ImageDescription\": \"A person resting on a sunny beach with shades, highly detailed view\",\n              \"AspectRatio\": \"widescreen_w1024_h576\",\n              \"EnhancePrompt\": true\n          }\n      },\n      {\n          \"templateType\": \"simple_image\",\n          \"templateParams\": {\n              \"ImageDescription\": \"A highly attractive beach with clear ocean water and people playing volleyball, highly detailed sand dunes\",\n              \"AspectRatio\": \"square_w768_h768 \",\n              \"EnhancePrompt\": true\n          }\n      },\n      {\n          \"templateType\": \"facebook_post\",\n          \"templateParams\": {\n              \"Goal\": \"Get more engagement\",\n              \"Details\": \"The partnership makes it possible for clients to adopt Generative AI technologies to further enhance critical aspects of operationalizing their people strategies, form creating job descriptions that support role clarity and unbiased hiring to crafting employee  communications that reach distributed workforces and driven program enhancement.\",\n              \"CTA\": \"Read more today\"\n          }\n      }\n  ],\n  \"workflowName\": \"Simple Bulk Generation\",\n  \"requestContext\": {}\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "batch-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "generate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"templates\": [\n    {\n      \"templateType\": \"<string>\",\n      \"templateParams\": {\n        \"ImageDescription\": \"<string>\",\n        \"VariationCount\": \"<integer>\",\n        \"EnhancePrompt\": \"<boolean>\",\n        \"AspectRatio\": \"<string>\"\n      }\n    },\n    {\n      \"templateType\": \"<string>\",\n      \"templateParams\": {\n        \"ImageDescription\": \"<string>\",\n        \"VariationCount\": \"<integer>\",\n        \"EnhancePrompt\": \"<boolean>\",\n        \"AspectRatio\": \"<string>\"\n      }\n    }\n  ],\n  \"workspaceId\": \"<string>\",\n  \"requestContext\": \"<object>\",\n  \"workflowName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2393035-bbd6-4de5-ba7c-e2debd9db923",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"templates\": [\n    {\n      \"templateType\": \"<string>\",\n      \"templateParams\": {\n        \"ImageDescription\": \"<string>\",\n        \"VariationCount\": \"<integer>\",\n        \"EnhancePrompt\": \"<boolean>\",\n        \"AspectRatio\": \"<string>\"\n      }\n    },\n    {\n      \"templateType\": \"<string>\",\n      \"templateParams\": {\n        \"ImageDescription\": \"<string>\",\n        \"VariationCount\": \"<integer>\",\n        \"EnhancePrompt\": \"<boolean>\",\n        \"AspectRatio\": \"<string>\"\n      }\n    }\n  ],\n  \"workspaceId\": \"<string>\",\n  \"requestContext\": \"<object>\",\n  \"workflowName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"string\",\n  \"monitorId\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6991af22-1183-4bb8-84e9-762d65e3e856",
+          "name": "Poll Generation Job Status",
+          "request": {
+            "name": "Poll Generation Job Status",
+            "description": {
+              "content": "**Sample Response**\n\nBased on how many requests batched in the Generation API call, those many `jobStepResponses` will be returned.\n\nEach one contains `documentMetadata` object with an `id`. This document corresponds to the response for each of the request in the batch. Use `documentMetadata.id` as `documentId` while making subsequent call to fetch the generated content.\n\n```json\n{\n    \"job\": {\n        \"jobId\": \"2bd1365a-ac4b-4224-bf97-dd0c4a8c91e9\",\n        \"name\": \"Generate First Image\",\n        \"projectId\": \"243056\",\n        \"status\": \"SUCCEEDED\",\n        \"createdAt\": \"2024-03-28T20:47:32+05:30\",\n        \"startedAt\": \"2024-03-28T20:47:32+05:30\",\n        \"completedAt\": \"2024-03-28T20:48:26+05:30\",\n        \"jobStepResponses\": [\n            {\n                \"status\": \"SUCCEEDED\",\n                \"documentMetadata\": {\n                    \"id\": 46,\n                    \"name\": \"simple_image_0\"\n                }\n            }\n        ]\n    },\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://api-us.typeface.ai/batch-service/accounts/5d903776-016a-4f1d-814d-71d44a88ebd3/projects/243056/batch-jobs/2bd1365a-ac4b-4224-bf97-dd0c4a8c91e9\"\n        }\n    ]\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "batch-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "batch-jobs",
+                ":monitorId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "monitorId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03a98f89-ab0e-4d9e-86d4-747cbfff9b18",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "batch-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "batch-jobs",
+                    ":monitorId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "monitorId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"job\": {\n    \"jobId\": \"string\",\n    \"name\": \"string\",\n    \"jobStepResponses\": [\n      {\n        \"status\": \"string\",\n        \"documentMetadata\": {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      },\n      {\n        \"status\": \"string\",\n        \"documentMetadata\": {\n          \"id\": \"string\",\n          \"name\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bcae699f-35c6-4595-ae74-56dda82fd01d",
+          "name": "Get Generated Content",
+          "request": {
+            "name": "Get Generated Content",
+            "description": {
+              "content": "Retrieve generated content using this API. Response contains array of blocks and each block corresponds to a content fragment. For simple text and image, there will be only one block. Each block has `type` which indicates the content type and `variations` generated.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "content-service",
+                "workspace",
+                ":projectId",
+                "documents",
+                ":documentId",
+                "read-only"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "documentId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/vnd.typeface.documents.blocks.v2+json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c33d452c-845c-48ce-a8fb-e62fbc8084cc",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "content-service",
+                    "workspace",
+                    ":projectId",
+                    "documents",
+                    ":documentId",
+                    "read-only"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "documentId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/vnd.typeface.documents.blocks.v2+json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/vnd.typeface.documents.blocks.v2+json"
+                }
+              ],
+              "body": "{\n  \"document\": {\n    \"workspaceId\": {\n      \"id\": 1367\n    },\n    \"id\": {\n      \"id\": 7714\n    },\n    \"name\": \"string\",\n    \"blocks\": [\n      {\n        \"id\": \"string\",\n        \"type\": \"Video\",\n        \"ref\": {\n          \"workspaceId\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"entityId\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"entityType\": \"string\",\n          \"additionalProperties\": {\n            \"key_0\": {},\n            \"key_1\": {},\n            \"key_2\": {}\n          }\n        },\n        \"promptId\": \"string\",\n        \"styleElements\": {\n          \"key_0\": {}\n        },\n        \"blockDefinition\": {\n          \"ordinal\": 3039,\n          \"blockName\": \"string\",\n          \"blockType\": \"Image\",\n          \"properties\": {\n            \"key_0\": {}\n          },\n          \"promptCorpus\": {\n            \"key_0\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"key_1\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"context\": {\n            \"additionalPrompts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"content\": \"string\",\n        \"inputPrompt\": \"string\",\n        \"usage\": \"string\"\n      },\n      {\n        \"id\": \"string\",\n        \"type\": \"Image\",\n        \"ref\": {\n          \"workspaceId\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"entityId\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"entityType\": \"string\",\n          \"additionalProperties\": {\n            \"key_0\": {},\n            \"key_1\": {}\n          }\n        },\n        \"promptId\": \"string\",\n        \"styleElements\": {\n          \"key_0\": {},\n          \"key_1\": {},\n          \"key_2\": {}\n        },\n        \"blockDefinition\": {\n          \"ordinal\": 4393,\n          \"blockName\": \"string\",\n          \"blockType\": \"Text\",\n          \"properties\": {\n            \"key_0\": {}\n          },\n          \"promptCorpus\": {\n            \"key_0\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"context\": {\n            \"additionalPrompts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"content\": \"string\",\n        \"inputPrompt\": \"string\",\n        \"usage\": \"string\"\n      }\n    ],\n    \"signedUrlResponses\": [\n      {\n        \"blobId\": {\n          \"id\": 7073\n        },\n        \"signedUrl\": \"string\"\n      },\n      {\n        \"blobId\": {\n          \"id\": 2123\n        },\n        \"signedUrl\": \"string\"\n      }\n    ],\n    \"additionalProperties\": {\n      \"key_0\": {}\n    },\n    \"createdAt\": \"1957-11-30T08:17:53.969Z\",\n    \"modifiedAt\": \"2026-05-26T07:07:39.755Z\",\n    \"createdBy\": \"string\",\n    \"modifiedBy\": \"string\"\n  },\n  \"documentBlocks\": {\n    \"version\": \"string\",\n    \"blocks\": [\n      {\n        \"id\": \"string\",\n        \"type\": \"Title\",\n        \"promptId\": \"string\",\n        \"styles\": {\n          \"key_0\": {}\n        },\n        \"data\": {\n          \"key_0\": {}\n        }\n      },\n      {\n        \"id\": \"string\",\n        \"type\": \"Text\",\n        \"promptId\": \"string\",\n        \"styles\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        },\n        \"data\": {\n          \"key_0\": {},\n          \"key_1\": {}\n        }\n      }\n    ],\n    \"metadata\": {\n      \"documentId\": \"string\",\n      \"documentName\": \"string\",\n      \"projectId\": \"string\"\n    }\n  },\n  \"documentBlocksV2\": {\n    \"version\": \"string\",\n    \"blocks\": [\n      {\n        \"type\": \"Video\",\n        \"variations\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      {\n        \"type\": \"Image\",\n        \"variations\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    ],\n    \"metadata\": {\n      \"documentId\": \"string\",\n      \"documentName\": \"string\",\n      \"projectId\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-us.typeface.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "7da38762-c623-450f-b2a3-4359d83a3356",
+    "name": "Typeface Audiences Content Generation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

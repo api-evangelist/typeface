@@ -1,0 +1,322 @@
+{
+  "item": [
+    {
+      "id": "dca653f3-3175-41c4-8239-28f4a40dafac",
+      "name": "Search Service",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d11258d6-bd5e-4839-852f-93a07d56e408",
+          "name": "Search & filter documents",
+          "request": {
+            "name": "Search & filter documents",
+            "description": {
+              "content": "This endpoint allows you to search for documents within a specified project using various filters like created by, workflow status, assignees, etc.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "all-assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) The unique ID of the account."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "projectId",
+                  "description": "(Required) The unique ID of the project."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"assetType\": \"\",\n  \"limit\": \"\",\n  \"searchScope\": \"\",\n  \"assetSubTypes\": \"\",\n  \"mediaTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filter\": {\n    \"bool\": {\n      \"must\": [\n        {\n          \"terms\": {\n            \"createdBy\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"range\": {\n            \"modifiedAt\": {\n              \"gte\": \"<string>\"\n            }\n          }\n        },\n        {\n          \"terms\": {\n            \"createdBy\": [\n              \"<string>\",\n              \"<string>\"\n            ]\n          },\n          \"range\": {\n            \"modifiedAt\": {\n              \"gte\": \"<string>\"\n            }\n          }\n        }\n      ]\n    }\n  },\n  \"additionalFilterProperties\": {\n    \"taskStatusName\": \"<string>\",\n    \"taskAssignees\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"cursor\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "24cdecb6-a008-43fe-8e66-209d6fb55482",
+              "name": "Successfully retrieved the assets matching the search criteria.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "all-assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique ID of the account."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"assetType\": \"\",\n  \"limit\": \"\",\n  \"searchScope\": \"\",\n  \"assetSubTypes\": \"\",\n  \"mediaTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filter\": {\n    \"bool\": {\n      \"must\": [\n        {\n          \"terms\": {\n            \"createdBy\": [\n              \"4b6f0eae-f703-4c5c-xxx-2acyyy42a4c3\"\n            ]\n          },\n          \"range\": {\n            \"modifiedAt\": {\n              \"gte\": \"now-7d\"\n            }\n          }\n        },\n        {\n          \"terms\": {\n            \"createdBy\": [\n              \"4b6f0eae-f703-4c5c-xxx-2acyyy42a4c3\"\n            ]\n          },\n          \"range\": {\n            \"modifiedAt\": {\n              \"gte\": \"now-7d\"\n            }\n          }\n        }\n      ]\n    }\n  },\n  \"additionalFilterProperties\": {\n    \"taskStatusName\": \"Completed\",\n    \"taskAssignees\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"cursor\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assets\": [\n    {\n      \"id\": 12345,\n      \"name\": \"How to Use an AI Writing Assistant for Creating Marketing Content\",\n      \"createdAt\": \"2025-03-10T16:01:33Z\",\n      \"modifiedAt\": \"2025-03-10T16:05:58Z\",\n      \"createdBy\": \"4b6f0eae-f703-4c5c-accc-2ac3c542a4c3\",\n      \"modifiedBy\": \"4b6f0eae-f703-4c5c-accc-2ac3c542a4c3\",\n      \"additionalFilterProperties\": {\n        \"taskStatusId\": 123,\n        \"taskWorkflowId\": 54321,\n        \"taskStatusName\": \"Next Step First\",\n        \"taskAssignees\": [\n          \"2f16221d-4cf5-48a6-b630-2fdf47ec33c0\",\n          \"4b6f0eae-f703-4c5c-accc-2ac3c542a4c3\"\n        ],\n        \"taskId\": 45678\n      }\n    }\n  ],\n  \"nextCursor\": \"eyJdqwdqwdOiAwLjsqwedddldkakdasdpasjdjwqw\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07da8ac7-6885-4606-be0c-b626dacbf897",
+              "name": "Bad request due to invalid parameters or malformed request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "all-assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique ID of the account."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"assetType\": \"\",\n  \"limit\": \"\",\n  \"searchScope\": \"\",\n  \"assetSubTypes\": \"\",\n  \"mediaTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filter\": {\n    \"bool\": {\n      \"must\": [\n        {\n          \"terms\": {\n            \"createdBy\": [\n              \"4b6f0eae-f703-4c5c-xxx-2acyyy42a4c3\"\n            ]\n          },\n          \"range\": {\n            \"modifiedAt\": {\n              \"gte\": \"now-7d\"\n            }\n          }\n        },\n        {\n          \"terms\": {\n            \"createdBy\": [\n              \"4b6f0eae-f703-4c5c-xxx-2acyyy42a4c3\"\n            ]\n          },\n          \"range\": {\n            \"modifiedAt\": {\n              \"gte\": \"now-7d\"\n            }\n          }\n        }\n      ]\n    }\n  },\n  \"additionalFilterProperties\": {\n    \"taskStatusName\": \"Completed\",\n    \"taskAssignees\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"cursor\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "0136a63d-686e-42d4-a3d2-cb03c029d044",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "all-assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) The unique ID of the account."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "projectId",
+                      "description": "(Required) The unique ID of the project."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"assetType\": \"\",\n  \"limit\": \"\",\n  \"searchScope\": \"\",\n  \"assetSubTypes\": \"\",\n  \"mediaTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"filter\": {\n    \"bool\": {\n      \"must\": [\n        {\n          \"terms\": {\n            \"createdBy\": [\n              \"4b6f0eae-f703-4c5c-xxx-2acyyy42a4c3\"\n            ]\n          },\n          \"range\": {\n            \"modifiedAt\": {\n              \"gte\": \"now-7d\"\n            }\n          }\n        },\n        {\n          \"terms\": {\n            \"createdBy\": [\n              \"4b6f0eae-f703-4c5c-xxx-2acyyy42a4c3\"\n            ]\n          },\n          \"range\": {\n            \"modifiedAt\": {\n              \"gte\": \"now-7d\"\n            }\n          }\n        }\n      ]\n    }\n  },\n  \"additionalFilterProperties\": {\n    \"taskStatusName\": \"Completed\",\n    \"taskAssignees\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"cursor\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-us.typeface.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2c5e4b9e-e108-4f3d-88cf-6e0f02cfdd56",
+    "name": "Typeface Audiences Search Service API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

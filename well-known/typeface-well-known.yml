@@ -1,11 +1,20 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: searched
+source: live probes of every Typeface host in apis.yml and the OpenAPI servers[]
 hosts:
   - host: https://api-us.typeface.ai
     documents:
       - path: /.well-known/oauth-authorization-server   # RFC 8414
         status: 200
         file: typeface-oauth-authorization-server.json
+      - path: /.well-known/oauth-protected-resource     # RFC 9728
+        status: 200
+        file: typeface-oauth-protected-resource.json
+        checked: '2026-08-13'
+      - path: /mcp/.well-known/oauth-protected-resource
+        status: 200
+        checked: '2026-08-13'
+        note: Same RFC 9728 document served under the MCP path prefix.
       - path: /.well-known/openid-configuration
         status: 401
       - path: /.well-known/security.txt
@@ -14,6 +23,19 @@ hosts:
         status: 401
       - path: /.well-known/ai-plugin.json
         status: 401
+      - path: /.well-known/agent-card.json
+        status: 401
+        checked: '2026-08-13'
+      - path: /.well-known/agent.json
+        status: 401
+        checked: '2026-08-13'
+  - host: https://auth-us.typeface.ai
+    documents:
+      - path: /.well-known/jwks.json
+        status: 200
+        checked: '2026-08-13'
+        note: JWKS referenced by the RFC 9728 protected-resource metadata; not
+          copied into the repo (rotating key material).
   - host: https://www.typeface.ai
     documents:
       - path: /.well-known/security.txt
@@ -26,6 +48,12 @@ hosts:
         status: 404
       - path: /.well-known/ai-plugin.json
         status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+        checked: '2026-08-13'
+      - path: /.well-known/agent.json
+        status: 404
+        checked: '2026-08-13'
       - path: /llms.txt
         status: 404
   - host: https://developers.typeface.ai
@@ -33,7 +61,30 @@ hosts:
       - path: /llms.txt
         status: 200
         file: ../llms/typeface-llms.txt
-notes: Probed 2026-07-21. The RFC 8414 OAuth authorization-server metadata on
-  api-us.typeface.ai is the documented discovery endpoint for the Typeface MCP
-  OAuth 2.1 flow (issuer https://api-us.typeface.ai, PKCE S256, scopes openid
-  email profile offline_access, jwks at auth-us.typeface.ai).
+      - path: /.well-known/agent-card.json
+        status: 404
+        checked: '2026-08-13'
+      - path: /.well-known/agent.json
+        status: 404
+        checked: '2026-08-13'
+  - host: https://app.typeface.ai
+    documents:
+      - path: /.well-known/agent-card.json
+        status: 404
+        checked: '2026-08-13'
+      - path: /.well-known/agent.json
+        status: 404
+        checked: '2026-08-13'
+notes: >-
+  Re-probed 2026-08-13. Two real documents are served: the RFC 8414 OAuth
+  authorization-server metadata and the RFC 9728 OAuth protected-resource
+  metadata, both on api-us.typeface.ai - together they are the discovery
+  surface for the Typeface MCP OAuth 2.1 flow (issuer
+  https://api-us.typeface.ai, PKCE S256, scopes openid/email/profile/
+  offline_access, jwks at auth-us.typeface.ai). No security.txt is served on any
+  host (401 behind the API gateway, 404 on the marketing and docs hosts), so no
+  SecurityTxt pointer is emitted. No A2A agent card was found at either the
+  canonical or legacy well-known path on any host, so no AgentCard artifact was
+  written - even though the docs
+  (https://developers.typeface.ai/docs/introduction) describe a "Typeface A2A
+  Agent" for Gemini Enterprise.

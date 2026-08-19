@@ -1,0 +1,73 @@
+generated: '2026-08-13'
+method: searched
+source: https://developers.typeface.ai/docs/api-rate-limits
+docs:
+  - https://developers.typeface.ai/docs/api-rate-limits
+  - https://developers.typeface.ai/docs/errors
+  - https://developers.typeface.ai/docs/troubleshooting
+limit_count: 4
+scope_model: Rate limits are defined at the API application level (the
+  application credentials issued to an integration), not per user. Higher tiers
+  are negotiated with an Account Executive or Customer Success Manager.
+rate_limits:
+  - name: General API limit
+    scope: per-application
+    applies_to: General endpoints (common actions such as Create Project,
+      Create Audience, Retrieve Content)
+    limit: 3000
+    unit: requests
+    window: 5m
+    burst: null
+    source: https://developers.typeface.ai/docs/api-rate-limits
+  - name: Create Asset API limit
+    scope: per-application
+    applies_to: Asset creation endpoints
+    limit: 3000
+    unit: requests
+    window: 5m
+    burst: null
+    source: https://developers.typeface.ai/docs/api-rate-limits
+  - name: Content Generation - sub-requests per batch
+    scope: per-request
+    applies_to: Content generation batch requests (POST
+      /batch-service/accounts/{accountId}/projects/{projectId}/generate)
+    limit: 10
+    unit: sub-requests
+    window: per batch request
+    burst: null
+    on_exceed: Request is rejected with a 100/bad request error
+    source: https://developers.typeface.ai/docs/api-rate-limits
+  - name: Content Generation - text-to-image
+    scope: per-application
+    applies_to: Text to Image generation requests
+    limit: 30
+    unit: requests
+    window: 15m
+    burst: null
+    source: https://developers.typeface.ai/docs/api-rate-limits
+response_signaling:
+  status_on_exhaustion: 429
+  status_description: '429 Too Many Requests - returned when a request is
+    throttled (https://developers.typeface.ai/docs/errors)'
+  headers:
+    documented: []
+    notes: Typeface does not document any X-RateLimit-* / RateLimit-* /
+      Retry-After response headers. An agent has no published runtime signal for
+      remaining quota or reset time; only the 429 status is documented. Probed
+      unauthenticated on 2026-08-13 - api-us.typeface.ai answers 401 before any
+      rate-limit headers are observable, and repeated doc fetches of
+      /docs/api-rate-limits returned HTTP 429 from the docs CDN (ReadMe), not
+      from the API.
+  request_id_header: 'request-id (echoed on every API response; clients may also
+    send their own Request-Id header) -
+    https://developers.typeface.ai/docs/troubleshooting'
+size_limits:
+  documented: true
+  notes: The docs state "basic size limits apply to request parameters" without
+    publishing the numeric values.
+escalation:
+  contacts:
+    - sales@typeface.ai
+    - support@typeface.ai
+  notes: Enterprise customers negotiate higher rate-limit tiers through their
+    Account Executive or Customer Success Manager.

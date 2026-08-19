@@ -1,0 +1,212 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences Feeds API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Feeds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query Feed Items",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/feed-service/accounts/:accountId/projects/:projectId/feeds/:feedId/feedItems",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "feedId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "$limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$cursor",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Query Feed Items"
+        },
+        {
+          "info": {
+            "name": "Generate On Demand Feed Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/feed-service/accounts/:accountId/projects/:projectId/feeds/:feedId/feedItems/generate",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "feedId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "useMock",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate On Demand Feed Item"
+        },
+        {
+          "info": {
+            "name": "Patch Feed",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-us.typeface.ai/feed-service/accounts/:accountId/projects/:projectId/feeds/:feedId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "feedId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Patch Feed"
+        },
+        {
+          "info": {
+            "name": "Get Feed Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/feed-service/accounts/:accountId/projects/:projectId/feeds/:feedId/feedItems/:feedItemId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "feedId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "feedItemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get Feed Item"
+        },
+        {
+          "info": {
+            "name": "Delete Feed Item",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-us.typeface.ai/feed-service/accounts/:accountId/projects/:projectId/feeds/:feedId/feedItems/:feedItemId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "feedId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "feedItemId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Delete Feed Item"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

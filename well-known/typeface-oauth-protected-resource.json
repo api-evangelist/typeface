@@ -1,0 +1,1 @@
+{"resource":"https://api-us.typeface.ai/mcp","authorization_servers":["https://api-us.typeface.ai"],"jwks_uri":"https://auth-us.typeface.ai/.well-known/jwks.json","scopes_supported":["openid","email","profile","offline_access"],"bearer_methods_supported":["header"]}

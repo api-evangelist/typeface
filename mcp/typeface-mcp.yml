@@ -7,11 +7,11 @@ server:
   transport: http
   url: https://api-us.typeface.ai/mcp
   docs:
-    - https://developers.typeface.ai/docs/mcp-overview
-    - https://developers.typeface.ai/docs/setup-instructions
-    - https://developers.typeface.ai/docs/tools
-    - https://developers.typeface.ai/docs/mcp-apis-overview
-    - https://developers.typeface.ai/docs/mcp-api-tools
+  - https://developers.typeface.ai/docs/mcp-overview
+  - https://developers.typeface.ai/docs/setup-instructions
+  - https://developers.typeface.ai/docs/tools
+  - https://developers.typeface.ai/docs/mcp-apis-overview
+  - https://developers.typeface.ai/docs/mcp-api-tools
   authentication:
     type: oauth2.1
     flow: authorization_code
@@ -21,55 +21,96 @@ server:
     authorization: https://auth-us.typeface.ai/authorize
     token: https://api-us.typeface.ai/mcp/oauth/token
     docs: https://developers.typeface.ai/docs/oauth-21-authorization-code-flow-for-typeface-mcp-apis
-    notes: Application credentials (client_credentials via /oauth2/token) can
-      also be used to obtain a bearer token for MCP API invocations.
+    notes: Application credentials (client_credentials via /oauth2/token) can also be used to obtain a
+      bearer token for MCP API invocations.
   clients_documented:
-    - Claude (Team/Enterprise custom connector)
-    - Visual Studio Code (HTTP)
-    - ChatGPT (Developer mode connector)
+  - Claude (Team/Enterprise custom connector)
+  - Visual Studio Code (HTTP)
+  - ChatGPT (Developer mode connector)
 tools:
-  - name: typeface_discover_identity
-    description: Retrieve the authenticated user's identity along with all
-      associated teams and organizations in Typeface.
-  - name: typeface_create_project
-    description: Create a new project within a selected team, where all related
-      chats and content generations are grouped.
-  - name: typeface_list_projects
-    description: Retrieve all existing projects for a given team.
-  - name: typeface_list_audiences
-    description: List all audiences available in a specific team, including
-      organization-level audiences if applicable.
-  - name: typeface_list_layouts
-    description: Retrieve available layouts within a team and its brand kit,
-      which define structure and presentation for generated content.
-  - name: typeface_list_brand_kits
-    description: Retrieve brand kits associated with a team.
-  - name: typeface_create_chat
-    description: Start a new chat session inside a project - each chat maintains
-      context for brainstorming and content generation.
-  - name: typeface_list_chat
-    description: Retrieve existing chat sessions within a project.
-  - name: typeface_list_agents
-    description: Retrieve all the custom agents within a team.
-  - name: typeface_execute
-    description: Generate personalized, on-brand content (emails, social posts,
-      blogs, ad copy), answer questions using web search and brand documents,
-      evaluate content against brand guidelines, and manage Typeface assets via
-      public URLs, within the context of a selected account, project, and chat.
-  - name: typeface_export_document_as_json
-    description: Export the generated document in a structured JSON format after
-      a successful generation request.
-  - name: typeface_resolve_ref
-    description: Resolve any Base64-encoded reference string from listing tools
-      into its complete entity metadata (layouts, assets, audiences, collections,
-      brand kits, agents).
-  - name: typeface_generate_schema_org
-    description: Generate Schema.org JSON-LD from inline markdown or plain-text
-      content.
-  - name: typeface_evaluate_aeo
-    description: Evaluate markdown or plain-text content against AEO/GEO
-      explainability criteria and return per-criterion scores with reasons.
-notes: JSON-RPC 2.0 over HTTP/SSE; tools can also be invoked directly as APIs
-  (POST with Authorization Bearer, Accept application/json + text/event-stream).
-  Errors surface both as HTTP status codes and as JSON-RPC result.isError.
-  Typeface also publishes an A2A agent surface alongside MCP.
+- name: typeface_discover_identity
+  description: Retrieve the authenticated user's identity along with all associated teams and organizations
+    in Typeface.
+- name: typeface_create_project
+  description: Create a new project within a selected team, where all related chats and content generations
+    are grouped.
+- name: typeface_list_projects
+  description: Retrieve all existing projects for a given team.
+- name: typeface_list_audiences
+  description: List all audiences available in a specific team, including organization-level audiences
+    if applicable.
+- name: typeface_list_layouts
+  description: Retrieve available layouts within a team and its brand kit, which define structure and
+    presentation for generated content.
+- name: typeface_list_brand_kits
+  description: Retrieve brand kits associated with a team.
+- name: typeface_create_chat
+  description: Start a new chat session inside a project - each chat maintains context for brainstorming
+    and content generation.
+- name: typeface_list_chat
+  description: Retrieve existing chat sessions within a project.
+- name: typeface_list_agents
+  description: Retrieve all the custom agents within a team.
+- name: typeface_execute
+  description: Generate personalized, on-brand content (emails, social posts, blogs, ad copy), answer
+    questions using web search and brand documents, evaluate content against brand guidelines, and manage
+    Typeface assets via public URLs, within the context of a selected account, project, and chat.
+- name: typeface_export_document_as_json
+  description: Export the generated document in a structured JSON format after a successful generation
+    request.
+- name: typeface_resolve_ref
+  description: Resolve any Base64-encoded reference string from listing tools into its complete entity
+    metadata (layouts, assets, audiences, collections, brand kits, agents).
+- name: typeface_generate_schema_org
+  description: Generate Schema.org JSON-LD from inline markdown or plain-text content.
+- name: typeface_evaluate_aeo
+  description: Evaluate markdown or plain-text content against AEO/GEO explainability criteria and return
+    per-criterion scores with reasons.
+- name: typeface_list_assets
+  description: List the assets available to a team or project.
+  source: https://developers.typeface.ai/docs/mcp-api-tools
+- name: typeface_get_asset
+  description: Get a single asset by reference.
+  deprecated: true
+  source: https://developers.typeface.ai/docs/mcp-api-tools
+- name: typeface_list_collections
+  description: List the collections (knowledge/document collections) available to a team.
+  source: https://developers.typeface.ai/docs/mcp-api-tools
+- name: typeface_list_connections
+  description: List the configured third-party connectors available for publishing.
+  source: https://developers.typeface.ai/docs/mcp-api-tools
+- name: typeface_publish_journey
+  description: Publish generated content to a connected downstream system (journey publish).
+  source: https://developers.typeface.ai/docs/mcp-api-tools
+- name: typeface_export_content
+  description: Export generated content from a document.
+  source: https://developers.typeface.ai/docs/mcp-api-tools
+- name: typeface_compute_seo_keyword_suggestions
+  description: Suggest SEO keywords for a piece of content.
+  source: https://developers.typeface.ai/docs/mcp-api-tools
+- name: typeface_evaluate_content_seo_score
+  description: Score content for SEO.
+  source: https://developers.typeface.ai/docs/mcp-api-tools
+- name: typeface_inject_interlinks
+  description: Inject SEO interlinks into content.
+  source: https://developers.typeface.ai/docs/mcp-api-tools
+notes: JSON-RPC 2.0 over HTTP/SSE; tools can also be invoked directly as APIs (POST with Authorization
+  Bearer, Accept application/json + text/event-stream). Errors surface both as HTTP status codes and as
+  JSON-RPC result.isError. The 23 tools above are the union of the two published tool pages
+  (/docs/tools, the agent-executed set; and /docs/mcp-api-tools, the HTTP-invocable set) as of
+  2026-08-13. Live tools/list introspection is auth-gated - POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}
+  to https://api-us.typeface.ai/mcp returned HTTP 401 {"error":"unauthorized"} on 2026-08-13 - so the
+  real inputSchema per tool requires an authenticated introspection; see mcp/typeface-tool-crosswalk.yml
+  for the REST operations that back each tool. The docs also describe a Typeface A2A agent for Gemini
+  Enterprise, but no agent card is served at any well-known path (see well-known/typeface-well-known.yml).
+deployment:
+  mode: remote
+  endpoint: https://api-us.typeface.ai/mcp
+  install: null
+  package: null
+  auth: oauth
+  verified: probed
+  probe: 'HTTP 401 unauthorized on POST tools/list (endpoint live, OAuth 2.1 required);
+    RFC 9728 protected-resource metadata at /mcp/.well-known/oauth-protected-resource returns 200'
+  checked: '2026-08-13'
+  source: https://developers.typeface.ai/docs/mcp-overview

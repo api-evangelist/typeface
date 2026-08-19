@@ -1,0 +1,487 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences Digital Assets API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Digital Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Project - List Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/projects/:projectId/assets",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query",
+                "description": "Allowed values are 'IMAGE' and 'FILE'"
+              }
+            ]
+          },
+          "docs": "Project - List Assets"
+        },
+        {
+          "info": {
+            "name": "Project - Create Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/projects/:projectId/assets",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Project - Create Asset"
+        },
+        {
+          "info": {
+            "name": "Project - Get Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/projects/:projectId/assets/:assetId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific asset"
+              }
+            ]
+          },
+          "docs": "Project - Get Asset"
+        },
+        {
+          "info": {
+            "name": "Project - Update Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/projects/:projectId/assets/:assetId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific asset"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Project - Update Asset"
+        },
+        {
+          "info": {
+            "name": "Project - Delete Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/projects/:projectId/assets/:assetId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific asset"
+              }
+            ]
+          },
+          "docs": "Project - Delete Asset"
+        },
+        {
+          "info": {
+            "name": "Project - Get Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/projects/:projectId/assets/:assetId/metadata",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific asset"
+              }
+            ]
+          },
+          "docs": "This API provides metadata details for a specific asset, with a primary focus on its associated tags."
+        },
+        {
+          "info": {
+            "name": "Project - Patch Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/projects/:projectId/assets/:assetId/metadata",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific asset"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API allows partial updates to asset metadata, supporting add, replace, and remove operations for the `tags` key.\n"
+        },
+        {
+          "info": {
+            "name": "List Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/asset-catalogs/:assetCatalogId/assets",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "assetCatalogId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "contentType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Assets"
+        },
+        {
+          "info": {
+            "name": "Create Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/asset-catalogs/:assetCatalogId/assets",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "assetCatalogId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Create Asset"
+        },
+        {
+          "info": {
+            "name": "Get Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/asset-catalogs/:assetCatalogId/assets/:assetId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "assetCatalogId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific asset"
+              }
+            ]
+          },
+          "docs": "Get Asset"
+        },
+        {
+          "info": {
+            "name": "Update Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/asset-catalogs/:assetCatalogId/assets/:assetId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "assetCatalogId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific asset"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Update Asset"
+        },
+        {
+          "info": {
+            "name": "Delete Asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/asset-catalogs/:assetCatalogId/assets/:assetId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "assetCatalogId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific asset"
+              }
+            ]
+          },
+          "docs": "Delete Asset"
+        },
+        {
+          "info": {
+            "name": "Get Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/asset-catalogs/:assetCatalogId/assets/:assetId/metadata",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "assetCatalogId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific workspace"
+              },
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific asset"
+              }
+            ]
+          },
+          "docs": "This API provides metadata details for a specific asset, with a primary focus on its associated tags."
+        },
+        {
+          "info": {
+            "name": "Patch Metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/asset-catalogs/:assetCatalogId/assets/:assetId/metadata",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "assetCatalogId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific workspace"
+              },
+              {
+                "name": "assetId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific asset"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API allows partial updates to asset metadata, supporting add, replace, and remove operations for the `tags` key.\n"
+        },
+        {
+          "info": {
+            "name": "Search Assets",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/search-service/accounts/:accountId/all-assets",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "A unified API to search for assets within a team (and Organization) using various filters.\n\nThis API serves as both listing and search endpoint, listing behavior will return results immediately while search behaviour\nreturns results in a eventual consistent manner, waits for the results to be indexed. Simillarly the updates and deletes are \nalso eventually consistent.\n\n\nAsset sub types for mapped are as follows\n| General Usage | Asset Sub Type |\n|---|---|\n| Uploaded Image | IMAGE |\n| Generated I"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,219 @@
+{
+  "item": [
+    {
+      "id": "194a4074-859e-46c4-8e30-570cd0b238b9",
+      "name": "Discovery",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b18a2813-8a8e-4118-ae47-1977b8998b29",
+          "name": "Discovery API",
+          "request": {
+            "name": "Discovery API",
+            "description": {
+              "content": "Retrieve all teams the app has access to.\n\nIf the app has access to some specific teams, the links for operating on these teams can be found under each team. Otherwise, if the app has access has access to entire Org, use the Query teams API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "identity-service",
+                "discover"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "afeba5c4-3374-4171-97ab-be2ebc293764",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "identity-service",
+                    "discover"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"user\": {\n    \"id\": \"string\",\n    \"name\": \"string\",\n    \"username\": \"string\",\n    \"picture\": \"string\",\n    \"email\": \"string\",\n    \"status\": \"ACTIVE\",\n    \"userAccounts\": [\n      {\n        \"accountId\": \"string\",\n        \"displayName\": \"string\",\n        \"createdBy\": \"string\",\n        \"accountCreatedAt\": \"2021-11-07T05:16:22.433Z\",\n        \"accountModifiedAt\": \"1968-10-10T22:19:25.336Z\",\n        \"scaleUnitId\": 8096,\n        \"subscriptionProvider\": \"TYPEFACE\",\n        \"endpoints\": {\n          \"socketIOHost\": \"string\",\n          \"apiWSEndpoint\": \"string\",\n          \"apiHttpEndpoint\": \"string\"\n        },\n        \"orgId\": \"string\",\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"hreflang\": \"string\",\n            \"media\": \"string\",\n            \"title\": \"string\",\n            \"type\": \"string\",\n            \"deprecation\": \"string\",\n            \"profile\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"hreflang\": \"string\",\n            \"media\": \"string\",\n            \"title\": \"string\",\n            \"type\": \"string\",\n            \"deprecation\": \"string\",\n            \"profile\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      },\n      {\n        \"accountId\": \"string\",\n        \"displayName\": \"string\",\n        \"createdBy\": \"string\",\n        \"accountCreatedAt\": \"2000-02-16T19:08:19.167Z\",\n        \"accountModifiedAt\": \"1953-02-01T10:32:27.539Z\",\n        \"scaleUnitId\": 5192,\n        \"subscriptionProvider\": \"GCP\",\n        \"endpoints\": {\n          \"socketIOHost\": \"string\",\n          \"apiWSEndpoint\": \"string\",\n          \"apiHttpEndpoint\": \"string\"\n        },\n        \"orgId\": \"string\",\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"hreflang\": \"string\",\n            \"media\": \"string\",\n            \"title\": \"string\",\n            \"type\": \"string\",\n            \"deprecation\": \"string\",\n            \"profile\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"hreflang\": \"string\",\n            \"media\": \"string\",\n            \"title\": \"string\",\n            \"type\": \"string\",\n            \"deprecation\": \"string\",\n            \"profile\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      }\n    ],\n    \"userOrgs\": [\n      {\n        \"orgId\": \"string\",\n        \"name\": \"string\",\n        \"role\": \"MEMBER\",\n        \"storageId\": \"string\",\n        \"endpoints\": {\n          \"socketIOHost\": \"string\",\n          \"apiWSEndpoint\": \"string\",\n          \"apiHttpEndpoint\": \"string\"\n        },\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"hreflang\": \"string\",\n            \"media\": \"string\",\n            \"title\": \"string\",\n            \"type\": \"string\",\n            \"deprecation\": \"string\",\n            \"profile\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"hreflang\": \"string\",\n            \"media\": \"string\",\n            \"title\": \"string\",\n            \"type\": \"string\",\n            \"deprecation\": \"string\",\n            \"profile\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      },\n      {\n        \"orgId\": \"string\",\n        \"name\": \"string\",\n        \"role\": \"MEMBER\",\n        \"storageId\": \"string\",\n        \"endpoints\": {\n          \"socketIOHost\": \"string\",\n          \"apiWSEndpoint\": \"string\",\n          \"apiHttpEndpoint\": \"string\"\n        },\n        \"links\": [\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"hreflang\": \"string\",\n            \"media\": \"string\",\n            \"title\": \"string\",\n            \"type\": \"string\",\n            \"deprecation\": \"string\",\n            \"profile\": \"string\",\n            \"name\": \"string\"\n          },\n          {\n            \"rel\": \"string\",\n            \"href\": \"string\",\n            \"hreflang\": \"string\",\n            \"media\": \"string\",\n            \"title\": \"string\",\n            \"type\": \"string\",\n            \"deprecation\": \"string\",\n            \"profile\": \"string\",\n            \"name\": \"string\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "73c21850-142f-4719-95c3-34dd094e2355",
+          "name": "Query Teams",
+          "request": {
+            "name": "Query Teams",
+            "description": {
+              "content": "**Sample Response**\n```json \n\n{\n  \"accounts\": [\n    {\n      \"accountId\": \"a4c16a3c-e945-4af9-9932-9cce26c42474\",\n      \"displayName\": \"Team 1\",\n      \"createdBy\": {\n        \"id\": \"e0812ff6-d285-42ef-b0bf-3f5987311e7b\",\n        \"name\": \"John Doe\",\n        \"picture\": \"https://s.gravatar.com/avatar/bb4894e8d57f4c49f81a37eaa4009467?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fag.png\",\n        \"email\": \"john.doe@typeface.ai\"\n      },\n      \"accountCreatedAt\": \"2024-06-13T08:48:13Z\",\n      \"accountModifiedAt\": \"2024-06-13T08:48:13Z\",\n      \"scaleUnitId\": 1,\n      \"orgId\": \"8b66d551-58f2-4060-adeb-e19b0b07f65d\",\n      \"activeMembers\": 2,\n      \"accountUser\": false\n    },\n    {\n      \"accountId\": \"ae858617-c14d-46d1-b1cf-23daf4928032\",\n      \"displayName\": \"Team 2\",\n      \"createdBy\": {\n        \"id\": \"6597ef22-5d9d-42b3-8780-6ba43519496f\",\n        \"name\": \"Alice Doe\",\n        \"picture\": \"https://s.gravatar.com/avatar/47360b4957d175a102a4f7d0947ae868?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fnd.png\",\n        \"email\": \"alice.doe@typeface.ai\"\n      },\n      \"accountCreatedAt\": \"2024-06-13T08:36:56Z\",\n      \"accountModifiedAt\": \"2024-06-13T08:36:56Z\",\n      \"scaleUnitId\": 1,\n      \"orgId\": \"8b66d551-58f2-4060-adeb-e19b0b07f65d\",\n      \"activeMembers\": 1,\n      \"accountUser\": false\n    }\n  ],\n  \"page\": 1,\n  \"size\": 10,\n  \"totalAccounts\": 2,\n  \"totalPages\": 1\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "orgs",
+                ":orgId",
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4f348416-dda8-4028-84c4-839ace8b5407",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "orgs",
+                    ":orgId",
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accounts\": [\n    {\n      \"accountId\": \"string\",\n      \"displayName\": \"string\",\n      \"createdBy\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"picture\": \"string\",\n        \"email\": \"string\"\n      },\n      \"accountCreatedAt\": \"1993-02-17T22:42:31.586Z\",\n      \"accountModifiedAt\": \"1979-06-10T03:05:38.533Z\",\n      \"scaleUnitId\": 5803,\n      \"orgId\": \"string\",\n      \"activeMembers\": 8129,\n      \"accountUser\": true\n    },\n    {\n      \"accountId\": \"string\",\n      \"displayName\": \"string\",\n      \"createdBy\": {\n        \"id\": \"string\",\n        \"name\": \"string\",\n        \"picture\": \"string\",\n        \"email\": \"string\"\n      },\n      \"accountCreatedAt\": \"1947-03-08T05:15:13.320Z\",\n      \"accountModifiedAt\": \"1961-08-15T18:12:20.027Z\",\n      \"scaleUnitId\": 3350,\n      \"orgId\": \"string\",\n      \"activeMembers\": 3540,\n      \"accountUser\": false\n    }\n  ],\n  \"page\": 805,\n  \"size\": 6111,\n  \"totalAccounts\": 7662,\n  \"totalPages\": 5819\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-us.typeface.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "59706fa8-2c02-472c-94dc-123406b1ebee",
+    "name": "Typeface Audiences Discovery API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

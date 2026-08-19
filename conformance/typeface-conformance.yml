@@ -1,7 +1,34 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: searched
 source: https://developers.typeface.ai
 standards:
+  - id: rfc9728-oauth-protected-resource
+    conforms: true
+    evidence: 'https://api-us.typeface.ai/.well-known/oauth-protected-resource
+      returns 200 with resource, authorization_servers, jwks_uri,
+      scopes_supported and bearer_methods_supported (probed 2026-08-13; saved to
+      well-known/typeface-oauth-protected-resource.json)'
+  - id: rfc8414-oauth-authorization-server-metadata
+    conforms: true
+    evidence: 'https://api-us.typeface.ai/.well-known/oauth-authorization-server
+      returns 200 (saved to well-known/typeface-oauth-authorization-server.json)'
+  - id: a2a
+    conforms: partial
+    evidence: 'Typeface documents an A2A agent that lets Gemini Enterprise
+      exercise Typeface capabilities
+      (https://developers.typeface.ai/docs/introduction), but no A2A Agent Card
+      is served: /.well-known/agent-card.json and /.well-known/agent.json
+      returned 404 on www.typeface.ai, developers.typeface.ai and
+      app.typeface.ai and 401 on api-us.typeface.ai (probed 2026-08-13). The
+      A2A surface is therefore undiscoverable to an agent that has not been
+      onboarded through Gemini Enterprise.'
+  - id: rfc9116-security-txt
+    conforms: false
+    evidence: No /.well-known/security.txt is served on any Typeface host (404
+      on the marketing and docs hosts, 401 behind the API gateway, probed
+      2026-08-13); the disclosure route is the
+      https://www.typeface.ai/security-and-governance page and
+      security@typeface.ai.
   - id: oauth2
     conforms: true
     evidence: Client-credentials token endpoint (POST /oauth2/token) documented

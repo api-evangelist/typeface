@@ -1,0 +1,149 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences Tag Library API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tag Library",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/tags",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates one or more tags in a single request. Each tag in the request is processed independently, so some tags may succeed while others fail. The response contains a per-item result for every tag in the request, each marked with `success: true` or `success: false`.\n\nFor each tag, provide a `name` and `displayName`. Optionally include `parentId` to nest the tag under an existing parent, and `properties` to attach metadata such as `description`. Tags without a `parentId` are created as top-level t"
+        },
+        {
+          "info": {
+            "name": "Search Tags",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/search-service/accounts/:accountId/tags",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Search for tags within an account. Use this to browse the tag taxonomy, find tags by name, or list tags filtered by status.\n\n- **`query`** — Filters tags by name or display name. Searching for a parent tag also returns all of its descendants. When omitted or empty, all tags are returned.\n- **`status`** — Filters tags by status (`ACTIVE`, `INACTIVE`, `DEPRECATED`, `REJECTED`, `PENDING`). Defaults to `ACTIVE`. Set to `PENDING` to list newly discovered tag candidates awaiting review.\n- **`limit`** "
+        },
+        {
+          "info": {
+            "name": "Get Tag by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/tags/:tagId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account"
+              },
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the tag"
+              }
+            ]
+          },
+          "docs": "Retrieves the full definition of a single tag by its ID. The response includes the tag's name, display name, status, parent reference, and description."
+        },
+        {
+          "info": {
+            "name": "Patch Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/tags/:tagId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account"
+              },
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the tag"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Partially updates an existing tag using JSON Patch-style operations. Supported paths are `/name`, `/displayName`, `/status`, and `/description`.\n\nCommon use cases include renaming a tag, deactivating it, updating its description, or approving / rejecting a pending tag candidate (set status to `ACTIVE` to approve, `REJECTED` to reject)."
+        },
+        {
+          "info": {
+            "name": "Delete Tag",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/tags/:tagId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the account"
+              },
+              {
+                "name": "tagId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the tag to delete"
+              }
+            ]
+          },
+          "docs": "Permanently deletes a tag and all of its child tags. Any assets that were tagged with the deleted tag will have that tag association removed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

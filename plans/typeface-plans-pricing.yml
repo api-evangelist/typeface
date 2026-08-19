@@ -1,0 +1,34 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.typeface.ai
+plan_count: 0
+plans: []
+pricing_model: contact-sales
+currency: null
+notes: >-
+  Typeface publishes no public pricing or plan page. Probed 2026-08-13:
+  https://www.typeface.ai/pricing returned 404 and https://www.typeface.ai/plans
+  returned 404; the marketing site routes every commercial path to "Book a demo"
+  / "Contact sales". The developer docs confirm the commercial posture from the
+  other direction - the rate-limit page
+  (https://developers.typeface.ai/docs/api-rate-limits) tells developers to
+  "reach out to your Account Executive or Customer Success Manager" for higher
+  limits rather than naming a tier or an overage price. No machine-readable
+  pricing or catalog endpoint is published, and API access is gated behind an
+  Organization Administrator creating an Application in the product UI, so there
+  is no published self-serve price for the API itself.
+evidence:
+  - url: https://www.typeface.ai/pricing
+    status: 404
+    checked: '2026-08-13'
+  - url: https://www.typeface.ai/plans
+    status: 404
+    checked: '2026-08-13'
+  - url: https://developers.typeface.ai/docs/api-rate-limits
+    status: 200
+    checked: '2026-08-13'
+    note: Names sales@typeface.ai / support@typeface.ai as the route to higher
+      tiers; no prices published.
+sales_contacts:
+  - sales@typeface.ai
+  - support@typeface.ai

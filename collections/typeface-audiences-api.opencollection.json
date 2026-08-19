@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Audiences",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Audience Catlogs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/workspace-resolver-service/accounts/:accountId/libraries/sub-types/AUDIENCE_LIBRARY",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              }
+            ]
+          },
+          "docs": "This API endpoint lists all available Audiences in the given team."
+        },
+        {
+          "info": {
+            "name": "List Audiences",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/audience-catalogs/:audienceCatalogId/audience-segments",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "audienceCatalogId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the audience library"
+              }
+            ]
+          },
+          "docs": "Lists the available audience segments in given audience catalog"
+        },
+        {
+          "info": {
+            "name": "Create Audience",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/audience-catalogs/:audienceCatalogId/audience-segments",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "audienceCatalogId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the audience library"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new audience segment within the given catalog\n\n**Sample request body**\n```json\n{\n  \"workspaceId\": 43672,\n  \"name\": \"Adults in Chicago\",\n  \"properties\": {\n    \"name\": \"Adults in Chicago\",\n    \"ageRangeMin\": 45,\n    \"ageRangeMax\": 65,\n    \"gender\": \"Neutral\",\n    \"preferences\": [\n      \"loves technology\", \"big on startups\"\n    ],\n    \"spendingBehavior\": [\n      \"Luxury\",\n      \"Experimental\"\n    ]\n  }\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Manage Audience",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/audience-catalogs/:audienceCatalogId/audience-segments/:audienceId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "audienceCatalogId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the audience library"
+              },
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the audience"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Manage the Audience within catalog.\n\n\n**Sample request body**\n```json\n{\n  \"workspaceId\": 43672,\n  \"name\": \"Adults in Chicago\",\n  \"properties\": {\n    \"name\": \"Adults in Chicago\",\n    \"ageRangeMin\": 45,\n    \"ageRangeMax\": 60,\n    \"gender\": \"Male\",\n    \"preferences\": [\n      \"loves technology\", \"sports enthusiast\"\n    ],\n    \"spendingBehavior\": [\n      \"Luxury\",\n      \"Impulsive\"\n    ]\n  }\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Delete Audience",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/audience-catalogs/:audienceCatalogId/audience-segments/:audienceId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "audienceCatalogId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the audience library"
+              },
+              {
+                "name": "audienceId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the audience"
+              }
+            ]
+          },
+          "docs": "Deletes the given audience segment from audience catalog"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

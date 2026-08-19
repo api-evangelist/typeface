@@ -1,0 +1,57 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences Search Service API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search Service",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search & filter documents",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/search-service/accounts/:accountId/projects/:projectId/all-assets",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the account."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The unique ID of the project."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "This endpoint allows you to search for documents within a specified project using various filters like created by, workflow status, assignees, etc."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

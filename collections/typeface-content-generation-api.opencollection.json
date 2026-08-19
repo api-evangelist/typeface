@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences Content Generation API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Content Generation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/batch-service/accounts/:accountId/projects/:projectId/generate",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "**templates** is an Array of requests.\n\n**templateType**\n  Supported template types are:\n  - `simple_image` - More details are available [here](#simple-image)\n  - `simple_text` - More details are available [here](#simple-text)\n  - `email` - More details are available [here](#email)\n  - `email_subject` - More details are available [here](#email-subject)\n  - `instagram_ad` - More details are available [here](#instagram-post)\n  - `facebook_post` - More details are available [here](#facebook-post)\n "
+        },
+        {
+          "info": {
+            "name": "Poll Generation Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/batch-service/accounts/:accountId/projects/:projectId/batch-jobs/:monitorId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "monitorId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "**Sample Response**\n\nBased on how many requests batched in the Generation API call, those many `jobStepResponses` will be returned.\n\nEach one contains `documentMetadata` object with an `id`. This document corresponds to the response for each of the request in the batch. Use `documentMetadata.id` as `documentId` while making subsequent call to fetch the generated content.\n\n```json\n{\n    \"job\": {\n        \"jobId\": \"2bd1365a-ac4b-4224-bf97-dd0c4a8c91e9\",\n        \"name\": \"Generate First Image\",\n     "
+        },
+        {
+          "info": {
+            "name": "Get Generated Content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/content-service/workspace/:projectId/documents/:documentId/read-only",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "documentId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Retrieve generated content using this API. Response contains array of blocks and each block corresponds to a content fragment. For simple text and image, there will be only one block. Each block has `type` which indicates the content type and `variations` generated."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

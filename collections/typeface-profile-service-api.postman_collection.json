@@ -1,0 +1,257 @@
+{
+  "item": [
+    {
+      "id": "0819b6c1-6179-4927-8f0c-9039256450d9",
+      "name": "Profile Service",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "dd5a0c62-15ec-4f0e-b6ba-eee22bb4cc32",
+          "name": "Get Workflows",
+          "request": {
+            "name": "Get Workflows",
+            "description": {
+              "content": "Retrieve the list of workflows associated with a specific account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "workflows"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "55557795-dfe7-4c1b-8b31-8c1e0b7e8dcd",
+              "name": "A list of workflows associated with the account.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "workflows"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflows\": [\n    {\n      \"workspaceId\": {\n        \"id\": 6204\n      },\n      \"id\": {\n        \"id\": 4261\n      },\n      \"name\": \"string\",\n      \"sourcePath\": \"string\",\n      \"ingestionSource\": \"string\",\n      \"properties\": {\n        \"orderedWorkflowStepIds\": [\n          7123,\n          2931\n        ]\n      },\n      \"createdAt\": \"1952-04-11T04:09:40.155Z\",\n      \"modifiedAt\": \"1987-12-25T03:06:48.632Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"renditionId\": \"string\",\n      \"ref\": \"string\",\n      \"entitySubType\": \"string\",\n      \"sourceId\": \"string\",\n      \"sourceType\": \"string\"\n    },\n    {\n      \"workspaceId\": {\n        \"id\": 7139\n      },\n      \"id\": {\n        \"id\": 8901\n      },\n      \"name\": \"string\",\n      \"sourcePath\": \"string\",\n      \"ingestionSource\": \"string\",\n      \"properties\": {\n        \"orderedWorkflowStepIds\": [\n          3483,\n          7771\n        ]\n      },\n      \"createdAt\": \"2022-06-01T14:50:34.845Z\",\n      \"modifiedAt\": \"2005-02-23T22:22:09.479Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"renditionId\": \"string\",\n      \"ref\": \"string\",\n      \"entitySubType\": \"string\",\n      \"sourceId\": \"string\",\n      \"sourceType\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5941c851-9fbb-428a-add3-fc6cd7981b2e",
+          "name": "Get Workflow Steps",
+          "request": {
+            "name": "Get Workflow Steps",
+            "description": {
+              "content": "Retrieve the steps/statuses of a specific workflow.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "workflows",
+                ":workflowId",
+                "workflow-steps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "workflowId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET"
+          },
+          "response": [
+            {
+              "id": "0716827c-a42d-419b-bab1-e6055eb98bc3",
+              "name": "A list of steps/statuses in the specified workflow.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "workflows",
+                    ":workflowId",
+                    "workflow-steps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "workflowId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"workflowSteps\": [\n    {\n      \"workspaceId\": {\n        \"id\": 2835\n      },\n      \"id\": {\n        \"id\": 75\n      },\n      \"name\": \"string\",\n      \"sourcePath\": \"string\",\n      \"ingestionSource\": \"string\",\n      \"properties\": {\n        \"orderedWorkflowStepIds\": [\n          3028,\n          2415\n        ]\n      },\n      \"createdAt\": \"2011-09-10T04:53:04.418Z\",\n      \"modifiedAt\": \"1979-05-20T06:53:40.627Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"renditionId\": \"string\",\n      \"ref\": \"string\",\n      \"entitySubType\": \"string\",\n      \"sourceId\": \"string\",\n      \"sourceType\": \"string\"\n    },\n    {\n      \"workspaceId\": {\n        \"id\": 3589\n      },\n      \"id\": {\n        \"id\": 4027\n      },\n      \"name\": \"string\",\n      \"sourcePath\": \"string\",\n      \"ingestionSource\": \"string\",\n      \"properties\": {\n        \"orderedWorkflowStepIds\": [\n          6193,\n          5200\n        ]\n      },\n      \"createdAt\": \"1951-06-30T11:23:33.897Z\",\n      \"modifiedAt\": \"1949-06-09T18:14:50.234Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"renditionId\": \"string\",\n      \"ref\": \"string\",\n      \"entitySubType\": \"string\",\n      \"sourceId\": \"string\",\n      \"sourceType\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-us.typeface.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b110b38d-931e-425d-8098-ae9f827d2e88",
+    "name": "Typeface Audiences Profile Service API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,98 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences Authentication API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get access token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/oauth2/token",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "grant_type",
+                  "value": ""
+                },
+                {
+                  "name": "applicationId",
+                  "value": ""
+                },
+                {
+                  "name": "applicationSecret",
+                  "value": ""
+                },
+                {
+                  "name": "tenantId",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "This API endpoint allows authorized client applications to obtain an access token using their Application credentials. The access token is required to authenticate and authorize requests to other Typeface AI API endpoints. \n\n**Token Expiration & Renewal**:  Access tokens are valid for one hour.\n\nTo maintain uninterrupted access to Typeface AI APIs, client applications should implement a mechanism to:\n  - *Periodically Refresh*: Automatically fetch a new access token before\n  the current one expi"
+        },
+        {
+          "info": {
+            "name": "Create Application",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/identity-service/applications",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Application"
+        },
+        {
+          "info": {
+            "name": "Rotate Application Secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/identity-service/applications/:applicationId/keys/:ordinal/rotate",
+            "params": [
+              {
+                "name": "applicationId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "ordinal",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Rotate Application Secret"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

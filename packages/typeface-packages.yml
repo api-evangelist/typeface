@@ -1,6 +1,6 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: searched
-source: https://registry.npmjs.org/-/v1/search?text=typeface%20ai
+source: https://registry.npmjs.org/@typeface-ai/typeface-embed-react
 packages:
   - language: javascript
     registry: npm
@@ -8,13 +8,32 @@ packages:
     url: https://www.npmjs.com/package/@typeface-ai/typeface-embed-react
     install: npm install @typeface-ai/typeface-embed-react
     official: true
-    latest: 0.9.18
+    version: 0.9.18
+    published: '2026-05-06'
     first_published: '2023-04-13'
-    last_published: '2026-05-06'
+    release_count: 56
     description: React SDK for Typeface Embed Integration.
     notes: Maintained by Typeface staff npm accounts (krisnik-typeface,
-      mohit_typeface, yasasvee-tf, yash.srivastava).
-notes: 'Probed npm, PyPI (typeface / typeface-api / typeface-ai all 404), and
-  the GitHub orgs TypeFaceAI and Typeface-ai (both exist with 0 public repos)
-  on 2026-07-21. The React embed SDK is the only first-party public client
-  library found; the REST API is otherwise consumed directly over HTTPS.'
+      mohit_typeface, yasasvee-tf, yash.srivastava). Version and publish date
+      read from registry.npmjs.org on 2026-08-13; still under 1.0.0 after 56
+      releases.
+notes: >-
+  Re-probed 2026-08-13. npm scope @typeface-ai holds exactly one public package
+  (the React embed SDK, actively maintained). PyPI has no Typeface client -
+  pypi.org/pypi/typeface, /typeface-ai and /typeface-sdk all return 404. No
+  first-party client was found on Maven Central, NuGet, pkg.go.dev, RubyGems,
+  Packagist or crates.io. Both GitHub orgs (github.com/TypeFaceAI created
+  2025-09-25, github.com/Typeface-ai created 2022-11-21) exist but publish 0
+  public repositories and carry no name/website, so neither can be confirmed as
+  the company's org and no GitHubOrganization pointer is emitted. The REST API
+  is otherwise consumed directly over HTTPS; the docs publish curl examples
+  rather than SDK snippets.
+registries_probed:
+  - {registry: npm, result: 1 official package, checked: '2026-08-13'}
+  - {registry: pypi, result: none (404), checked: '2026-08-13'}
+  - {registry: maven-central, result: none, checked: '2026-07-21'}
+  - {registry: nuget, result: none, checked: '2026-07-21'}
+  - {registry: pkg.go.dev, result: none, checked: '2026-07-21'}
+  - {registry: rubygems, result: none, checked: '2026-07-21'}
+  - {registry: packagist, result: none, checked: '2026-07-21'}
+  - {registry: crates.io, result: none, checked: '2026-07-21'}

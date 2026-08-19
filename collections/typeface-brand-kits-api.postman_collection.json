@@ -1,0 +1,995 @@
+{
+  "item": [
+    {
+      "id": "d49201b3-a597-4894-a796-7cd6f00fe2ce",
+      "name": "Brand Kits",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2bcec6ca-6fea-4383-bd39-d78122bc3f87",
+          "name": "List Brand Kits",
+          "request": {
+            "name": "List Brand Kits",
+            "description": {
+              "content": "This API endpoint lists all available Brand kits in the given team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workspace-resolver-service",
+                "accounts",
+                ":accountId",
+                "libraries",
+                "sub-types",
+                "BRAND_KIT_LIBRARY"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "507c6d20-60d0-4b78-ae9d-facb8afd7797",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspace-resolver-service",
+                    "accounts",
+                    ":accountId",
+                    "libraries",
+                    "sub-types",
+                    "BRAND_KIT_LIBRARY"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"libraries\": [\n    {\n      \"id\": {\n        \"id\": 5532\n      },\n      \"ownerId\": \"string\",\n      \"name\": \"string\",\n      \"image\": {\n        \"workspaceId\": {\n          \"id\": 4013\n        },\n        \"id\": {\n          \"id\": 1236\n        },\n        \"name\": \"string\",\n        \"sourcePath\": \"string\",\n        \"ingestionSource\": \"string\",\n        \"properties\": {\n          \"blobId\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"createdAt\": \"1977-02-04T23:41:21.698Z\",\n        \"modifiedAt\": \"1962-03-02T18:42:30.172Z\",\n        \"renditionId\": {\n          \"id\": 2599\n        },\n        \"createdBy\": \"string\",\n        \"modifiedBy\": \"string\"\n      },\n      \"createdAt\": \"2008-05-09T00:07:29.843Z\",\n      \"modifiedAt\": \"2002-09-08T07:26:59.476Z\",\n      \"discarded\": false,\n      \"properties\": {\n        \"hideBrandKit\": false,\n        \"defaultTextStyleId\": 3092,\n        \"defaultImageStyleId\": 4771,\n        \"defaultColorPaletteId\": 7291,\n        \"defaultLanguage\": \"string\"\n      },\n      \"workspaceSubType\": \"BATCH_OUTPUT\"\n    },\n    {\n      \"id\": {\n        \"id\": 7282\n      },\n      \"ownerId\": \"string\",\n      \"name\": \"string\",\n      \"image\": {\n        \"workspaceId\": {\n          \"id\": 7059\n        },\n        \"id\": {\n          \"id\": 4361\n        },\n        \"name\": \"string\",\n        \"sourcePath\": \"string\",\n        \"ingestionSource\": \"string\",\n        \"properties\": {\n          \"blobId\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"createdAt\": \"1979-07-08T07:04:57.651Z\",\n        \"modifiedAt\": \"1967-08-18T01:16:20.299Z\",\n        \"renditionId\": {\n          \"id\": 1403\n        },\n        \"createdBy\": \"string\",\n        \"modifiedBy\": \"string\"\n      },\n      \"createdAt\": \"1989-10-07T00:26:25.063Z\",\n      \"modifiedAt\": \"1977-02-16T10:23:17.802Z\",\n      \"discarded\": false,\n      \"properties\": {\n        \"hideBrandKit\": false,\n        \"defaultTextStyleId\": 9034,\n        \"defaultImageStyleId\": 7116,\n        \"defaultColorPaletteId\": 2885,\n        \"defaultLanguage\": \"string\"\n      },\n      \"workspaceSubType\": \"BRAND_KIT_LIBRARY\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "06f84a54-f565-4c85-9d31-b50ddf0bdce4",
+          "name": "Create Brand Kit",
+          "request": {
+            "name": "Create Brand Kit",
+            "description": {
+              "content": "Create Brand-kit within the library\n\n**Sample request body**\n```json\n{\n  \"name\": \"Awesome Brand Kit\",\n  \"workspaceSubType\": \"BRAND_KIT_LIBRARY\"\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workspace-resolver-service",
+                "accounts",
+                ":accountId",
+                "libraries"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"workspaceSubType\": \"BRAND_KIT_LIBRARY\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b42faa1b-c37e-415c-8a33-a4b929438ced",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspace-resolver-service",
+                    "accounts",
+                    ":accountId",
+                    "libraries"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"workspaceSubType\": \"BRAND_KIT_LIBRARY\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"libraryDetails\": {\n    \"id\": {\n      \"id\": 7017\n    },\n    \"ownerId\": \"string\",\n    \"name\": \"string\",\n    \"image\": {\n      \"workspaceId\": {\n        \"id\": 6354\n      },\n      \"id\": {\n        \"id\": 4103\n      },\n      \"name\": \"string\",\n      \"sourcePath\": \"string\",\n      \"ingestionSource\": \"string\",\n      \"properties\": {\n        \"blobId\": {\n          \"id\": 6325\n        }\n      },\n      \"createdAt\": \"1984-05-11T12:29:16.542Z\",\n      \"modifiedAt\": \"1964-05-10T12:40:54.017Z\",\n      \"renditionId\": {\n        \"id\": 1520\n      },\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\"\n    },\n    \"createdAt\": \"2026-05-21T18:43:38.446Z\",\n    \"modifiedAt\": \"1992-04-17T19:17:29.756Z\",\n    \"discarded\": true,\n    \"properties\": {\n      \"hideBrandKit\": false,\n      \"defaultTextStyleId\": 5304,\n      \"defaultImageStyleId\": 1184,\n      \"defaultColorPaletteId\": 1787,\n      \"defaultLanguage\": \"string\"\n    },\n    \"workspaceSubType\": \"DECORATION_LIBRARY\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e0025a8c-d2e7-4f7f-80cf-a26ed693cd64",
+          "name": "Delete Brand Kit",
+          "request": {
+            "name": "Delete Brand Kit",
+            "description": {},
+            "url": {
+              "path": [
+                "workspace-resolver-service",
+                "accounts",
+                ":accountId",
+                "libraries",
+                ":brandKitId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "brandKitId",
+                  "description": "(Required) Unique identifier for the specific brand-kit"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a02eaca-977f-47a7-bdd0-3d1b2acd79c8",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspace-resolver-service",
+                    "accounts",
+                    ":accountId",
+                    "libraries",
+                    ":brandKitId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "brandKitId",
+                      "description": "(Required) Unique identifier for the specific brand-kit"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3550b068-05c9-4d3d-adef-69e78a215a27",
+          "name": "Get Brand-kit styles",
+          "request": {
+            "name": "Get Brand-kit styles",
+            "description": {
+              "content": "This API endpoint lists all existing styles of given type (i.e. *Image / Text / Logo*) available in the given Brand Kit.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "brand-kits",
+                ":brandKitId",
+                "style-types",
+                ":styleType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "brandKitId",
+                  "description": "(Required) Unique identifier for the specific brand-kit"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "styleType",
+                  "description": "(Required) Style type of the brand kit"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c9b7efea-a49d-4d38-87fd-c4d921995e62",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "brand-kits",
+                    ":brandKitId",
+                    "style-types",
+                    ":styleType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "brandKitId",
+                      "description": "(Required) Unique identifier for the specific brand-kit"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "styleType",
+                      "description": "(Required) Style type of the brand kit"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"styles\": [\n    {\n      \"id\": 4392,\n      \"name\": \"string\",\n      \"isDefault\": true,\n      \"createdAt\": \"1969-07-11T12:08:57.208Z\",\n      \"modifiedAt\": \"1954-02-06T10:32:06.831Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"type\": \"Text\",\n      \"subType\": \"string\",\n      \"data\": {},\n      \"ref\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 3668,\n      \"name\": \"string\",\n      \"isDefault\": true,\n      \"createdAt\": \"2010-07-01T09:37:21.957Z\",\n      \"modifiedAt\": \"2026-06-10T18:14:28.319Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"type\": \"Text\",\n      \"subType\": \"string\",\n      \"data\": {},\n      \"ref\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e2cd469e-313c-4d97-bc27-358b0b73e6e0",
+          "name": "Create Brand-kit style",
+          "request": {
+            "name": "Create Brand-kit style",
+            "description": {
+              "content": "Create styles within the Brand kit for content genration\n\n**Sample request body for creating Image / Logo style**\n```json\n  {\n    \"name\": \"Bikes style\"\n  }\n```\n\n\n**Sample Request body for creating Text style**\n```json\n  {\n    \"name\": \"Text style\",\n    \"subType\": \"BrandVoice\",\n    \"data\": {\n        \"brandValues\": [\n            {\n                \"name\": \"Innovation\",\n                \"description\": \"We are committed to unlocking the power of technology to create personalized, on-brand images. Our innovative approach allows us to span diverse markets and significantly reduce production time.\"\n            },\n            {\n                \"name\": \"Efficiency\",\n                \"description\": \"We are dedicated to amplifying our content factory initiative. Our focus on efficiency enables us to streamline our processes and deliver high-quality results.\"\n            }\n        ],\n        \"brandTones\": [\n            {\n                \"name\": \"Strategic\",\n                \"description\": \"We are strategic in our ideation and refinement processes. Our focus on strategy ensures we deliver impactful and effective solutions.\"\n            },\n            {\n                \"name\": \"Empowering\",\n                \"description\": \"We believe in the power of our solutions to transform and scale content standards across organizations.\"\n            },\n            {\n                \"name\": \"Visionary\",\n                \"description\": \"From ideation to refinement, we are forward-thinking and innovative in our approach to content creation.\"\n            }\n        ],\n        \"brandRules\": [\n            {\n                \"type\": \"termsToAvoid\",\n                \"value\": [\n                    {\n                        \"source\": \"replace\",\n                        \"replacement\": \"\"\n                    },\n                    {\n                        \"source\": \"typeface\",\n                        \"replacement\": \"TypeFace AI\"\n                    }\n                ]\n            }\n        ]\n    }\n}\n```\n\n**Note**: Only 1 text style and logo style could be created for each Brand Kit",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "brand-kits",
+                ":brandKitId",
+                "style-types",
+                ":styleType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "brandKitId",
+                  "description": "(Required) Unique identifier for the specific brand-kit"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "styleType",
+                  "description": "(Required) Style type of the brand kit"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"subType\": \"BRAND_KIT_LIBRARY\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "05b4280a-1797-47ad-bdcb-99e97d76b793",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "brand-kits",
+                    ":brandKitId",
+                    "style-types",
+                    ":styleType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "brandKitId",
+                      "description": "(Required) Unique identifier for the specific brand-kit"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "styleType",
+                      "description": "(Required) Style type of the brand kit"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"subType\": \"BRAND_KIT_LIBRARY\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 6328,\n  \"name\": \"string\",\n  \"isDefault\": false,\n  \"createdAt\": \"2007-10-07T19:19:19.836Z\",\n  \"modifiedAt\": \"1968-03-23T16:40:23.691Z\",\n  \"createdBy\": \"string\",\n  \"modifiedBy\": \"string\",\n  \"type\": \"Palette\",\n  \"subType\": \"string\",\n  \"data\": {},\n  \"ref\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "65821159-d89a-44e6-bc83-4c1cc43b8f73",
+          "name": "Update or Manage Brand-kit style",
+          "request": {
+            "name": "Update or Manage Brand-kit style",
+            "description": {
+              "content": "This API allows you to upload image in the brand kit of given style type. There are two different options available to do so:\n  - `content`: The binary format content of image to be uploaded\n  - `contentUrl`: Publicly accessible url of the required image\n\n**Sample curl request**\n```bash\n  curl --silent --location 'https://api-us.typeface.ai/profile-service/accounts/accountId/brand-kits/brandKitId/style-types/image/styleType/images' \\\n  --header 'Authorization: Bearer <token>' \\\n  --form 'contentUrl=\"image url...\"'\n```\n\n**Note**: It is mandatory to train a Brand-kit image style before it can be utilized in content generation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "brand-kits",
+                ":brandKitId",
+                "style-types",
+                ":styleType",
+                ":styleId",
+                "images"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "brandKitId",
+                  "description": "(Required) Unique identifier for the specific brand-kit"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "styleType",
+                  "description": "(Required) Style type of the brand kit"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "styleId",
+                  "description": "(Required) Unique identifier for the specific brand-kit style"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "contentUrl",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "URL from where the content can be downloaded. This should be a pre-signed url"
+                },
+                {
+                  "key": "content",
+                  "type": "file",
+                  "description": "File to be uploaded. Either the contentUrl or content field should be passed in a single request"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "07cea0e8-3383-4961-8a16-b5a96edc5c15",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "brand-kits",
+                    ":brandKitId",
+                    "style-types",
+                    ":styleType",
+                    ":styleId",
+                    "images"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "brandKitId",
+                      "description": "(Required) Unique identifier for the specific brand-kit"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "styleType",
+                      "description": "(Required) Style type of the brand kit"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "styleId",
+                      "description": "(Required) Unique identifier for the specific brand-kit style"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "URL from where the content can be downloaded. This should be a pre-signed url",
+                        "type": "text/plain"
+                      },
+                      "key": "contentUrl",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "File to be uploaded. Either the contentUrl or content field should be passed in a single request",
+                        "type": "text/plain"
+                      },
+                      "key": "content",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "6b4c38b5-a7d6-43dc-8e9a-fd764bc451b4",
+          "name": "Train Brand-kit image style",
+          "request": {
+            "name": "Train Brand-kit image style",
+            "description": {
+              "content": "This API enables you to train a Brand-kit image style, which can then be applied within content generation.\n\n**Sample Request Body**\n```json\n  {\n    \"notificationEmail\": \"user.email@test.in\"\n  }\n```\n\n**Note**: It is mandatory to train a Brand-kit image style before it can be utilized in content generation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "brand-kits",
+                ":brandKitId",
+                "style-types",
+                "image",
+                ":styleId",
+                "train"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "brandKitId",
+                  "description": "(Required) Unique identifier for the specific brand-kit"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "styleId",
+                  "description": "(Required) Unique identifier for the specific brand-kit style"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"notificationEmail\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "35d254af-4bad-4757-b039-d2495ef41df2",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "brand-kits",
+                    ":brandKitId",
+                    "style-types",
+                    "image",
+                    ":styleId",
+                    "train"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "brandKitId",
+                      "description": "(Required) Unique identifier for the specific brand-kit"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "styleId",
+                      "description": "(Required) Unique identifier for the specific brand-kit style"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"notificationEmail\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-us.typeface.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f5f0f7ba-5881-431e-abfa-bdb746477f21",
+    "name": "Typeface Audiences Brand Kits API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

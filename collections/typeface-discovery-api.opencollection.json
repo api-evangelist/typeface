@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences Discovery API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Discovery",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Discovery API",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/identity-service/discover"
+          },
+          "docs": "Retrieve all teams the app has access to.\n\nIf the app has access to some specific teams, the links for operating on these teams can be found under each team. Otherwise, if the app has access has access to entire Org, use the Query teams API."
+        },
+        {
+          "info": {
+            "name": "Query Teams",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/orgs/:orgId/accounts",
+            "params": [
+              {
+                "name": "orgId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "**Sample Response**\n```json \n\n{\n  \"accounts\": [\n    {\n      \"accountId\": \"a4c16a3c-e945-4af9-9932-9cce26c42474\",\n      \"displayName\": \"Team 1\",\n      \"createdBy\": {\n        \"id\": \"e0812ff6-d285-42ef-b0bf-3f5987311e7b\",\n        \"name\": \"John Doe\",\n        \"picture\": \"https://s.gravatar.com/avatar/bb4894e8d57f4c49f81a37eaa4009467?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fag.png\",\n        \"email\": \"john.doe@typeface.ai\"\n      },\n      \"accountCreatedAt\": \"2024-06-13T08:48:13Z\",\n      \"ac"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

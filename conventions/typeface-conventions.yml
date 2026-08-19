@@ -1,10 +1,12 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: searched
 source: https://developers.typeface.ai/docs/introduction
 docs:
   - https://developers.typeface.ai/docs/service-endpoints
   - https://developers.typeface.ai/docs/bearer-authentication
   - https://developers.typeface.ai/docs/errors
+  - https://developers.typeface.ai/docs/troubleshooting
+  - https://developers.typeface.ai/docs/api-rate-limits
 authentication:
   style: Bearer JWT in Authorization header on every API except the token
     endpoint
@@ -36,9 +38,25 @@ async_jobs:
 error_envelope:
   shape: '{"errorMessage": "...", "status": "..."}'
   artifact: errors/typeface-problem-types.yml
+request_tracing:
+  header: request-id
+  direction: both
+  notes: >-
+    Every API response carries a request-id header (example value
+    "36452f1b-4b1e99a0af036211.36452f1c_"); clients may also supply their own
+    Request-Id header on the request. Typeface support asks for this value on
+    every case.
+  docs: https://developers.typeface.ai/docs/troubleshooting
+  artifact: rate-limits/typeface-rate-limits.yml
 rate_limiting:
   signaling: HTTP 429 Too Many Requests on throttling
   documented_headers: none
+  scope: per API application (not per user)
+  published_limits: 3000 requests / 5 minutes on general and create-asset
+    endpoints; 30 text-to-image requests / 15 minutes; max 10 sub-requests per
+    content-generation batch (an 11th is rejected as 100/bad request)
+  docs: https://developers.typeface.ai/docs/api-rate-limits
+  artifact: rate-limits/typeface-rate-limits.yml
 versioning:
   documented: false
 webhooks:

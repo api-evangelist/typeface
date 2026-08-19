@@ -1,0 +1,802 @@
+{
+  "item": [
+    {
+      "id": "9313052c-26cb-4931-9d1f-24c237281e5b",
+      "name": "Feeds",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3a47ac0b-15d5-484a-ab22-91c792b513ff",
+          "name": "Query Feed Items",
+          "request": {
+            "name": "Query Feed Items",
+            "description": {},
+            "url": {
+              "path": [
+                "feed-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "feeds",
+                ":feedId",
+                "feedItems"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$limit",
+                  "value": "0"
+                },
+                {
+                  "disabled": false,
+                  "key": "$cursor",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "feedId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "89bb178f-ca66-4fcc-b385-c8d7e489338a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feed-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "feeds",
+                    ":feedId",
+                    "feedItems"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$limit",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"feedItems\": [\n    {\n      \"id\": \"string\",\n      \"channel\": \"PUSH_NOTIFICATION\",\n      \"audience\": \"string\",\n      \"type\": \"EMAIL_SUBJECT_LINE\",\n      \"content\": {},\n      \"createdAt\": \"1981-07-07T13:51:03.885Z\",\n      \"modifiedAt\": \"1957-09-07T04:26:38.755Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"name\": \"string\",\n      \"assetRef\": \"string\",\n      \"feedItemStatus\": \"NEEDS_REVIEW\",\n      \"approvedBy\": \"string\",\n      \"approvedAt\": \"1948-05-14T18:21:01.478Z\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": \"string\",\n      \"channel\": \"TYPEFACE_APP\",\n      \"audience\": \"string\",\n      \"type\": \"EMAIL\",\n      \"content\": {},\n      \"createdAt\": \"1998-11-19T13:43:26.179Z\",\n      \"modifiedAt\": \"2011-07-31T07:51:25.614Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"name\": \"string\",\n      \"assetRef\": \"string\",\n      \"feedItemStatus\": \"NEEDS_REVIEW\",\n      \"approvedBy\": \"string\",\n      \"approvedAt\": \"1978-10-14T10:04:59.838Z\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"nextCursor\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "aea712e3-211b-48e4-a65c-00ad2e20cb4b",
+          "name": "Generate On Demand Feed Item",
+          "request": {
+            "name": "Generate On Demand Feed Item",
+            "description": {},
+            "url": {
+              "path": [
+                "feed-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "feeds",
+                ":feedId",
+                "feedItems",
+                "generate"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "useMock",
+                  "value": "false"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "feedId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "text/event-stream"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"channel\": \"<string>\",\n  \"feedItemType\": \"<string>\",\n  \"objective\": \"<string>\",\n  \"audience\": \"<string>\",\n  \"assetRef\": \"<string>\",\n  \"stepId\": \"<string>\",\n  \"feedItemProperties\": \"<object>\",\n  \"featureFlags\": {\n    \"key_0\": \"<object>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6b77d57e-4f7b-4e98-b2dc-077cf15b5043",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feed-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "feeds",
+                    ":feedId",
+                    "feedItems",
+                    "generate"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "useMock",
+                      "value": "false"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/event-stream"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"channel\": \"<string>\",\n  \"feedItemType\": \"<string>\",\n  \"objective\": \"<string>\",\n  \"audience\": \"<string>\",\n  \"assetRef\": \"<string>\",\n  \"stepId\": \"<string>\",\n  \"feedItemProperties\": \"<object>\",\n  \"featureFlags\": {\n    \"key_0\": \"<object>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/event-stream"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a5ea0342-ee29-48f2-afc9-438a64654c5e",
+          "name": "Patch Feed",
+          "request": {
+            "name": "Patch Feed",
+            "description": {},
+            "url": {
+              "path": [
+                "feed-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "feeds",
+                ":feedId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "feedId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operations\": [\n    {\n      \"op\": \"<string>\",\n      \"path\": \"<string>\",\n      \"value\": \"<object>\"\n    },\n    {\n      \"op\": \"<string>\",\n      \"path\": \"<string>\",\n      \"value\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "bc0fbbf6-6927-4ea2-82c3-eeee88bdb0bb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feed-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "feeds",
+                    ":feedId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operations\": [\n    {\n      \"op\": \"<string>\",\n      \"path\": \"<string>\",\n      \"value\": \"<object>\"\n    },\n    {\n      \"op\": \"<string>\",\n      \"path\": \"<string>\",\n      \"value\": \"<object>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4a0426f9-c570-4de1-8937-1e58b35866e5",
+          "name": "Get Feed Item",
+          "request": {
+            "name": "Get Feed Item",
+            "description": {},
+            "url": {
+              "path": [
+                "feed-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "feeds",
+                ":feedId",
+                "feedItems",
+                ":feedItemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "feedId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "feedItemId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60ec9fa1-f38e-45a9-b72f-f7651f395252",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feed-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "feeds",
+                    ":feedId",
+                    "feedItems",
+                    ":feedItemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedItemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"string\",\n  \"channel\": \"TYPEFACE_APP\",\n  \"audience\": \"string\",\n  \"type\": \"PUSH_NOTIFICATION\",\n  \"content\": \"<object>\",\n  \"createdAt\": \"1987-06-20T15:34:37.361Z\",\n  \"modifiedAt\": \"1961-04-02T13:01:57.223Z\",\n  \"createdBy\": \"string\",\n  \"modifiedBy\": \"string\",\n  \"name\": \"string\",\n  \"assetRef\": \"string\",\n  \"feedItemStatus\": \"NEEDS_REVIEW\",\n  \"approvedBy\": \"string\",\n  \"approvedAt\": \"2009-05-29T10:56:51.001Z\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5698135f-89a2-49d7-af0d-7059c0909d84",
+          "name": "Delete Feed Item",
+          "request": {
+            "name": "Delete Feed Item",
+            "description": {},
+            "url": {
+              "path": [
+                "feed-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "feeds",
+                ":feedId",
+                "feedItems",
+                ":feedItemId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "feedId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "feedItemId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c55780f5-ed5c-466a-a8b9-ee72b30670ba",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "feed-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "feeds",
+                    ":feedId",
+                    "feedItems",
+                    ":feedItemId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "feedItemId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-us.typeface.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aed40c32-b88a-404e-83bd-e3d58a66eb27",
+    "name": "Typeface Audiences Feeds API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

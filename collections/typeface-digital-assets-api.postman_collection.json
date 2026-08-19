@@ -1,0 +1,2469 @@
+{
+  "item": [
+    {
+      "id": "ce79f5d3-e109-4adf-a43c-f26bce191e2c",
+      "name": "Digital Assets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "49042af6-2b8c-4c35-82a3-42786c7a2bad",
+          "name": "Project - List Assets",
+          "request": {
+            "name": "Project - List Assets",
+            "description": {},
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "contentType",
+                  "value": "<string>",
+                  "description": "Allowed values are 'IMAGE' and 'FILE'"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "505d7042-d9ed-41db-b599-0e25e8d275eb",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contentType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"assets\": [\n    {\n      \"id\": 127,\n      \"name\": \"string\",\n      \"thumbnailUrl\": \"string\",\n      \"type\": \"IMAGE\",\n      \"content\": {},\n      \"contentType\": \"FILE\",\n      \"ref\": \"string\",\n      \"createdAt\": \"1954-11-19T01:13:36.712Z\",\n      \"modifiedAt\": \"2010-12-12T02:02:00.761Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 1235,\n      \"name\": \"string\",\n      \"thumbnailUrl\": \"string\",\n      \"type\": \"IMAGE\",\n      \"content\": {},\n      \"contentType\": \"FILE\",\n      \"ref\": \"string\",\n      \"createdAt\": \"2014-10-25T17:32:47.355Z\",\n      \"modifiedAt\": \"2005-04-05T14:58:46.029Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2de48ef6-b839-442b-8733-107d1fc0cf8e",
+          "name": "Project - Create Asset",
+          "request": {
+            "name": "Project - Create Asset",
+            "description": {},
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "type",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of IMAGE)"
+                },
+                {
+                  "key": "contentUrl",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "URL from where the content can be downloaded. This should be a pre-signed url"
+                },
+                {
+                  "key": "content",
+                  "type": "file",
+                  "description": "File to be uploaded. Either the contentUrl or content field should be passed in a single request"
+                },
+                {
+                  "key": "contentType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of IMAGE,FILE)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "96c9a2f7-fbf6-448a-9a15-36883b8f3b83",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of IMAGE)",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "URL from where the content can be downloaded. This should be a pre-signed url",
+                        "type": "text/plain"
+                      },
+                      "key": "contentUrl",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "File to be uploaded. Either the contentUrl or content field should be passed in a single request",
+                        "type": "text/plain"
+                      },
+                      "key": "content",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of IMAGE,FILE)",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"id\": 1942,\n  \"name\": \"string\",\n  \"thumbnailUrl\": \"string\",\n  \"type\": \"IMAGE\",\n  \"content\": {},\n  \"contentType\": \"FILE\",\n  \"ref\": \"string\",\n  \"createdAt\": \"1946-08-18T05:02:35.802Z\",\n  \"modifiedAt\": \"2021-04-29T21:08:55.902Z\",\n  \"createdBy\": \"string\",\n  \"modifiedBy\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "807d3181-0084-4dd9-bd71-ad42f987e8ce",
+          "name": "Project - Get Asset",
+          "request": {
+            "name": "Project - Get Asset",
+            "description": {},
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "assets",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetId",
+                  "description": "(Required) Unique identifier for the specific asset"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "effd4763-9ffb-46a3-94fc-8e38483ad4de",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetId",
+                      "description": "(Required) Unique identifier for the specific asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"id\": 1942,\n  \"name\": \"string\",\n  \"thumbnailUrl\": \"string\",\n  \"type\": \"IMAGE\",\n  \"content\": {},\n  \"contentType\": \"FILE\",\n  \"ref\": \"string\",\n  \"createdAt\": \"1946-08-18T05:02:35.802Z\",\n  \"modifiedAt\": \"2021-04-29T21:08:55.902Z\",\n  \"createdBy\": \"string\",\n  \"modifiedBy\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fe1985b0-54a0-4496-9e23-85481ed3e7d2",
+          "name": "Project - Update Asset",
+          "request": {
+            "name": "Project - Update Asset",
+            "description": {},
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "assets",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetId",
+                  "description": "(Required) Unique identifier for the specific asset"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "contentUrl",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "URL from where the content can be downloaded. This should be a pre-signed url"
+                },
+                {
+                  "key": "content",
+                  "type": "file",
+                  "description": "File to be uploaded. Either the contentUrl or content field should be passed in a single request"
+                },
+                {
+                  "key": "contentType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of IMAGE,FILE)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "32c42aa3-739f-43d3-9a47-a64ced0b62ff",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetId",
+                      "description": "(Required) Unique identifier for the specific asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "URL from where the content can be downloaded. This should be a pre-signed url",
+                        "type": "text/plain"
+                      },
+                      "key": "contentUrl",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "File to be uploaded. Either the contentUrl or content field should be passed in a single request",
+                        "type": "text/plain"
+                      },
+                      "key": "content",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of IMAGE,FILE)",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"id\": 1942,\n  \"name\": \"string\",\n  \"thumbnailUrl\": \"string\",\n  \"type\": \"IMAGE\",\n  \"content\": {},\n  \"contentType\": \"FILE\",\n  \"ref\": \"string\",\n  \"createdAt\": \"1946-08-18T05:02:35.802Z\",\n  \"modifiedAt\": \"2021-04-29T21:08:55.902Z\",\n  \"createdBy\": \"string\",\n  \"modifiedBy\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "14bae940-e42d-410d-b64e-556a3b2332a5",
+          "name": "Project - Delete Asset",
+          "request": {
+            "name": "Project - Delete Asset",
+            "description": {},
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "assets",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetId",
+                  "description": "(Required) Unique identifier for the specific asset"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9240fcd0-7115-41c1-8078-5dcf8a69411c",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetId",
+                      "description": "(Required) Unique identifier for the specific asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cbc06a34-584d-4252-87e2-d7b23ec1b0a8",
+          "name": "Project - Get Metadata",
+          "request": {
+            "name": "Project - Get Metadata",
+            "description": {
+              "content": "This API provides metadata details for a specific asset, with a primary focus on its associated tags.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "assets",
+                ":assetId",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetId",
+                  "description": "(Required) Unique identifier for the specific asset"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4bd6ac2f-5e0f-4b99-a399-7fcac45e5b6f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "assets",
+                    ":assetId",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetId",
+                      "description": "(Required) Unique identifier for the specific asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"assetId\": 4305,\n  \"metadata\": {\n    \"tags\": [\n      {\n        \"id\": 5279,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"tagSource\": \"tagRef\"\n      },\n      {\n        \"id\": 4916,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"tagSource\": \"auto\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22b22f35-29ca-4f3f-92f4-088a3be7e7a8",
+          "name": "Project - Patch Metadata",
+          "request": {
+            "name": "Project - Patch Metadata",
+            "description": {
+              "content": "This API allows partial updates to asset metadata, supporting add, replace, and remove operations for the `tags` key.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "projects",
+                ":projectId",
+                "assets",
+                ":assetId",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "projectId",
+                  "description": "(Required) Unique identifier for the specific project"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetId",
+                  "description": "(Required) Unique identifier for the specific asset"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operations\": [\n    {\n      \"operation\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": {\n        \"value\": \"<string>\",\n        \"tagSource\": \"<string>\"\n      },\n      \"index\": \"<integer>\"\n    },\n    {\n      \"operation\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": {\n        \"value\": \"<string>\",\n        \"tagSource\": \"<string>\"\n      },\n      \"index\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "eea4bd7e-eca9-4d96-b74a-82870bd0348b",
+              "name": "Metadata updated successfully. No content returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "assets",
+                    ":assetId",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetId",
+                      "description": "(Required) Unique identifier for the specific asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operations\": [\n    {\n      \"operation\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": {\n        \"value\": \"<string>\",\n        \"tagSource\": \"<string>\"\n      },\n      \"index\": \"<integer>\"\n    },\n    {\n      \"operation\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": {\n        \"value\": \"<string>\",\n        \"tagSource\": \"<string>\"\n      },\n      \"index\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "01b0bc97-6417-45d5-8259-ed89b16da432",
+              "name": "Bad Request – Validation failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "projects",
+                    ":projectId",
+                    "assets",
+                    ":assetId",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "projectId",
+                      "description": "(Required) Unique identifier for the specific project"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetId",
+                      "description": "(Required) Unique identifier for the specific asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operations\": [\n    {\n      \"operation\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": {\n        \"value\": \"<string>\",\n        \"tagSource\": \"<string>\"\n      },\n      \"index\": \"<integer>\"\n    },\n    {\n      \"operation\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": {\n        \"value\": \"<string>\",\n        \"tagSource\": \"<string>\"\n      },\n      \"index\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid tag format.\",\n  \"details\": \"'value' must be a string for entity 12345\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "82d3f21f-bbc6-432b-8619-2a72202dd0a2",
+          "name": "List Assets",
+          "request": {
+            "name": "List Assets",
+            "description": {},
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "asset-catalogs",
+                ":assetCatalogId",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "contentType",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetCatalogId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "942f3b22-4ca2-4ace-a2de-5715f500aca5",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "asset-catalogs",
+                    ":assetCatalogId",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "contentType",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetCatalogId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"assets\": [\n    {\n      \"id\": 1823,\n      \"name\": \"string\",\n      \"thumbnailUrl\": \"string\",\n      \"type\": \"IMAGE\",\n      \"content\": {},\n      \"contentType\": \"FILE\",\n      \"ref\": \"string\",\n      \"createdAt\": \"2008-11-17T17:08:54.405Z\",\n      \"modifiedAt\": \"2023-10-14T03:25:27.814Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    },\n    {\n      \"id\": 8799,\n      \"name\": \"string\",\n      \"thumbnailUrl\": \"string\",\n      \"type\": \"IMAGE\",\n      \"content\": {},\n      \"contentType\": \"FILE\",\n      \"ref\": \"string\",\n      \"createdAt\": \"1968-12-28T04:01:16.015Z\",\n      \"modifiedAt\": \"2000-05-10T19:17:31.159Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"links\": [\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        },\n        {\n          \"rel\": \"string\",\n          \"href\": \"string\",\n          \"hreflang\": \"string\",\n          \"media\": \"string\",\n          \"title\": \"string\",\n          \"type\": \"string\",\n          \"deprecation\": \"string\",\n          \"profile\": \"string\",\n          \"name\": \"string\"\n        }\n      ]\n    }\n  ],\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "082e4a31-1adf-4701-85d8-454cee3a665b",
+          "name": "Create Asset",
+          "request": {
+            "name": "Create Asset",
+            "description": {},
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "asset-catalogs",
+                ":assetCatalogId",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetCatalogId",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "type",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of IMAGE)"
+                },
+                {
+                  "key": "contentUrl",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "URL from where the content can be downloaded. This should be a pre-signed url"
+                },
+                {
+                  "key": "content",
+                  "value": "<binary>",
+                  "type": "text",
+                  "description": "File to be uploaded. Either the contentUrl or content field should be passed in a single request"
+                },
+                {
+                  "key": "contentType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of IMAGE,FILE)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "661bc487-34d0-4697-bf5a-23aab334e589",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "asset-catalogs",
+                    ":assetCatalogId",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetCatalogId",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of IMAGE)",
+                        "type": "text/plain"
+                      },
+                      "key": "type",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "URL from where the content can be downloaded. This should be a pre-signed url",
+                        "type": "text/plain"
+                      },
+                      "key": "contentUrl",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "File to be uploaded. Either the contentUrl or content field should be passed in a single request",
+                        "type": "text/plain"
+                      },
+                      "key": "content",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of IMAGE,FILE)",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"id\": 1942,\n  \"name\": \"string\",\n  \"thumbnailUrl\": \"string\",\n  \"type\": \"IMAGE\",\n  \"content\": {},\n  \"contentType\": \"FILE\",\n  \"ref\": \"string\",\n  \"createdAt\": \"1946-08-18T05:02:35.802Z\",\n  \"modifiedAt\": \"2021-04-29T21:08:55.902Z\",\n  \"createdBy\": \"string\",\n  \"modifiedBy\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "166cb07c-1dbb-497e-bb27-90df86f1ae4f",
+          "name": "Delete Asset",
+          "request": {
+            "name": "Delete Asset",
+            "description": {},
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "asset-catalogs",
+                ":assetCatalogId",
+                "assets",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetCatalogId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetId",
+                  "description": "(Required) Unique identifier for the specific asset"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4095e1ac-8fe5-4d3c-9ad9-f4f7d4d9a939",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "asset-catalogs",
+                    ":assetCatalogId",
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetCatalogId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetId",
+                      "description": "(Required) Unique identifier for the specific asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "84698d80-9e21-4fc7-b60e-ec7f74afde0a",
+          "name": "Get Asset",
+          "request": {
+            "name": "Get Asset",
+            "description": {},
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "asset-catalogs",
+                ":assetCatalogId",
+                "assets",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetCatalogId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetId",
+                  "description": "(Required) Unique identifier for the specific asset"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2baa222d-fb44-41cb-baa5-8be00760bedd",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "asset-catalogs",
+                    ":assetCatalogId",
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetCatalogId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetId",
+                      "description": "(Required) Unique identifier for the specific asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"id\": 1942,\n  \"name\": \"string\",\n  \"thumbnailUrl\": \"string\",\n  \"type\": \"IMAGE\",\n  \"content\": {},\n  \"contentType\": \"FILE\",\n  \"ref\": \"string\",\n  \"createdAt\": \"1946-08-18T05:02:35.802Z\",\n  \"modifiedAt\": \"2021-04-29T21:08:55.902Z\",\n  \"createdBy\": \"string\",\n  \"modifiedBy\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5e1da19-7551-4729-b846-180ba55f4d0f",
+          "name": "Update Asset",
+          "request": {
+            "name": "Update Asset",
+            "description": {},
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "asset-catalogs",
+                ":assetCatalogId",
+                "assets",
+                ":assetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetCatalogId",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetId",
+                  "description": "(Required) Unique identifier for the specific asset"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "name",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "contentUrl",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": "URL from where the content can be downloaded. This should be a pre-signed url"
+                },
+                {
+                  "key": "content",
+                  "value": "<binary>",
+                  "type": "text",
+                  "description": "File to be uploaded. Either the contentUrl or content field should be passed in a single request"
+                },
+                {
+                  "key": "contentType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": " (This can only be one of IMAGE,FILE)"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "1ea0f8bd-c142-4d87-9d64-a3ee32e4525e",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "asset-catalogs",
+                    ":assetCatalogId",
+                    "assets",
+                    ":assetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetCatalogId",
+                      "description": "(Required) "
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetId",
+                      "description": "(Required) Unique identifier for the specific asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "name",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "URL from where the content can be downloaded. This should be a pre-signed url",
+                        "type": "text/plain"
+                      },
+                      "key": "contentUrl",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "File to be uploaded. Either the contentUrl or content field should be passed in a single request",
+                        "type": "text/plain"
+                      },
+                      "key": "content",
+                      "value": "<binary>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": " (This can only be one of IMAGE,FILE)",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"id\": 1942,\n  \"name\": \"string\",\n  \"thumbnailUrl\": \"string\",\n  \"type\": \"IMAGE\",\n  \"content\": {},\n  \"contentType\": \"FILE\",\n  \"ref\": \"string\",\n  \"createdAt\": \"1946-08-18T05:02:35.802Z\",\n  \"modifiedAt\": \"2021-04-29T21:08:55.902Z\",\n  \"createdBy\": \"string\",\n  \"modifiedBy\": \"string\",\n  \"links\": [\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    },\n    {\n      \"rel\": \"string\",\n      \"href\": \"string\",\n      \"hreflang\": \"string\",\n      \"media\": \"string\",\n      \"title\": \"string\",\n      \"type\": \"string\",\n      \"deprecation\": \"string\",\n      \"profile\": \"string\",\n      \"name\": \"string\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2c26fc5f-fe08-439a-9f32-7f42ce3624db",
+          "name": "Get Metadata",
+          "request": {
+            "name": "Get Metadata",
+            "description": {
+              "content": "This API provides metadata details for a specific asset, with a primary focus on its associated tags.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "asset-catalogs",
+                ":assetCatalogId",
+                "assets",
+                ":assetId",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetCatalogId",
+                  "description": "(Required) Unique identifier for the specific workspace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetId",
+                  "description": "(Required) Unique identifier for the specific asset"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "*/*"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ea1256c3-0711-41db-b2b8-3bd14b145b38",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "asset-catalogs",
+                    ":assetCatalogId",
+                    "assets",
+                    ":assetId",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetCatalogId",
+                      "description": "(Required) Unique identifier for the specific workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetId",
+                      "description": "(Required) Unique identifier for the specific asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "*/*"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "*/*"
+                }
+              ],
+              "body": "{\n  \"assetId\": 4894,\n  \"metadata\": {\n    \"tags\": [\n      {\n        \"id\": 7914,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"tagSource\": \"auto\"\n      },\n      {\n        \"id\": 8083,\n        \"name\": \"string\",\n        \"displayName\": \"string\",\n        \"tagSource\": \"tagRef\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "3539ab5d-6db1-439b-b43b-6052b333c839",
+          "name": "Patch Metadata",
+          "request": {
+            "name": "Patch Metadata",
+            "description": {
+              "content": "This API allows partial updates to asset metadata, supporting add, replace, and remove operations for the `tags` key.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "asset-catalogs",
+                ":assetCatalogId",
+                "assets",
+                ":assetId",
+                "metadata"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetCatalogId",
+                  "description": "(Required) Unique identifier for the specific workspace"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<long>",
+                  "key": "assetId",
+                  "description": "(Required) Unique identifier for the specific asset"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"operations\": [\n    {\n      \"operation\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": {\n        \"value\": \"<string>\",\n        \"tagSource\": \"<string>\"\n      },\n      \"index\": \"<integer>\"\n    },\n    {\n      \"operation\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": {\n        \"value\": \"<string>\",\n        \"tagSource\": \"<string>\"\n      },\n      \"index\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "167907ab-71be-40b2-b0ad-c70cf3d16c7b",
+              "name": "Metadata updated successfully. No content returned.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "asset-catalogs",
+                    ":assetCatalogId",
+                    "assets",
+                    ":assetId",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetCatalogId",
+                      "description": "(Required) Unique identifier for the specific workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetId",
+                      "description": "(Required) Unique identifier for the specific asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operations\": [\n    {\n      \"operation\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": {\n        \"value\": \"<string>\",\n        \"tagSource\": \"<string>\"\n      },\n      \"index\": \"<integer>\"\n    },\n    {\n      \"operation\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": {\n        \"value\": \"<string>\",\n        \"tagSource\": \"<string>\"\n      },\n      \"index\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "8d2718a5-34bb-4ded-9003-6ab53c83d906",
+              "name": "Bad Request – Validation failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "asset-catalogs",
+                    ":assetCatalogId",
+                    "assets",
+                    ":assetId",
+                    "metadata"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetCatalogId",
+                      "description": "(Required) Unique identifier for the specific workspace"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<long>",
+                      "key": "assetId",
+                      "description": "(Required) Unique identifier for the specific asset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"operations\": [\n    {\n      \"operation\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": {\n        \"value\": \"<string>\",\n        \"tagSource\": \"<string>\"\n      },\n      \"index\": \"<integer>\"\n    },\n    {\n      \"operation\": \"<string>\",\n      \"key\": \"<string>\",\n      \"value\": {\n        \"value\": \"<string>\",\n        \"tagSource\": \"<string>\"\n      },\n      \"index\": \"<integer>\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Invalid tag format.\",\n  \"details\": \"'value' must be a string for entity 12345\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7a24737c-3073-4abc-8a0f-af41cbedfaca",
+          "name": "Search Assets",
+          "request": {
+            "name": "Search Assets",
+            "description": {
+              "content": "A unified API to search for assets within a team (and Organization) using various filters.\n\nThis API serves as both listing and search endpoint, listing behavior will return results immediately while search behaviour\nreturns results in a eventual consistent manner, waits for the results to be indexed. Simillarly the updates and deletes are \nalso eventually consistent.\n\n\nAsset sub types for mapped are as follows\n| General Usage | Asset Sub Type |\n|---|---|\n| Uploaded Image | IMAGE |\n| Generated Image | GENERATED_IMAGE |\n| Uploaded File | FILE |\n| Generated Document | GENERATED_DOCUMENT |\n\n**Notes:**\n- To retrive SVG images along with other images pass mediaType in the payload with \n  value of `[\"DEFAULT\", \"GRAPHIC_SVG\"]`\n\n#### Sample Image search request payload with both query and tags filtering\n```json\n{\n  \"query\": \"A red car on the beachside\",\n  \"assetType\": \"IMAGE\",\n  \"assetSubTypes\": [\"IMAGE\", \"GENERATED_IMAGE\"],\n  \"tags\": [\"vacation\", \"beach\"],\n  \"limit\": 20,\n  \"cursor\": \".....\",\n  \"mediaTypes\": [\"DEFAULT\", \"GRAPHIC_SVG\"]\n}\n```\n\n\n\n#### Sample image search response\n```json\n{\n  \"assets\": [\n    {\n      \"id\": 9192636,\n      \"name\": \"Red Car Beachside.png\",\n      \"assetType\": \"IMAGE\",\n      \"subType\": \"IMAGE\",\n      \"workspaceId\": 315726,\n      \"workspaceType\": \"ASSET_CATALOG\",\n      \"accountId\": \"1f04d7c6-05b2-4623-9fc4-26edb1d076d4\",\n      \"createdAt\": \"2025-06-18T02:11:45Z\",\n      \"modifiedAt\": \"2025-06-18T02:11:45Z\",\n      \"createdBy\": \"f90cffca-819e-49ae-8616-550bb7b46392\",\n      \"modifiedBy\": \"f90cffca-819e-49ae-8616-550bb7b46392\",\n      \"links\": [\n      {\n          \"rel\": \"download\",\n          \"href\": \"https://deveu2su1sawebapi1000.blob.core.windows.net/blob-persistent-zone/eba343c2-5097-46ff-be0d-bb8147abfbde?sv=2021-08-06&spr=https&se=2025-12-17T13%3A43%3A27Z&sr=b&sp=r&sig=vto8SffoTFib3Le4sRKetscF0I9atCWTjXyAzbHBRJg%3D&rscc=max-age%3D603000%2C%20private\"\n      },\n      {\n          \"rel\": \"thumbnail\",\n          \"href\": \"https://deveu2su1renditionsa1000.blob.core.windows.net/rendition-blob-storage/eba343c2-5097-46ff-be0d-bb8147abfbde_230_230?sv=2021-08-06&spr=https&se=2025-12-17T13%3A43%3A28Z&sr=b&sp=r&sig=i5GEY8o%2FtLX25HynTyvusC1ngXrgGl2ESvJO7rnZRUE%3D&rscc=max-age%3D603000%2C%20private\"\n      },\n      {\n          \"rel\": \"self\",\n          \"href\": \"https://api-dev-us.typeface.ai/profile-service/accounts/1f04d7c6-05b2-4623-9fc4-26edb1d076d4/asset-catalogs/315726/assets/9192636\"\n      },\n      {\n          \"rel\": \"metadata\",\n          \"href\": \"https://api-dev-us.typeface.ai/profile-service/accounts/1f04d7c6-05b2-4623-9fc4-26edb1d076d4/asset-catalogs/315726/assets/9192636/metadata\"\n      }\n      ],\n      \"ref\": \"eyJhY2NvdW50SWQiOiIxZjA0ZDdjNi0wNWIyLTQ2MjMtOWZjNC0yNmVkYjFkMDc2ZDQiLCJlbnRpdHlJZCI6OTE5MjYzNiwid29ya3NwYWNlSWQiOjMxNTcyNiwid29ya3NwYWNlVHlwZSI6IkFTU0VUX0NBVEFMT0ciLCJlbnRpdHlUeXBlIjoiQVNTRVQiLCJ2ZXJzaW9uIjoiMi4wIiwicHJvcGVydGllcyI6eyJpbWFnZUlkIjo5MTkyNjM1fX0=\",\n      \"isOrgAsset\": false\n    }  \n  ],\n  \"nextCursor\": \".....\"\n}\n```\n\n#### Sample image search payload with search query\n```json\n{\n  \"query\": \"A scenic view of mountains during sunrise\",\n  \"assetType\": \"IMAGE\",\n  \"assetSubTypes\": [\"IMAGE\", \"GENERATED_IMAGE\"],\n  \"limit\": 20,\n  \"cursor\": \".....\",\n  \"collectionIds\": [1234567, 2345678],\n  \"mediaTypes\": [\"DEFAULT\", \"GRAPHIC_SVG\"]\n}\n```\n\n#### Filter by tags\nUse the `tags` array to filter assets by one or more tag names. Tag filtering is hierarchical.\nWhen you filter by a parent tag, assets tagged with any of its descendants are automatically included.\n\nFor example, given the tag hierarchy `marketing` → `social_media` → `instagram`, filtering by\n`marketing` returns assets tagged with `marketing`, `social_media`, or `instagram`.\n```json\n{\n  \"assetType\": \"IMAGE\",\n  \"assetSubTypes\": [\"IMAGE\", \"GENERATED_IMAGE\"],\n  \"tags\": [\"marketing\"],\n  \"limit\": 20,\n  \"cursor\": \".....\",\n  \"mediaTypes\": [\"DEFAULT\", \"GRAPHIC_SVG\"]\n}\n```\n\nYou can also filter by a tag at any level in the hierarchy. For example, filtering by `social_media`\nreturns assets tagged with `social_media` or `instagram`, but not those only tagged with `marketing`.\n```json\n{\n  \"assetType\": \"IMAGE\",\n  \"assetSubTypes\": [\"IMAGE\", \"GENERATED_IMAGE\"],\n  \"tags\": [\"social_media\"],\n  \"limit\": 20,\n  \"cursor\": \".....\",\n  \"mediaTypes\": [\"DEFAULT\", \"GRAPHIC_SVG\"]\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search-service",
+                "accounts",
+                ":accountId",
+                "all-assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assetType\": \"<string>\",\n  \"assetSubTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"searchScope\": \"<string>\",\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"referencedBy\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"relevance\": \"<number>\",\n  \"workspaceId\": \"<string>\",\n  \"thumbnailProperties\": {\n    \"width\": \"<integer>\",\n    \"height\": \"<integer>\"\n  },\n  \"mediaTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e6ebd6ed-a139-426f-b0f6-ea5147200f74",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search-service",
+                    "accounts",
+                    ":accountId",
+                    "all-assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"collections\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"assetType\": \"<string>\",\n  \"assetSubTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"searchScope\": \"<string>\",\n  \"cursor\": \"<string>\",\n  \"limit\": \"<integer>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"referencedBy\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"relevance\": \"<number>\",\n  \"workspaceId\": \"<string>\",\n  \"thumbnailProperties\": {\n    \"width\": \"<integer>\",\n    \"height\": \"<integer>\"\n  },\n  \"mediaTypes\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"assets\": [\n    {\n      \"id\": 6304,\n      \"name\": \"string\",\n      \"assetType\": \"<string>\",\n      \"subType\": \"VIDEO_SHOT\",\n      \"workspaceId\": 8624,\n      \"workspaceType\": \"PROJECT\",\n      \"accountId\": \"string\",\n      \"isOrgAsset\": true,\n      \"createdAt\": \"1974-09-11T22:26:51.791Z\",\n      \"modifiedAt\": \"2018-06-25T17:09:42.052Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"ref\": \"string\"\n    },\n    {\n      \"id\": 8874,\n      \"name\": \"string\",\n      \"assetType\": \"<string>\",\n      \"subType\": \"IMAGE\",\n      \"workspaceId\": 920,\n      \"workspaceType\": \"PROJECT\",\n      \"accountId\": \"string\",\n      \"isOrgAsset\": false,\n      \"createdAt\": \"1958-03-11T22:03:20.506Z\",\n      \"modifiedAt\": \"1994-09-13T22:11:39.667Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"ref\": \"string\"\n    }\n  ],\n  \"nextCursor\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-us.typeface.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a550f341-0794-44f0-9779-3e2c31dd8fab",
+    "name": "Typeface Audiences Digital Assets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}

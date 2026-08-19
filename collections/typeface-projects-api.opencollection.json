@@ -1,0 +1,194 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences Projects API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/workspace-service/accounts/:accountId/projects",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "workspaceSubType",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List Projects"
+        },
+        {
+          "info": {
+            "name": "Create a Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/workspace-service/accounts/:accountId/projects",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Project"
+        },
+        {
+          "info": {
+            "name": "Get a Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/workspace-service/accounts/:accountId/projects/:projectId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              }
+            ]
+          },
+          "docs": "Get a Project"
+        },
+        {
+          "info": {
+            "name": "Update Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api-us.typeface.ai/workspace-service/accounts/:accountId/projects/:projectId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Project"
+        },
+        {
+          "info": {
+            "name": "Delete Project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-us.typeface.ai/workspace-service/accounts/:accountId/projects/:projectId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              }
+            ]
+          },
+          "docs": "Delete Project"
+        },
+        {
+          "info": {
+            "name": "Project - List Layouts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/content-service/workspace/:projectId/layout-manifests",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              }
+            ]
+          },
+          "docs": "Project - List Layouts"
+        },
+        {
+          "info": {
+            "name": "Project - Get Layout",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/content-service/workspace/:projectId/layout-manifests/:layoutId",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific project"
+              },
+              {
+                "name": "layoutId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific layout manifest"
+              }
+            ]
+          },
+          "docs": "Project - Get Layout"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

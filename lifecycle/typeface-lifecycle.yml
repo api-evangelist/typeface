@@ -1,7 +1,17 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: searched
 source: https://status.typeface.ai
 status_page: https://status.typeface.ai
+change_log:
+  url: null
+  notes: >-
+    No dated developer changelog or release-notes page is published. Probed
+    2026-08-13: developers.typeface.ai/changelog 404, /docs/release-notes 404,
+    /docs/whats-new 404, www.typeface.ai/release-notes 404,
+    www.typeface.ai/whats-new 404; the docs index (llms.txt) names no changelog
+    page. Individual doc pages carry an updatedAt front-matter date (the Agent
+    Builder limitations page was updated 2026-08-03), which is the only public
+    change signal.
 versioning:
   scheme: undocumented
   notes: The core REST spec is titled "Typeface API v0"; auxiliary specs
@@ -12,6 +22,11 @@ deprecation:
   sunset_header: false
 sla: null
 deprecated_operations: []
+deprecated_tools:
+  - id: mcp/typeface-mcp.yml#typeface_get_asset
+    note: Marked "[DEPRECATED] Get Asset" on
+      https://developers.typeface.ai/docs/mcp-api-tools; typeface_resolve_ref is
+      the documented replacement. No sunset date is published.
 notes: Status page (title "Typeface Status") verified live at
   https://status.typeface.ai on 2026-07-21 (HTTP 200). Docs also publish
   limitations and known issues at

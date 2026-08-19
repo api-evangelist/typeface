@@ -1,0 +1,233 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Typeface Audiences Brand Kits API",
+    "version": "v0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Brand Kits",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Brand Kits",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/workspace-resolver-service/accounts/:accountId/libraries/sub-types/BRAND_KIT_LIBRARY",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              }
+            ]
+          },
+          "docs": "This API endpoint lists all available Brand kits in the given team."
+        },
+        {
+          "info": {
+            "name": "Create Brand Kit",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/workspace-resolver-service/accounts/:accountId/libraries",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create Brand-kit within the library\n\n**Sample request body**\n```json\n{\n  \"name\": \"Awesome Brand Kit\",\n  \"workspaceSubType\": \"BRAND_KIT_LIBRARY\"\n}\n```"
+        },
+        {
+          "info": {
+            "name": "Delete Brand Kit",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api-us.typeface.ai/workspace-resolver-service/accounts/:accountId/libraries/:brandKitId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "brandKitId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific brand-kit"
+              }
+            ]
+          },
+          "docs": "Delete Brand Kit"
+        },
+        {
+          "info": {
+            "name": "Get Brand-kit styles",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/brand-kits/:brandKitId/style-types/:styleType",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "brandKitId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific brand-kit"
+              },
+              {
+                "name": "styleType",
+                "value": "",
+                "type": "path",
+                "description": "Style type of the brand kit"
+              }
+            ]
+          },
+          "docs": "This API endpoint lists all existing styles of given type (i.e. *Image / Text / Logo*) available in the given Brand Kit."
+        },
+        {
+          "info": {
+            "name": "Create Brand-kit style",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/brand-kits/:brandKitId/style-types/:styleType",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "brandKitId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific brand-kit"
+              },
+              {
+                "name": "styleType",
+                "value": "",
+                "type": "path",
+                "description": "Style type of the brand kit"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create styles within the Brand kit for content genration\n\n**Sample request body for creating Image / Logo style**\n```json\n  {\n    \"name\": \"Bikes style\"\n  }\n```\n\n\n**Sample Request body for creating Text style**\n```json\n  {\n    \"name\": \"Text style\",\n    \"subType\": \"BrandVoice\",\n    \"data\": {\n        \"brandValues\": [\n            {\n                \"name\": \"Innovation\",\n                \"description\": \"We are committed to unlocking the power of technology to create personalized, on-brand images. Our i"
+        },
+        {
+          "info": {
+            "name": "Update or Manage Brand-kit style",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/brand-kits/:brandKitId/style-types/:styleType/:styleId/images",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "brandKitId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific brand-kit"
+              },
+              {
+                "name": "styleType",
+                "value": "",
+                "type": "path",
+                "description": "Style type of the brand kit"
+              },
+              {
+                "name": "styleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific brand-kit style"
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "This API allows you to upload image in the brand kit of given style type. There are two different options available to do so:\n  - `content`: The binary format content of image to be uploaded\n  - `contentUrl`: Publicly accessible url of the required image\n\n**Sample curl request**\n```bash\n  curl --silent --location 'https://api-us.typeface.ai/profile-service/accounts/accountId/brand-kits/brandKitId/style-types/image/styleType/images' \\\n  --header 'Authorization: Bearer <token>' \\\n  --form 'content"
+        },
+        {
+          "info": {
+            "name": "Train Brand-kit image style",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api-us.typeface.ai/profile-service/accounts/:accountId/brand-kits/:brandKitId/style-types/image/:styleId/train",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific team"
+              },
+              {
+                "name": "brandKitId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific brand-kit"
+              },
+              {
+                "name": "styleId",
+                "value": "",
+                "type": "path",
+                "description": "Unique identifier for the specific brand-kit style"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This API enables you to train a Brand-kit image style, which can then be applied within content generation.\n\n**Sample Request Body**\n```json\n  {\n    \"notificationEmail\": \"user.email@test.in\"\n  }\n```\n\n**Note**: It is mandatory to train a Brand-kit image style before it can be utilized in content generation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,681 @@
+{
+  "item": [
+    {
+      "id": "e81fc62e-5d91-4123-8aab-afad9b95a8f4",
+      "name": "Audiences",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "802ac2c9-b498-4e1e-9fbb-1529a8275a8d",
+          "name": "List Audience Catlogs",
+          "request": {
+            "name": "List Audience Catlogs",
+            "description": {
+              "content": "This API endpoint lists all available Audiences in the given team.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "workspace-resolver-service",
+                "accounts",
+                ":accountId",
+                "libraries",
+                "sub-types",
+                "AUDIENCE_LIBRARY"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3b91997b-1d23-48c1-a433-dba2ca9ea6d8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "workspace-resolver-service",
+                    "accounts",
+                    ":accountId",
+                    "libraries",
+                    "sub-types",
+                    "AUDIENCE_LIBRARY"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"libraries\": [\n    {\n      \"id\": {\n        \"id\": 1498\n      },\n      \"ownerId\": \"string\",\n      \"name\": \"string\",\n      \"image\": {\n        \"workspaceId\": {\n          \"id\": 3551\n        },\n        \"id\": {\n          \"id\": 2777\n        },\n        \"name\": \"string\",\n        \"sourcePath\": \"string\",\n        \"ingestionSource\": \"string\",\n        \"properties\": {\n          \"blobId\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"createdAt\": \"2013-08-21T02:12:00.138Z\",\n        \"modifiedAt\": \"1958-10-07T04:56:43.006Z\",\n        \"renditionId\": {\n          \"id\": 9097\n        },\n        \"createdBy\": \"string\",\n        \"modifiedBy\": \"string\"\n      },\n      \"createdAt\": \"1969-02-04T19:31:25.802Z\",\n      \"modifiedAt\": \"1996-12-26T19:37:22.806Z\",\n      \"discarded\": false,\n      \"properties\": {\n        \"hideBrandKit\": false,\n        \"defaultTextStyleId\": 8325,\n        \"defaultImageStyleId\": 9026,\n        \"defaultColorPaletteId\": 4036,\n        \"defaultLanguage\": \"string\"\n      },\n      \"workspaceSubType\": \"ALCHEMIST\"\n    },\n    {\n      \"id\": {\n        \"id\": 894\n      },\n      \"ownerId\": \"string\",\n      \"name\": \"string\",\n      \"image\": {\n        \"workspaceId\": {\n          \"id\": 6472\n        },\n        \"id\": {\n          \"id\": 1876\n        },\n        \"name\": \"string\",\n        \"sourcePath\": \"string\",\n        \"ingestionSource\": \"string\",\n        \"properties\": {\n          \"blobId\": {\n            \"id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"createdAt\": \"1951-09-20T15:46:46.212Z\",\n        \"modifiedAt\": \"1963-08-29T10:55:01.442Z\",\n        \"renditionId\": {\n          \"id\": 2178\n        },\n        \"createdBy\": \"string\",\n        \"modifiedBy\": \"string\"\n      },\n      \"createdAt\": \"2003-07-21T05:33:20.915Z\",\n      \"modifiedAt\": \"1994-04-09T21:36:55.683Z\",\n      \"discarded\": true,\n      \"properties\": {\n        \"hideBrandKit\": false,\n        \"defaultTextStyleId\": 5682,\n        \"defaultImageStyleId\": 4132,\n        \"defaultColorPaletteId\": 8026,\n        \"defaultLanguage\": \"string\"\n      },\n      \"workspaceSubType\": \"BATCH_OUTPUT\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e39665bd-ea9b-4c30-a80d-dcafd64e1abc",
+          "name": "List Audiences",
+          "request": {
+            "name": "List Audiences",
+            "description": {
+              "content": "Lists the available audience segments in given audience catalog",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "audience-catalogs",
+                ":audienceCatalogId",
+                "audience-segments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "audienceCatalogId",
+                  "description": "(Required) Unique identifier for the audience library"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "07adbc8b-115c-488a-9b63-d79f4f8aa347",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "audience-catalogs",
+                    ":audienceCatalogId",
+                    "audience-segments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "audienceCatalogId",
+                      "description": "(Required) Unique identifier for the audience library"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"audienceSegments\": [\n    {\n      \"workspaceId\": {\n        \"id\": 2831\n      },\n      \"id\": {\n        \"id\": 3793\n      },\n      \"name\": \"string\",\n      \"sourcePath\": \"string\",\n      \"ingestionSource\": \"string\",\n      \"properties\": {\n        \"name\": \"string\",\n        \"ageRangeMin\": 4801,\n        \"ageRangeMax\": 1386,\n        \"gender\": \"Neutral\",\n        \"preferences\": [\n          \"string\",\n          \"string\"\n        ],\n        \"spendingBehavior\": [\n          \"Aspirational\",\n          \"Aspirational\"\n        ]\n      },\n      \"createdAt\": \"1996-05-14T04:19:26.168Z\",\n      \"modifiedAt\": \"2005-10-17T20:19:23.929Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"renditionId\": {\n        \"id\": 1352\n      },\n      \"ref\": \"string\",\n      \"entitySubType\": \"DOCUMENT_INTERMEDIATE\"\n    },\n    {\n      \"workspaceId\": {\n        \"id\": 1749\n      },\n      \"id\": {\n        \"id\": 5733\n      },\n      \"name\": \"string\",\n      \"sourcePath\": \"string\",\n      \"ingestionSource\": \"string\",\n      \"properties\": {\n        \"name\": \"string\",\n        \"ageRangeMin\": 1263,\n        \"ageRangeMax\": 7806,\n        \"gender\": \"Female\",\n        \"preferences\": [\n          \"string\",\n          \"string\"\n        ],\n        \"spendingBehavior\": [\n          \"Experimental\",\n          \"Impulsive\"\n        ]\n      },\n      \"createdAt\": \"2017-10-09T08:44:36.293Z\",\n      \"modifiedAt\": \"1967-06-24T10:36:55.654Z\",\n      \"createdBy\": \"string\",\n      \"modifiedBy\": \"string\",\n      \"renditionId\": {\n        \"id\": 9957\n      },\n      \"ref\": \"string\",\n      \"entitySubType\": \"DOCUMENT_INTERMEDIATE\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a2926112-5246-438a-8046-a81d3096c2a1",
+          "name": "Create Audience",
+          "request": {
+            "name": "Create Audience",
+            "description": {
+              "content": "Create a new audience segment within the given catalog\n\n**Sample request body**\n```json\n{\n  \"workspaceId\": 43672,\n  \"name\": \"Adults in Chicago\",\n  \"properties\": {\n    \"name\": \"Adults in Chicago\",\n    \"ageRangeMin\": 45,\n    \"ageRangeMax\": 65,\n    \"gender\": \"Neutral\",\n    \"preferences\": [\n      \"loves technology\", \"big on startups\"\n    ],\n    \"spendingBehavior\": [\n      \"Luxury\",\n      \"Experimental\"\n    ]\n  }\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "audience-catalogs",
+                ":audienceCatalogId",
+                "audience-segments"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "audienceCatalogId",
+                  "description": "(Required) Unique identifier for the audience library"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourcePath\": \"<string>\",\n  \"ingestionSource\": \"<string>\",\n  \"properties\": {\n    \"name\": \"<string>\",\n    \"ageRangeMin\": \"<integer>\",\n    \"ageRangeMax\": \"<integer>\",\n    \"gender\": \"<string>\",\n    \"preferences\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"spendingBehavior\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"name\": \"<string>\",\n  \"renditionId\": {\n    \"id\": \"<long>\"\n  },\n  \"entitySubType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "46a29b45-4f16-4ffd-895e-bafc39faee49",
+              "name": "Created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "audience-catalogs",
+                    ":audienceCatalogId",
+                    "audience-segments"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "audienceCatalogId",
+                      "description": "(Required) Unique identifier for the audience library"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourcePath\": \"<string>\",\n  \"ingestionSource\": \"<string>\",\n  \"properties\": {\n    \"name\": \"<string>\",\n    \"ageRangeMin\": \"<integer>\",\n    \"ageRangeMax\": \"<integer>\",\n    \"gender\": \"<string>\",\n    \"preferences\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"spendingBehavior\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"name\": \"<string>\",\n  \"renditionId\": {\n    \"id\": \"<long>\"\n  },\n  \"entitySubType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"audienceSegment\": {\n    \"workspaceId\": {\n      \"id\": 1508\n    },\n    \"id\": {\n      \"id\": \"<long>\"\n    },\n    \"name\": \"string\",\n    \"sourcePath\": \"string\",\n    \"ingestionSource\": \"string\",\n    \"properties\": {\n      \"name\": \"<string>\",\n      \"ageRangeMin\": \"<integer>\",\n      \"ageRangeMax\": \"<integer>\",\n      \"gender\": \"<string>\",\n      \"preferences\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"spendingBehavior\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"createdAt\": \"1948-07-13T22:58:33.498Z\",\n    \"modifiedAt\": \"1976-07-26T18:08:21.148Z\",\n    \"createdBy\": \"string\",\n    \"modifiedBy\": \"string\",\n    \"renditionId\": {\n      \"id\": \"<long>\"\n    },\n    \"ref\": \"string\",\n    \"entitySubType\": \"DOCUMENT_INTERMEDIATE\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "119c2614-edf5-44a8-b6c7-65d46a8424b1",
+          "name": "Manage Audience",
+          "request": {
+            "name": "Manage Audience",
+            "description": {
+              "content": "Manage the Audience within catalog.\n\n\n**Sample request body**\n```json\n{\n  \"workspaceId\": 43672,\n  \"name\": \"Adults in Chicago\",\n  \"properties\": {\n    \"name\": \"Adults in Chicago\",\n    \"ageRangeMin\": 45,\n    \"ageRangeMax\": 60,\n    \"gender\": \"Male\",\n    \"preferences\": [\n      \"loves technology\", \"sports enthusiast\"\n    ],\n    \"spendingBehavior\": [\n      \"Luxury\",\n      \"Impulsive\"\n    ]\n  }\n}\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "audience-catalogs",
+                ":audienceCatalogId",
+                "audience-segments",
+                ":audienceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "audienceCatalogId",
+                  "description": "(Required) Unique identifier for the audience library"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "audienceId",
+                  "description": "(Required) Unique identifier for the audience"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"sourcePath\": \"<string>\",\n  \"ingestionSource\": \"<string>\",\n  \"properties\": {\n    \"name\": \"<string>\",\n    \"ageRangeMin\": \"<integer>\",\n    \"ageRangeMax\": \"<integer>\",\n    \"gender\": \"<string>\",\n    \"preferences\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"spendingBehavior\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"name\": \"<string>\",\n  \"renditionId\": {\n    \"id\": \"<long>\"\n  },\n  \"entitySubType\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e4097d3f-fd66-47fc-b866-89758af16884",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "audience-catalogs",
+                    ":audienceCatalogId",
+                    "audience-segments",
+                    ":audienceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "audienceCatalogId",
+                      "description": "(Required) Unique identifier for the audience library"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "audienceId",
+                      "description": "(Required) Unique identifier for the audience"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"sourcePath\": \"<string>\",\n  \"ingestionSource\": \"<string>\",\n  \"properties\": {\n    \"name\": \"<string>\",\n    \"ageRangeMin\": \"<integer>\",\n    \"ageRangeMax\": \"<integer>\",\n    \"gender\": \"<string>\",\n    \"preferences\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"spendingBehavior\": [\n      \"<string>\",\n      \"<string>\"\n    ]\n  },\n  \"name\": \"<string>\",\n  \"renditionId\": {\n    \"id\": \"<long>\"\n  },\n  \"entitySubType\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"audienceSegment\": {\n    \"workspaceId\": {\n      \"id\": 2607\n    },\n    \"id\": {\n      \"id\": \"<long>\"\n    },\n    \"name\": \"string\",\n    \"sourcePath\": \"string\",\n    \"ingestionSource\": \"string\",\n    \"properties\": {\n      \"name\": \"<string>\",\n      \"ageRangeMin\": \"<integer>\",\n      \"ageRangeMax\": \"<integer>\",\n      \"gender\": \"<string>\",\n      \"preferences\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"spendingBehavior\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"createdAt\": \"1953-12-17T04:02:43.234Z\",\n    \"modifiedAt\": \"1949-07-14T19:42:27.815Z\",\n    \"createdBy\": \"string\",\n    \"modifiedBy\": \"string\",\n    \"renditionId\": {\n      \"id\": \"<long>\"\n    },\n    \"ref\": \"string\",\n    \"entitySubType\": \"DOCUMENT_LAYOUT_HTML\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "86253cdc-2823-468d-a5fd-4f683903f223",
+          "name": "Delete Audience",
+          "request": {
+            "name": "Delete Audience",
+            "description": {
+              "content": "Deletes the given audience segment from audience catalog",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile-service",
+                "accounts",
+                ":accountId",
+                "audience-catalogs",
+                ":audienceCatalogId",
+                "audience-segments",
+                ":audienceId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "accountId",
+                  "description": "(Required) Unique identifier for the specific team"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "audienceCatalogId",
+                  "description": "(Required) Unique identifier for the audience library"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<integer>",
+                  "key": "audienceId",
+                  "description": "(Required) Unique identifier for the audience"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "26e47d27-f8f0-43b7-a8df-f2945e6daf57",
+              "name": "No Content",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile-service",
+                    "accounts",
+                    ":accountId",
+                    "audience-catalogs",
+                    ":audienceCatalogId",
+                    "audience-segments",
+                    ":audienceId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "accountId",
+                      "description": "(Required) Unique identifier for the specific team"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "audienceCatalogId",
+                      "description": "(Required) Unique identifier for the audience library"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<integer>",
+                      "key": "audienceId",
+                      "description": "(Required) Unique identifier for the audience"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "No Content",
+              "code": 204,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api-us.typeface.ai",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b78f2500-5ebb-429a-9de3-9a988ec7e70a",
+    "name": "Typeface Audiences API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "",
+      "type": "text/plain"
+    }
+  }
+}
