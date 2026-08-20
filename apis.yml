@@ -40,6 +40,15 @@ created: '2026-07-17'
 modified: '2026-08-13'
 tags:
 - Company
+- Artificial Intelligence
+- Content Generation
+- Marketing
+- Agents
+- Generative AI
+- Brand Management
+- Enterprise
+tags_raw:
+- Company
 - Ai
 - Artificial Intelligence
 - Content Generation
@@ -195,6 +204,8 @@ apis:
   humanURL: https://developers.typeface.ai/reference
   baseURL: https://api-us.typeface.ai
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
