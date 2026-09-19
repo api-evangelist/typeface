@@ -188,6 +188,8 @@ apis:
   humanURL: https://developers.typeface.ai/reference
   baseURL: https://api-us.typeface.ai
   tags:
+  - Feed
+  tags_raw:
   - Feeds
   properties:
   - type: OpenAPI
