@@ -1,0 +1,30 @@
+# Front Door AI Index — typeface — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: typeface
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.typeface.ai
+  final_host: www.typeface.ai
+  ownership: own
+  owner: typeface
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 23
+  host_score: 23
+  density: 32.62
+  words: 705
+  tiers:
+    agentic: 8
+    core: 15
+    model: 0
+  ambiguous: 13
+  top_terms:
+    AI: 15
+    agent: 10
+    AI agent: 4
+    intelligence: 3
+    MCP: 2
+    agentic: 2

@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Typeface Audiences Projects API
+  title: Typeface Projects API
   version: v0
 servers:
 - url: https://api-us.typeface.ai
@@ -204,116 +204,6 @@ paths:
       summary: Project - Get Layout
 components:
   schemas:
-    ImageProperties:
-      type: object
-      properties:
-        blobId:
-          $ref: '#/components/schemas/BlobId'
-    BlobId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-    WorkspaceId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-    EntityModelProject:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    GetLayoutManifestResponseBody:
-      type: object
-      properties:
-        layoutManifest:
-          $ref: '#/components/schemas/LayoutManifest'
-    Image:
-      type: object
-      properties:
-        workspaceId:
-          $ref: '#/components/schemas/WorkspaceId'
-        id:
-          $ref: '#/components/schemas/EntityId'
-        name:
-          type: string
-        sourcePath:
-          type: string
-        ingestionSource:
-          type: string
-        properties:
-          $ref: '#/components/schemas/ImageProperties'
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        renditionId:
-          $ref: '#/components/schemas/EntityId'
-        createdBy:
-          type: string
-        modifiedBy:
-          type: string
-    QueryLayoutManifestResponseBody:
-      type: object
-      properties:
-        layoutManifests:
-          type: array
-          properties:
-            empty:
-              type: boolean
-          items:
-            $ref: '#/components/schemas/LayoutManifest'
-    CreateProjectRequestBody:
-      type: object
-      properties:
-        name:
-          type: string
-    QueryProjectsResponseBody:
-      type: object
-      properties:
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProjectDetails'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        media:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        profile:
-          type: string
-        name:
-          type: string
     ProjectDetails:
       type: object
       properties:
@@ -346,14 +236,6 @@ components:
           - DECORATION_LIBRARY
           - AUDIENCE_LIBRARY
           - LOGO_LIBRARY
-    EntityId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-    JsonNode:
-      type: object
     LayoutManifestProperties:
       type: object
       properties:
@@ -363,6 +245,31 @@ components:
             type: object
         blobId:
           $ref: '#/components/schemas/BlobId'
+    JsonNode:
+      type: object
+    EntityModelProject:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    CreateProjectRequestBody:
+      type: object
+      properties:
+        name:
+          type: string
     QueryProjectResponseBody:
       type: object
       properties:
@@ -415,11 +322,104 @@ components:
           - GENERATED_IMAGE_PARENT
           - DOCUMENT_INTERMEDIATE
           - DOCUMENT_LAYOUT_HTML
+    QueryProjectsResponseBody:
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectDetails'
+    Image:
+      type: object
+      properties:
+        workspaceId:
+          $ref: '#/components/schemas/WorkspaceId'
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/ImageProperties'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+    QueryLayoutManifestResponseBody:
+      type: object
+      properties:
+        layoutManifests:
+          type: array
+          properties:
+            empty:
+              type: boolean
+          items:
+            $ref: '#/components/schemas/LayoutManifest'
+    ImageProperties:
+      type: object
+      properties:
+        blobId:
+          $ref: '#/components/schemas/BlobId'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
     UpdateProjectRequestBody:
       type: object
       properties:
         name:
           type: string
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    WorkspaceId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    GetLayoutManifestResponseBody:
+      type: object
+      properties:
+        layoutManifest:
+          $ref: '#/components/schemas/LayoutManifest'
+    BlobId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
   securitySchemes:
     BearerAuth:
       type: http

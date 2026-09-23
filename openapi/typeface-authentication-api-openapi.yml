@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Typeface Audiences Authentication API
+  title: Typeface Authentication API
   version: v0
 servers:
 - url: https://api-us.typeface.ai
@@ -14,7 +14,21 @@ paths:
     post:
       security: []
       summary: Get access token
-      description: "This API endpoint allows authorized client applications to obtain an access token using their Application credentials. The access token is required to authenticate and authorize requests to other Typeface AI API endpoints. \n\n**Token Expiration & Renewal**:  Access tokens are valid for one hour.\n\nTo maintain uninterrupted access to Typeface AI APIs, client applications should implement a mechanism to:\n  - *Periodically Refresh*: Automatically fetch a new access token before\n  the current one expires.\n  - *Error-Based Refresh*: Fetch a new access token when encountering a 401\n  Unauthorized error, indicating token expiration."
+      description: 'This API endpoint allows authorized client applications to obtain an access token using their Application credentials. The access token is required to authenticate and authorize requests to other Typeface AI API endpoints.
+
+
+        **Token Expiration & Renewal**: Access tokens are valid for one hour.
+
+
+        To maintain uninterrupted access to Typeface AI APIs, client applications should implement a mechanism to:
+
+        - *Periodically Refresh*: Automatically fetch a new access token before
+
+        the current one expires.
+
+        - *Error-Based Refresh*: Fetch a new access token when encountering a 401
+
+        Unauthorized error, indicating token expiration.'
       tags:
       - Authentication
       requestBody:
@@ -52,6 +66,8 @@ paths:
                     type: string
                   expires_in:
                     type: integer
+      operationId: postOauth2Token
+      x-operation-id-source: derived
   /identity-service/applications:
     post:
       tags:
@@ -106,16 +122,6 @@ paths:
       summary: Rotate Application Secret
 components:
   schemas:
-    ApplicationCredential:
-      type: object
-      properties:
-        ordinal:
-          type: string
-          enum:
-          - PRIMARY
-          - SECONDARY
-        applicationSecret:
-          type: string
     CreateApplicationResponseBody:
       type: object
       properties:
@@ -127,13 +133,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ApplicationCredential'
-    RotateApplicationKeyResponseBody:
+    RotateApplicationKeyRequestBody:
       type: object
-      properties:
-        applicationId:
-          type: string
-        credential:
-          $ref: '#/components/schemas/ApplicationCredential'
     CreateApplicationRequestBody:
       type: object
       properties:
@@ -153,8 +154,23 @@ components:
           type: array
           items:
             type: string
-    RotateApplicationKeyRequestBody:
+    ApplicationCredential:
       type: object
+      properties:
+        ordinal:
+          type: string
+          enum:
+          - PRIMARY
+          - SECONDARY
+        applicationSecret:
+          type: string
+    RotateApplicationKeyResponseBody:
+      type: object
+      properties:
+        applicationId:
+          type: string
+        credential:
+          $ref: '#/components/schemas/ApplicationCredential'
   securitySchemes:
     BearerAuth:
       type: http

@@ -96,21 +96,17 @@ tools:
   source: https://developers.typeface.ai/docs/mcp-api-tools
 notes: JSON-RPC 2.0 over HTTP/SSE; tools can also be invoked directly as APIs (POST with Authorization
   Bearer, Accept application/json + text/event-stream). Errors surface both as HTTP status codes and as
-  JSON-RPC result.isError. The 23 tools above are the union of the two published tool pages
-  (/docs/tools, the agent-executed set; and /docs/mcp-api-tools, the HTTP-invocable set) as of
-  2026-08-13. Live tools/list introspection is auth-gated - POST {"jsonrpc":"2.0","id":1,"method":"tools/list"}
-  to https://api-us.typeface.ai/mcp returned HTTP 401 {"error":"unauthorized"} on 2026-08-13 - so the
-  real inputSchema per tool requires an authenticated introspection; see mcp/typeface-tool-crosswalk.yml
-  for the REST operations that back each tool. The docs also describe a Typeface A2A agent for Gemini
-  Enterprise, but no agent card is served at any well-known path (see well-known/typeface-well-known.yml).
+  JSON-RPC result.isError. The 23 tools above are the union of the two published tool pages (/docs/tools,
+  the agent-executed set; and /docs/mcp-api-tools, the HTTP-invocable set) as of 2026-08-13. Live tools/list
+  introspection is auth-gated - POST {"jsonrpc":"2.0","id":1,"method":"tools/list"} to https://api-us.typeface.ai/mcp
+  returned HTTP 401 {"error":"unauthorized"} on 2026-08-13 - so the real inputSchema per tool requires
+  an authenticated introspection; see mcp/typeface-tool-crosswalk.yml for the REST operations that back
+  each tool. The docs also describe a Typeface A2A agent for Gemini Enterprise, but no agent card is served
+  at any well-known path (see well-known/typeface-well-known.yml).
 deployment:
   mode: remote
   endpoint: https://api-us.typeface.ai/mcp
-  install: null
-  package: null
-  auth: oauth
   verified: probed
-  probe: 'HTTP 401 unauthorized on POST tools/list (endpoint live, OAuth 2.1 required);
-    RFC 9728 protected-resource metadata at /mcp/.well-known/oauth-protected-resource returns 200'
-  checked: '2026-08-13'
-  source: https://developers.typeface.ai/docs/mcp-overview
+  probe: wall
+  checked: '2026-08-12'
+  source: catalog MCP census

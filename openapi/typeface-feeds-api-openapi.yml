@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Typeface Audiences Feeds API
+  title: Typeface Feeds API
   version: v0
 servers:
 - url: https://api-us.typeface.ai
@@ -208,12 +208,99 @@ paths:
       summary: Delete Feed Item
 components:
   schemas:
+    PatchOperation:
+      type: object
+      properties:
+        op:
+          type: string
+          enum:
+          - replace
+          - add
+        path:
+          type: string
+        value:
+          type: object
+    JsonNode:
+      type: object
+    QueryFeedItemsResponseBody:
+      type: object
+      properties:
+        feedItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelFeedItem'
+        nextCursor:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     SseEmitter:
       type: object
       properties:
         timeout:
           type: integer
           format: int64
+    GenerateFeedItemRequestBody:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - IMAGE
+          - EMAIL
+          - PUSH_NOTIFICATION
+          - TYPEFACE_APP
+        feedItemType:
+          type: string
+          enum:
+          - IMAGE
+          - EMAIL
+          - EMAIL_SUBJECT_LINE
+          - PUSH_NOTIFICATION
+          - DOCUMENT
+        objective:
+          type: string
+        audience:
+          type: string
+        assetRef:
+          type: string
+        stepId:
+          type: string
+        feedItemProperties:
+          $ref: '#/components/schemas/JsonNode'
+        featureFlags:
+          type: object
+          additionalProperties:
+            type: object
+    PatchFeedRequestBody:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/PatchOperation'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
     EntityModelFeedItem:
       type: object
       properties:
@@ -262,93 +349,6 @@ components:
         approvedAt:
           type: string
           format: date-time
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    GenerateFeedItemRequestBody:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - IMAGE
-          - EMAIL
-          - PUSH_NOTIFICATION
-          - TYPEFACE_APP
-        feedItemType:
-          type: string
-          enum:
-          - IMAGE
-          - EMAIL
-          - EMAIL_SUBJECT_LINE
-          - PUSH_NOTIFICATION
-          - DOCUMENT
-        objective:
-          type: string
-        audience:
-          type: string
-        assetRef:
-          type: string
-        stepId:
-          type: string
-        feedItemProperties:
-          $ref: '#/components/schemas/JsonNode'
-        featureFlags:
-          type: object
-          additionalProperties:
-            type: object
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        media:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        profile:
-          type: string
-        name:
-          type: string
-    JsonNode:
-      type: object
-    PatchOperation:
-      type: object
-      properties:
-        op:
-          type: string
-          enum:
-          - replace
-          - add
-        path:
-          type: string
-        value:
-          type: object
-    PatchFeedRequestBody:
-      type: object
-      properties:
-        operations:
-          type: array
-          items:
-            $ref: '#/components/schemas/PatchOperation'
-    QueryFeedItemsResponseBody:
-      type: object
-      properties:
-        feedItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityModelFeedItem'
-        nextCursor:
-          type: string
         links:
           type: array
           items:

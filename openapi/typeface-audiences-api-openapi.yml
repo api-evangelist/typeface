@@ -1,4 +1,4 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
   title: Typeface Audiences API
   version: v0
@@ -59,7 +59,48 @@ paths:
                 $ref: '#/components/schemas/QueryAudienceResponseBody'
       summary: List Audiences
     post:
-      description: "Create a new audience segment within the given catalog\n\n**Sample request body**\n```json\n{\n  \"workspaceId\": 43672,\n  \"name\": \"Adults in Chicago\",\n  \"properties\": {\n    \"name\": \"Adults in Chicago\",\n    \"ageRangeMin\": 45,\n    \"ageRangeMax\": 65,\n    \"gender\": \"Neutral\",\n    \"preferences\": [\n      \"loves technology\", \"big on startups\"\n    ],\n    \"spendingBehavior\": [\n      \"Luxury\",\n      \"Experimental\"\n    ]\n  }\n}\n```"
+      description: 'Create a new audience segment within the given catalog
+
+
+        **Sample request body**
+
+        ```json
+
+        {
+
+        "workspaceId": 43672,
+
+        "name": "Adults in Chicago",
+
+        "properties": {
+
+        "name": "Adults in Chicago",
+
+        "ageRangeMin": 45,
+
+        "ageRangeMax": 65,
+
+        "gender": "Neutral",
+
+        "preferences": [
+
+        "loves technology", "big on startups"
+
+        ],
+
+        "spendingBehavior": [
+
+        "Luxury",
+
+        "Experimental"
+
+        ]
+
+        }
+
+        }
+
+        ```'
       tags:
       - Audiences
       operationId: createAudienceInAccount
@@ -91,7 +132,48 @@ paths:
       summary: Create Audience
   /profile-service/accounts/{accountId}/audience-catalogs/{audienceCatalogId}/audience-segments/{audienceId}:
     put:
-      description: "Manage the Audience within catalog.\n\n\n**Sample request body**\n```json\n{\n  \"workspaceId\": 43672,\n  \"name\": \"Adults in Chicago\",\n  \"properties\": {\n    \"name\": \"Adults in Chicago\",\n    \"ageRangeMin\": 45,\n    \"ageRangeMax\": 60,\n    \"gender\": \"Male\",\n    \"preferences\": [\n      \"loves technology\", \"sports enthusiast\"\n    ],\n    \"spendingBehavior\": [\n      \"Luxury\",\n      \"Impulsive\"\n    ]\n  }\n}\n```"
+      description: 'Manage the Audience within catalog.
+
+
+        **Sample request body**
+
+        ```json
+
+        {
+
+        "workspaceId": 43672,
+
+        "name": "Adults in Chicago",
+
+        "properties": {
+
+        "name": "Adults in Chicago",
+
+        "ageRangeMin": 45,
+
+        "ageRangeMax": 60,
+
+        "gender": "Male",
+
+        "preferences": [
+
+        "loves technology", "sports enthusiast"
+
+        ],
+
+        "spendingBehavior": [
+
+        "Luxury",
+
+        "Impulsive"
+
+        ]
+
+        }
+
+        }
+
+        ```'
       tags:
       - Audiences
       operationId: manageAudienceInAccount
@@ -157,17 +239,6 @@ paths:
       summary: Delete Audience
 components:
   schemas:
-    WorkspaceId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-    ImageProperties:
-      type: object
-      properties:
-        blobId:
-          $ref: '#/components/schemas/BlobId'
     AudienceSegmentProperties:
       type: object
       properties:
@@ -202,12 +273,120 @@ components:
             - Luxury
             - Experimental
             - Impulsive
-    BlobId:
+    CreateAudienceResponseBody:
+      required:
+      - audienceSegment
+      type: object
+      properties:
+        audienceSegment:
+          $ref: '#/components/schemas/AudienceSegment'
+    CreateAudienceRequestBody:
+      type: object
+      properties:
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/AudienceSegmentProperties'
+        name:
+          type: string
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        entitySubType:
+          type: string
+          enum:
+          - DEFAULT
+          - GENERATED_IMAGE_PARENT
+          - DOCUMENT_INTERMEDIATE
+          - DOCUMENT_LAYOUT_HTML
+    LibraryDetails:
       type: object
       properties:
         id:
-          type: integer
-          format: int64
+          $ref: '#/components/schemas/WorkspaceId'
+        ownerId:
+          type: string
+        name:
+          type: string
+        image:
+          $ref: '#/components/schemas/Image'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        discarded:
+          type: boolean
+        properties:
+          $ref: '#/components/schemas/LibraryProperties'
+        workspaceSubType:
+          type: string
+          enum:
+          - ALCHEMIST
+          - WEAVER
+          - BATCH_OUTPUT
+          - DEFAULT
+          - BRAND_KIT_LIBRARY
+          - DECORATION_LIBRARY
+          - AUDIENCE_LIBRARY
+          - LOGO_LIBRARY
+    UpdateAudienceResponseBody:
+      type: object
+      properties:
+        audienceSegment:
+          $ref: '#/components/schemas/AudienceSegment'
+    AudienceSegment:
+      type: object
+      properties:
+        workspaceId:
+          $ref: '#/components/schemas/WorkspaceId'
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/AudienceSegmentProperties'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        ref:
+          type: string
+        entitySubType:
+          type: string
+          enum:
+          - DEFAULT
+          - GENERATED_IMAGE_PARENT
+          - DOCUMENT_INTERMEDIATE
+          - DOCUMENT_LAYOUT_HTML
+    QueryAudienceResponseBody:
+      type: object
+      properties:
+        audienceSegments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceSegment'
+    GetLibrariesResponseBody:
+      type: object
+      properties:
+        libraries:
+          type: array
+          items:
+            $ref: '#/components/schemas/LibraryDetails'
     LibraryProperties:
       type: object
       properties:
@@ -271,126 +450,29 @@ components:
           - GENERATED_IMAGE_PARENT
           - DOCUMENT_INTERMEDIATE
           - DOCUMENT_LAYOUT_HTML
-    LibraryDetails:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/WorkspaceId'
-        ownerId:
-          type: string
-        name:
-          type: string
-        image:
-          $ref: '#/components/schemas/Image'
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        discarded:
-          type: boolean
-        properties:
-          $ref: '#/components/schemas/LibraryProperties'
-        workspaceSubType:
-          type: string
-          enum:
-          - ALCHEMIST
-          - WEAVER
-          - BATCH_OUTPUT
-          - DEFAULT
-          - BRAND_KIT_LIBRARY
-          - DECORATION_LIBRARY
-          - AUDIENCE_LIBRARY
-          - LOGO_LIBRARY
-    QueryAudienceResponseBody:
-      type: object
-      properties:
-        audienceSegments:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudienceSegment'
     EntityId:
       type: object
       properties:
         id:
           type: integer
           format: int64
-    GetLibrariesResponseBody:
+    WorkspaceId:
       type: object
       properties:
-        libraries:
-          type: array
-          items:
-            $ref: '#/components/schemas/LibraryDetails'
-    UpdateAudienceResponseBody:
-      type: object
-      properties:
-        audienceSegment:
-          $ref: '#/components/schemas/AudienceSegment'
-    CreateAudienceResponseBody:
-      required:
-      - audienceSegment
-      type: object
-      properties:
-        audienceSegment:
-          $ref: '#/components/schemas/AudienceSegment'
-    AudienceSegment:
-      type: object
-      properties:
-        workspaceId:
-          $ref: '#/components/schemas/WorkspaceId'
         id:
-          $ref: '#/components/schemas/EntityId'
-        name:
-          type: string
-        sourcePath:
-          type: string
-        ingestionSource:
-          type: string
-        properties:
-          $ref: '#/components/schemas/AudienceSegmentProperties'
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        modifiedBy:
-          type: string
-        renditionId:
-          $ref: '#/components/schemas/EntityId'
-        ref:
-          type: string
-        entitySubType:
-          type: string
-          enum:
-          - DEFAULT
-          - GENERATED_IMAGE_PARENT
-          - DOCUMENT_INTERMEDIATE
-          - DOCUMENT_LAYOUT_HTML
-    CreateAudienceRequestBody:
+          type: integer
+          format: int64
+    ImageProperties:
       type: object
       properties:
-        sourcePath:
-          type: string
-        ingestionSource:
-          type: string
-        properties:
-          $ref: '#/components/schemas/AudienceSegmentProperties'
-        name:
-          type: string
-        renditionId:
-          $ref: '#/components/schemas/EntityId'
-        entitySubType:
-          type: string
-          enum:
-          - DEFAULT
-          - GENERATED_IMAGE_PARENT
-          - DOCUMENT_INTERMEDIATE
-          - DOCUMENT_LAYOUT_HTML
+        blobId:
+          $ref: '#/components/schemas/BlobId'
+    BlobId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
   securitySchemes:
     BearerAuth:
       type: http

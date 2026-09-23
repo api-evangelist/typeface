@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Typeface Audiences Discovery API
+  title: Typeface Discovery API
   version: v0
 servers:
 - url: https://api-us.typeface.ai
@@ -46,7 +46,92 @@ paths:
               schema:
                 $ref: '#/components/schemas/QueryAccountsInOrgResponseBody'
       summary: Query Teams
-      description: "**Sample Response**\n```json \n\n{\n  \"accounts\": [\n    {\n      \"accountId\": \"a4c16a3c-e945-4af9-9932-9cce26c42474\",\n      \"displayName\": \"Team 1\",\n      \"createdBy\": {\n        \"id\": \"e0812ff6-d285-42ef-b0bf-3f5987311e7b\",\n        \"name\": \"John Doe\",\n        \"picture\": \"https://s.gravatar.com/avatar/bb4894e8d57f4c49f81a37eaa4009467?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fag.png\",\n        \"email\": \"john.doe@typeface.ai\"\n      },\n      \"accountCreatedAt\": \"2024-06-13T08:48:13Z\",\n      \"accountModifiedAt\": \"2024-06-13T08:48:13Z\",\n      \"scaleUnitId\": 1,\n      \"orgId\": \"8b66d551-58f2-4060-adeb-e19b0b07f65d\",\n      \"activeMembers\": 2,\n      \"accountUser\": false\n    },\n    {\n      \"accountId\": \"ae858617-c14d-46d1-b1cf-23daf4928032\",\n      \"displayName\": \"Team 2\",\n      \"createdBy\": {\n        \"id\": \"6597ef22-5d9d-42b3-8780-6ba43519496f\",\n        \"name\": \"Alice Doe\",\n        \"picture\": \"https://s.gravatar.com/avatar/47360b4957d175a102a4f7d0947ae868?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fnd.png\",\n        \"email\": \"alice.doe@typeface.ai\"\n      },\n      \"accountCreatedAt\": \"2024-06-13T08:36:56Z\",\n      \"accountModifiedAt\": \"2024-06-13T08:36:56Z\",\n      \"scaleUnitId\": 1,\n      \"orgId\": \"8b66d551-58f2-4060-adeb-e19b0b07f65d\",\n      \"activeMembers\": 1,\n      \"accountUser\": false\n    }\n  ],\n  \"page\": 1,\n  \"size\": 10,\n  \"totalAccounts\": 2,\n  \"totalPages\": 1\n}\n```"
+      description: '**Sample Response**
+
+        ```json
+
+
+        {
+
+        "accounts": [
+
+        {
+
+        "accountId": "a4c16a3c-e945-4af9-9932-9cce26c42474",
+
+        "displayName": "Team 1",
+
+        "createdBy": {
+
+        "id": "e0812ff6-d285-42ef-b0bf-3f5987311e7b",
+
+        "name": "John Doe",
+
+        "picture": "https://s.gravatar.com/avatar/bb4894e8d57f4c49f81a37eaa4009467?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fag.png",
+
+        "email": "john.doe@typeface.ai"
+
+        },
+
+        "accountCreatedAt": "2024-06-13T08:48:13Z",
+
+        "accountModifiedAt": "2024-06-13T08:48:13Z",
+
+        "scaleUnitId": 1,
+
+        "orgId": "8b66d551-58f2-4060-adeb-e19b0b07f65d",
+
+        "activeMembers": 2,
+
+        "accountUser": false
+
+        },
+
+        {
+
+        "accountId": "ae858617-c14d-46d1-b1cf-23daf4928032",
+
+        "displayName": "Team 2",
+
+        "createdBy": {
+
+        "id": "6597ef22-5d9d-42b3-8780-6ba43519496f",
+
+        "name": "Alice Doe",
+
+        "picture": "https://s.gravatar.com/avatar/47360b4957d175a102a4f7d0947ae868?s=480&r=pg&d=https%3A%2F%2Fcdn.auth0.com%2Favatars%2Fnd.png",
+
+        "email": "alice.doe@typeface.ai"
+
+        },
+
+        "accountCreatedAt": "2024-06-13T08:36:56Z",
+
+        "accountModifiedAt": "2024-06-13T08:36:56Z",
+
+        "scaleUnitId": 1,
+
+        "orgId": "8b66d551-58f2-4060-adeb-e19b0b07f65d",
+
+        "activeMembers": 1,
+
+        "accountUser": false
+
+        }
+
+        ],
+
+        "page": 1,
+
+        "size": 10,
+
+        "totalAccounts": 2,
+
+        "totalPages": 1
+
+        }
+
+        ```'
 components:
   schemas:
     EntityModelUserAccount:
@@ -81,50 +166,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    GetUserResponseBody:
+    ScaleUnitEndpoints:
       type: object
       properties:
-        user:
-          $ref: '#/components/schemas/User'
-    QueryAccountsInOrgResponseBody:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrgUser'
-        page:
-          type: integer
-          format: int64
-        size:
-          type: integer
-          format: int64
-        totalAccounts:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int64
-    Link:
-      type: object
-      properties:
-        rel:
+        socketIOHost:
           type: string
-        href:
+        apiWSEndpoint:
           type: string
-        hreflang:
-          type: string
-        media:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        profile:
-          type: string
-        name:
+        apiHttpEndpoint:
           type: string
     OrgCreatedBy:
       type: object
@@ -137,60 +186,11 @@ components:
           type: string
         email:
           type: string
-    UserOrg:
+    GetUserResponseBody:
       type: object
       properties:
-        orgId:
-          type: string
-        name:
-          type: string
-        role:
-          type: string
-          enum:
-          - MEMBER
-          - ADMIN
-        storageId:
-          type: string
-        endpoints:
-          $ref: '#/components/schemas/ScaleUnitEndpoints'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    ScaleUnitEndpoints:
-      type: object
-      properties:
-        socketIOHost:
-          type: string
-        apiWSEndpoint:
-          type: string
-        apiHttpEndpoint:
-          type: string
-    OrgUser:
-      type: object
-      properties:
-        accountId:
-          type: string
-        displayName:
-          type: string
-        createdBy:
-          $ref: '#/components/schemas/OrgCreatedBy'
-        accountCreatedAt:
-          type: string
-          format: date-time
-        accountModifiedAt:
-          type: string
-          format: date-time
-        scaleUnitId:
-          type: integer
-          format: int64
-        orgId:
-          type: string
-        activeMembers:
-          type: integer
-          format: int64
-        accountUser:
-          type: boolean
+        user:
+          $ref: '#/components/schemas/User'
     User:
       type: object
       properties:
@@ -218,6 +218,91 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserOrg'
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+    OrgUser:
+      type: object
+      properties:
+        accountId:
+          type: string
+        displayName:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/OrgCreatedBy'
+        accountCreatedAt:
+          type: string
+          format: date-time
+        accountModifiedAt:
+          type: string
+          format: date-time
+        scaleUnitId:
+          type: integer
+          format: int64
+        orgId:
+          type: string
+        activeMembers:
+          type: integer
+          format: int64
+        accountUser:
+          type: boolean
+    QueryAccountsInOrgResponseBody:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrgUser'
+        page:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int64
+        totalAccounts:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int64
+    UserOrg:
+      type: object
+      properties:
+        orgId:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+          enum:
+          - MEMBER
+          - ADMIN
+        storageId:
+          type: string
+        endpoints:
+          $ref: '#/components/schemas/ScaleUnitEndpoints'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
   securitySchemes:
     BearerAuth:
       type: http

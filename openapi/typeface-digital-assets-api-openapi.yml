@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Typeface Audiences Digital Assets API
+  title: Typeface Digital Assets API
   version: v0
 servers:
 - url: https://api-us.typeface.ai
@@ -224,9 +224,7 @@ paths:
       - Digital Assets
       operationId: patchMetadataOfProjectAssets
       summary: Project - Patch Metadata
-      description: 'This API allows partial updates to asset metadata, supporting add, replace, and remove operations for the `tags` key.
-
-        '
+      description: This API allows partial updates to asset metadata, supporting add, replace, and remove operations for the `tags` key.
       parameters:
       - name: accountId
         in: path
@@ -490,9 +488,7 @@ paths:
       - Digital Assets
       operationId: patchMetadata
       summary: Patch Metadata
-      description: 'This API allows partial updates to asset metadata, supporting add, replace, and remove operations for the `tags` key.
-
-        '
+      description: This API allows partial updates to asset metadata, supporting add, replace, and remove operations for the `tags` key.
       parameters:
       - name: accountId
         in: path
@@ -583,188 +579,20 @@ paths:
               schema:
                 $ref: '#/components/schemas/SearchAssetsResponseBody'
       summary: Search Assets
-      description: "A unified API to search for assets within a team (and Organization) using various filters.\n\nThis API serves as both listing and search endpoint, listing behavior will return results immediately while search behaviour\nreturns results in a eventual consistent manner, waits for the results to be indexed. Simillarly the updates and deletes are \nalso eventually consistent.\n\n\nAsset sub types for mapped are as follows\n| General Usage | Asset Sub Type |\n|---|---|\n| Uploaded Image | IMAGE |\n| Generated Image | GENERATED_IMAGE |\n| Uploaded File | FILE |\n| Generated Document | GENERATED_DOCUMENT |\n\n**Notes:**\n- To retrive SVG images along with other images pass mediaType in the payload with \n  value of `[\"DEFAULT\", \"GRAPHIC_SVG\"]`\n\n#### Sample Image search request payload with both query and tags filtering\n```json\n{\n  \"query\": \"A red car on the beachside\",\n  \"assetType\": \"IMAGE\",\n  \"assetSubTypes\": [\"IMAGE\", \"GENERATED_IMAGE\"],\n  \"tags\": [\"vacation\", \"beach\"],\n  \"limit\": 20,\n  \"cursor\": \".....\",\n  \"mediaTypes\": [\"DEFAULT\", \"GRAPHIC_SVG\"]\n}\n```\n\n\n\n#### Sample image search response\n```json\n{\n  \"assets\": [\n    {\n      \"id\": 9192636,\n      \"name\": \"Red Car Beachside.png\",\n      \"assetType\": \"IMAGE\",\n      \"subType\": \"IMAGE\",\n      \"workspaceId\": 315726,\n      \"workspaceType\": \"ASSET_CATALOG\",\n      \"accountId\": \"1f04d7c6-05b2-4623-9fc4-26edb1d076d4\",\n      \"createdAt\": \"2025-06-18T02:11:45Z\",\n      \"modifiedAt\": \"2025-06-18T02:11:45Z\",\n      \"createdBy\": \"f90cffca-819e-49ae-8616-550bb7b46392\",\n      \"modifiedBy\": \"f90cffca-819e-49ae-8616-550bb7b46392\",\n      \"links\": [\n      {\n          \"rel\": \"download\",\n          \"href\": \"https://deveu2su1sawebapi1000.blob.core.windows.net/blob-persistent-zone/eba343c2-5097-46ff-be0d-bb8147abfbde?sv=2021-08-06&spr=https&se=2025-12-17T13%3A43%3A27Z&sr=b&sp=r&sig=vto8SffoTFib3Le4sRKetscF0I9atCWTjXyAzbHBRJg%3D&rscc=max-age%3D603000%2C%20private\"\n      },\n      {\n          \"rel\": \"thumbnail\",\n          \"href\": \"https://deveu2su1renditionsa1000.blob.core.windows.net/rendition-blob-storage/eba343c2-5097-46ff-be0d-bb8147abfbde_230_230?sv=2021-08-06&spr=https&se=2025-12-17T13%3A43%3A28Z&sr=b&sp=r&sig=i5GEY8o%2FtLX25HynTyvusC1ngXrgGl2ESvJO7rnZRUE%3D&rscc=max-age%3D603000%2C%20private\"\n      },\n      {\n          \"rel\": \"self\",\n          \"href\": \"https://api-dev-us.typeface.ai/profile-service/accounts/1f04d7c6-05b2-4623-9fc4-26edb1d076d4/asset-catalogs/315726/assets/9192636\"\n      },\n      {\n          \"rel\": \"metadata\",\n          \"href\": \"https://api-dev-us.typeface.ai/profile-service/accounts/1f04d7c6-05b2-4623-9fc4-26edb1d076d4/asset-catalogs/315726/assets/9192636/metadata\"\n      }\n      ],\n      \"ref\": \"eyJhY2NvdW50SWQiOiIxZjA0ZDdjNi0wNWIyLTQ2MjMtOWZjNC0yNmVkYjFkMDc2ZDQiLCJlbnRpdHlJZCI6OTE5MjYzNiwid29ya3NwYWNlSWQiOjMxNTcyNiwid29ya3NwYWNlVHlwZSI6IkFTU0VUX0NBVEFMT0ciLCJlbnRpdHlUeXBlIjoiQVNTRVQiLCJ2ZXJzaW9uIjoiMi4wIiwicHJvcGVydGllcyI6eyJpbWFnZUlkIjo5MTkyNjM1fX0=\",\n      \"isOrgAsset\": false\n    }  \n  ],\n  \"nextCursor\": \".....\"\n}\n```\n\n#### Sample image search payload with search query\n```json\n{\n  \"query\": \"A scenic view of mountains during sunrise\",\n  \"assetType\": \"IMAGE\",\n  \"assetSubTypes\": [\"IMAGE\", \"GENERATED_IMAGE\"],\n  \"limit\": 20,\n  \"cursor\": \".....\",\n  \"collectionIds\": [1234567, 2345678],\n  \"mediaTypes\": [\"DEFAULT\", \"GRAPHIC_SVG\"]\n}\n```\n\n#### Filter by tags\nUse the `tags` array to filter assets by one or more tag names. Tag filtering is hierarchical.\nWhen you filter by a parent tag, assets tagged with any of its descendants are automatically included.\n\nFor example, given the tag hierarchy `marketing` → `social_media` → `instagram`, filtering by\n`marketing` returns assets tagged with `marketing`, `social_media`, or `instagram`.\n```json\n{\n  \"assetType\": \"IMAGE\",\n  \"assetSubTypes\": [\"IMAGE\", \"GENERATED_IMAGE\"],\n  \"tags\": [\"marketing\"],\n  \"limit\": 20,\n  \"cursor\": \".....\",\n  \"mediaTypes\": [\"DEFAULT\", \"GRAPHIC_SVG\"]\n}\n```\n\nYou can also filter by a tag at any level in the hierarchy. For example, filtering by `social_media`\nreturns assets tagged with `social_media` or `instagram`, but not those only tagged with `marketing`.\n```json\n{\n  \"assetType\": \"IMAGE\",\n  \"assetSubTypes\": [\"IMAGE\", \"GENERATED_IMAGE\"],\n  \"tags\": [\"social_media\"],\n  \"limit\": 20,\n  \"cursor\": \".....\",\n  \"mediaTypes\": [\"DEFAULT\", \"GRAPHIC_SVG\"]\n}\n```"
+      description: A unified API to search for assets within a team (and Organization) using various filters.
 components:
   schemas:
-    Metadata:
-      properties:
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/Tag'
-    CreateAssetV2RequestBody:
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-          deprecated: true
-          enum:
-          - IMAGE
-        contentUrl:
-          type: string
-          description: URL from where the content can be downloaded. This should be a pre-signed url
-        content:
-          type: string
-          description: File to be uploaded. Either the contentUrl or content field should be passed in a single request
-          format: binary
-        contentType:
-          type: string
-          enum:
-          - IMAGE
-          - FILE
-    MetadataPatchRequest:
-      type: object
-      required:
-      - operations
-      properties:
-        operations:
-          type: array
-          items:
-            type: object
-            required:
-            - operation
-            - key
-            properties:
-              operation:
-                type: string
-                enum:
-                - add
-                - replace
-                - remove
-              key:
-                type: string
-                enum:
-                - tags
-              value:
-                type: object
-                properties:
-                  value:
-                    type: string
-                  tagSource:
-                    type: string
-                    enum:
-                    - user
-                    - auto
-                    - tagRef
-                    description: 'Source of the tag (e.g., user or auto-generated or ref of the tag).
-
-                      '
-              index:
-                type: integer
-                description: 'Required for ''replace'' and ''remove'' operations. Optional for ''add''. If not provided in ''add'', the tag is appended at the end.
-
-                  '
-    Tag:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: Unique identifier of the tag
-        name:
-          type: string
-          description: Identifier of the tag (e.g., social_media)
-        displayName:
-          type: string
-          description: Human-readable display name of the tag (e.g., Social Media)
-        tagSource:
-          type: string
-          enum:
-          - user
-          - auto
-          - tagRef
-          description: How the tag was associated with the asset (manually by a user, auto-generated, or via tag reference)
-    AssetV2ContentType:
-      type: string
-      enum:
-      - IMAGE
-      - FILE
-      - PRODUCT
-      - URL
-      - VIDEO
-      - LAYOUT
-      - AUDIENCE_SEGMENT
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        media:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        profile:
-          type: string
-        name:
-          type: string
     JsonNode:
       type: object
-    EntityModelAssetV2:
+    SearchAssetsResponseBody:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-        name:
-          type: string
-        thumbnailUrl:
-          type: string
-        type:
-          type: string
-          deprecated: true
-          enum:
-          - IMAGE
-        content:
-          $ref: '#/components/schemas/JsonNode'
-        contentType:
-          type: string
-          description: Allowed values are 'IMAGE' and 'FILE' only
-          enum:
-          - IMAGE
-          - FILE
-        ref:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        modifiedBy:
-          type: string
-        links:
+        assets:
           type: array
           items:
-            $ref: '#/components/schemas/Link'
-    UpdateAssetV2RequestBody:
-      type: object
-      properties:
-        name:
+            $ref: '#/components/schemas/SearchedAsset'
+        nextCursor:
           type: string
-        contentUrl:
-          description: URL from where the content can be downloaded. This should be a pre-signed url
-          type: string
-        content:
-          type: string
-          description: File to be uploaded. Either the contentUrl or content field should be passed in a single request
-          format: binary
-        contentType:
-          type: string
-          enum:
-          - IMAGE
-          - FILE
     SearchedAsset:
       type: object
       properties:
@@ -815,17 +643,6 @@ components:
           type: string
         ref:
           type: string
-    QueryAssetsV2InAccountResponseBody:
-      type: object
-      properties:
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityModelAssetV2'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     SearchAssetsRequestBody:
       type: object
       properties:
@@ -917,15 +734,59 @@ components:
           description: 'Media types to filter the search results. Defaults to [DEFAULT] is not specified any
 
             '
-    SearchAssetsResponseBody:
+    MetadataPatchRequest:
+      type: object
+      required:
+      - operations
+      properties:
+        operations:
+          type: array
+          items:
+            type: object
+            required:
+            - operation
+            - key
+            properties:
+              operation:
+                type: string
+                enum:
+                - add
+                - replace
+                - remove
+              key:
+                type: string
+                enum:
+                - tags
+              value:
+                type: object
+                properties:
+                  value:
+                    type: string
+                  tagSource:
+                    type: string
+                    enum:
+                    - user
+                    - auto
+                    - tagRef
+                    description: 'Source of the tag (e.g., user or auto-generated or ref of the tag).
+
+                      '
+              index:
+                type: integer
+                description: 'Required for ''replace'' and ''remove'' operations. Optional for ''add''. If not provided in ''add'', the tag is appended at the end.
+
+                  '
+    QueryAssetsV2InAccountResponseBody:
       type: object
       properties:
         assets:
           type: array
           items:
-            $ref: '#/components/schemas/SearchedAsset'
-        nextCursor:
-          type: string
+            $ref: '#/components/schemas/EntityModelAssetV2'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     AssetMetadataResponeBody:
       type: object
       properties:
@@ -934,6 +795,141 @@ components:
           format: int64
         metadata:
           $ref: '#/components/schemas/Metadata'
+    EntityModelAssetV2:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        thumbnailUrl:
+          type: string
+        type:
+          type: string
+          deprecated: true
+          enum:
+          - IMAGE
+        content:
+          $ref: '#/components/schemas/JsonNode'
+        contentType:
+          type: string
+          description: Allowed values are 'IMAGE' and 'FILE' only
+          enum:
+          - IMAGE
+          - FILE
+        ref:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    AssetV2ContentType:
+      type: string
+      enum:
+      - IMAGE
+      - FILE
+      - PRODUCT
+      - URL
+      - VIDEO
+      - LAYOUT
+      - AUDIENCE_SEGMENT
+    CreateAssetV2RequestBody:
+      type: object
+      properties:
+        name:
+          type: string
+        type:
+          type: string
+          deprecated: true
+          enum:
+          - IMAGE
+        contentUrl:
+          type: string
+          description: URL from where the content can be downloaded. This should be a pre-signed url
+        content:
+          type: string
+          description: File to be uploaded. Either the contentUrl or content field should be passed in a single request
+          format: binary
+        contentType:
+          type: string
+          enum:
+          - IMAGE
+          - FILE
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+    Tag:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          description: Unique identifier of the tag
+        name:
+          type: string
+          description: Identifier of the tag (e.g., social_media)
+        displayName:
+          type: string
+          description: Human-readable display name of the tag (e.g., Social Media)
+        tagSource:
+          type: string
+          enum:
+          - user
+          - auto
+          - tagRef
+          description: How the tag was associated with the asset (manually by a user, auto-generated, or via tag reference)
+    UpdateAssetV2RequestBody:
+      type: object
+      properties:
+        name:
+          type: string
+        contentUrl:
+          description: URL from where the content can be downloaded. This should be a pre-signed url
+          type: string
+        content:
+          type: string
+          description: File to be uploaded. Either the contentUrl or content field should be passed in a single request
+          format: binary
+        contentType:
+          type: string
+          enum:
+          - IMAGE
+          - FILE
+    Metadata:
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
   securitySchemes:
     BearerAuth:
       type: http

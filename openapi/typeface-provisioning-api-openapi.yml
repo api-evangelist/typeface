@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Typeface Audiences Provisioning API
+  title: Typeface Provisioning API
   version: v0
 servers:
 - url: https://api-us.typeface.ai
@@ -62,6 +62,20 @@ paths:
       summary: Delete Team
 components:
   schemas:
+    CreateAccountRequestBody:
+      type: object
+      properties:
+        workspaceName:
+          type: string
+          deprecated: true
+        displayName:
+          type: string
+        cloudProvider:
+          type: string
+          description: Specifies the cloud provider where the team's data and resources are hosted (either AZURE or GOOGLE).
+          enum:
+          - AZURE
+          - GOOGLE
     CreateAccountResponseBody:
       type: object
       properties:
@@ -77,20 +91,6 @@ components:
           format: date-time
         createdBy:
           type: string
-    CreateAccountRequestBody:
-      type: object
-      properties:
-        workspaceName:
-          type: string
-          deprecated: true
-        displayName:
-          type: string
-        cloudProvider:
-          type: string
-          description: Specifies the cloud provider where the team's data and resources are hosted (either AZURE or GOOGLE).
-          enum:
-          - AZURE
-          - GOOGLE
   securitySchemes:
     BearerAuth:
       type: http

@@ -1,12 +1,13 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Typeface Audiences Basic Services API
-  version: v0
+  title: Content Workflow Basic Services API
+  description: This template will guide you through the API endpoints to get workflows, get workflow steps, apply workflow to document, update document workflow status, update document workflow, update document assignees.
+  version: 1.0.0
+  contact: {}
 servers:
 - url: https://api-us.typeface.ai
-  description: Generated server url
 security:
-- BearerAuth: []
+- bearerAuth: []
 tags:
 - name: Basic Services
 paths:
@@ -54,10 +55,9 @@ paths:
       - Basic Services
 components:
   securitySchemes:
-    BearerAuth:
+    bearerAuth:
       type: http
       scheme: bearer
-      bearerFormat: JWT
 x-readme:
   explorer-enabled: true
   proxy-enabled: true

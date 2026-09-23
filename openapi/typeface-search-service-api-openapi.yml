@@ -1,12 +1,10 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Typeface Audiences Search Service API
-  version: v0
+  title: Documents search & filter Search Service API
+  description: API for listing project documents with workflow status, assignees, etc.
+  version: 1.0.0
 servers:
 - url: https://api-us.typeface.ai
-  description: Generated server url
-security:
-- BearerAuth: []
 tags:
 - name: Search Service
 paths:
@@ -238,6 +236,4 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-x-readme:
-  explorer-enabled: true
-  proxy-enabled: true
+      description: Authorization header with Bearer token.

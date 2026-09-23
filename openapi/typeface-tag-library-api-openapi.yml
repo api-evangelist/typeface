@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Typeface Audiences Tag Library API
+  title: Typeface Tag Library API
   version: v0
 servers:
 - url: https://api-us.typeface.ai
@@ -142,7 +142,305 @@ paths:
               schema:
                 $ref: '#/components/schemas/SearchTagsResponseBody'
       summary: Search Tags
-      description: "Search for tags within an account. Use this to browse the tag taxonomy, find tags by name, or list tags filtered by status.\n\n- **`query`** — Filters tags by name or display name. Searching for a parent tag also returns all of its descendants. When omitted or empty, all tags are returned.\n- **`status`** — Filters tags by status (`ACTIVE`, `INACTIVE`, `DEPRECATED`, `REJECTED`, `PENDING`). Defaults to `ACTIVE`. Set to `PENDING` to list newly discovered tag candidates awaiting review.\n- **`limit`** / **`cursor`** — Use cursor-based pagination for large result sets.\n\nEach tag in the response includes:\n- `fullPath` — a `::` delimited path of tag names from root to the tag (e.g., `marketing::social_media::instagram`).\n- `pathIds` — an ordered list of tag IDs matching each segment in `fullPath` (e.g., `[100, 101, 103]`).\n\nThese fields let you reconstruct the full hierarchy position of any tag.\n\nThe examples below assume a tag hierarchy: **Marketing > Social Media > Instagram**.\n\n#### List all active tags\n```json\n{\n  \"limit\": 20\n}\n```\n\n#### Response\n```json\n{\n  \"tags\": [\n    {\n      \"id\": 100,\n      \"name\": \"marketing\",\n      \"displayName\": \"Marketing\",\n      \"ref\": \"eyJhY2NvdW50...\",\n      \"parentId\": null,\n      \"status\": \"ACTIVE\",\n      \"description\": \"Marketing related content\",\n      \"fullPath\": \"marketing\",\n      \"pathIds\": [100],\n      \"createdAt\": \"2026-01-15T10:00:00Z\",\n      \"modifiedAt\": \"2026-01-15T10:00:00Z\",\n      \"createdBy\": \"user-1\",\n      \"modifiedBy\": \"user-1\"\n    },\n    {\n      \"id\": 101,\n      \"name\": \"social_media\",\n      \"displayName\": \"Social Media\",\n      \"ref\": \"eyJhY2NvdW50...\",\n      \"parentId\": 100,\n      \"status\": \"ACTIVE\",\n      \"description\": \"Social media related content\",\n      \"fullPath\": \"marketing::social_media\",\n      \"pathIds\": [100, 101],\n      \"createdAt\": \"2026-01-15T10:35:00Z\",\n      \"modifiedAt\": \"2026-01-15T10:35:00Z\",\n      \"createdBy\": \"user-1\",\n      \"modifiedBy\": \"user-1\"\n    },\n    {\n      \"id\": 103,\n      \"name\": \"instagram\",\n      \"displayName\": \"Instagram\",\n      \"ref\": \"eyJhY2NvdW50...\",\n      \"parentId\": 101,\n      \"status\": \"ACTIVE\",\n      \"description\": \"Instagram specific content\",\n      \"fullPath\": \"marketing::social_media::instagram\",\n      \"pathIds\": [100, 101, 103],\n      \"createdAt\": \"2026-01-16T09:00:00Z\",\n      \"modifiedAt\": \"2026-01-16T09:00:00Z\",\n      \"createdBy\": \"user-1\",\n      \"modifiedBy\": \"user-1\"\n    }\n  ],\n  \"nextCursor\": \".....\"\n}\n```\n\n#### Search for a tag and its descendants\nSearching for `Social Media` returns the matching tag and all tags nested under it (e.g., `Instagram`).\n```json\n{\n  \"query\": \"Social Media\",\n  \"limit\": 20\n}\n```\n\n#### Response\n```json\n{\n  \"tags\": [\n    {\n      \"id\": 101,\n      \"name\": \"social_media\",\n      \"displayName\": \"Social Media\",\n      \"ref\": \"eyJhY2NvdW50...\",\n      \"parentId\": 100,\n      \"status\": \"ACTIVE\",\n      \"description\": \"Social media related content\",\n      \"fullPath\": \"marketing::social_media\",\n      \"pathIds\": [100, 101],\n      \"createdAt\": \"2026-01-15T10:35:00Z\",\n      \"modifiedAt\": \"2026-01-15T10:35:00Z\",\n      \"createdBy\": \"user-1\",\n      \"modifiedBy\": \"user-1\"\n    },\n    {\n      \"id\": 103,\n      \"name\": \"instagram\",\n      \"displayName\": \"Instagram\",\n      \"ref\": \"eyJhY2NvdW50...\",\n      \"parentId\": 101,\n      \"status\": \"ACTIVE\",\n      \"description\": \"Instagram specific content\",\n      \"fullPath\": \"marketing::social_media::instagram\",\n      \"pathIds\": [100, 101, 103],\n      \"createdAt\": \"2026-01-16T09:00:00Z\",\n      \"modifiedAt\": \"2026-01-16T09:00:00Z\",\n      \"createdBy\": \"user-1\",\n      \"modifiedBy\": \"user-1\"\n    }\n  ],\n  \"nextCursor\": \".....\"\n}\n```\n\n#### List newly discovered tag candidates (pending review)\nTags with `PENDING` status are auto-discovered tags that have not yet been approved or rejected. Use this to power editorial review and governance workflows.\n```json\n{\n  \"status\": \"PENDING\",\n  \"limit\": 50\n}\n```\n\n#### Response\n```json\n{\n  \"tags\": [\n    {\n      \"id\": 215,\n      \"name\": \"bedroom_pop\",\n      \"displayName\": \"Bedroom Pop\",\n      \"ref\": \"eyJhY2NvdW50...\",\n      \"parentId\": 100,\n      \"status\": \"PENDING\",\n      \"description\": \"Lo-fi pop music produced in home studios\",\n      \"fullPath\": \"marketing::bedroom_pop\",\n      \"pathIds\": [100, 215],\n      \"createdAt\": \"2026-02-08T14:30:00Z\",\n      \"modifiedAt\": \"2026-02-08T14:30:00Z\",\n      \"createdBy\": \"user-1\",\n      \"modifiedBy\": \"user-1\"\n    }\n  ],\n  \"nextCursor\": \"cursor-abc123\"\n}\n```"
+      description: 'Search for tags within an account. Use this to browse the tag taxonomy, find tags by name, or list tags filtered by status.
+
+
+        - **`query`** — Filters tags by name or display name. Searching for a parent tag also returns all of its descendants. When omitted or empty, all tags are returned.
+
+        - **`status`** — Filters tags by status (`ACTIVE`, `INACTIVE`, `DEPRECATED`, `REJECTED`, `PENDING`). Defaults to `ACTIVE`. Set to `PENDING` to list newly discovered tag candidates awaiting review.
+
+        - **`limit`** / **`cursor`** — Use cursor-based pagination for large result sets.
+
+
+        Each tag in the response includes:
+
+        - `fullPath` — a `::` delimited path of tag names from root to the tag (e.g., `marketing::social_media::instagram`).
+
+        - `pathIds` — an ordered list of tag IDs matching each segment in `fullPath` (e.g., `[100, 101, 103]`).
+
+
+        These fields let you reconstruct the full hierarchy position of any tag.
+
+
+        The examples below assume a tag hierarchy: **Marketing > Social Media > Instagram**.
+
+
+        #### List all active tags
+
+        ```json
+
+        {
+
+        "limit": 20
+
+        }
+
+        ```
+
+
+        #### Response
+
+        ```json
+
+        {
+
+        "tags": [
+
+        {
+
+        "id": 100,
+
+        "name": "marketing",
+
+        "displayName": "Marketing",
+
+        "ref": "eyJhY2NvdW50...",
+
+        "parentId": null,
+
+        "status": "ACTIVE",
+
+        "description": "Marketing related content",
+
+        "fullPath": "marketing",
+
+        "pathIds": [100],
+
+        "createdAt": "2026-01-15T10:00:00Z",
+
+        "modifiedAt": "2026-01-15T10:00:00Z",
+
+        "createdBy": "user-1",
+
+        "modifiedBy": "user-1"
+
+        },
+
+        {
+
+        "id": 101,
+
+        "name": "social_media",
+
+        "displayName": "Social Media",
+
+        "ref": "eyJhY2NvdW50...",
+
+        "parentId": 100,
+
+        "status": "ACTIVE",
+
+        "description": "Social media related content",
+
+        "fullPath": "marketing::social_media",
+
+        "pathIds": [100, 101],
+
+        "createdAt": "2026-01-15T10:35:00Z",
+
+        "modifiedAt": "2026-01-15T10:35:00Z",
+
+        "createdBy": "user-1",
+
+        "modifiedBy": "user-1"
+
+        },
+
+        {
+
+        "id": 103,
+
+        "name": "instagram",
+
+        "displayName": "Instagram",
+
+        "ref": "eyJhY2NvdW50...",
+
+        "parentId": 101,
+
+        "status": "ACTIVE",
+
+        "description": "Instagram specific content",
+
+        "fullPath": "marketing::social_media::instagram",
+
+        "pathIds": [100, 101, 103],
+
+        "createdAt": "2026-01-16T09:00:00Z",
+
+        "modifiedAt": "2026-01-16T09:00:00Z",
+
+        "createdBy": "user-1",
+
+        "modifiedBy": "user-1"
+
+        }
+
+        ],
+
+        "nextCursor": "....."
+
+        }
+
+        ```
+
+
+        #### Search for a tag and its descendants
+
+        Searching for `Social Media` returns the matching tag and all tags nested under it (e.g., `Instagram`).
+
+        ```json
+
+        {
+
+        "query": "Social Media",
+
+        "limit": 20
+
+        }
+
+        ```
+
+
+        #### Response
+
+        ```json
+
+        {
+
+        "tags": [
+
+        {
+
+        "id": 101,
+
+        "name": "social_media",
+
+        "displayName": "Social Media",
+
+        "ref": "eyJhY2NvdW50...",
+
+        "parentId": 100,
+
+        "status": "ACTIVE",
+
+        "description": "Social media related content",
+
+        "fullPath": "marketing::social_media",
+
+        "pathIds": [100, 101],
+
+        "createdAt": "2026-01-15T10:35:00Z",
+
+        "modifiedAt": "2026-01-15T10:35:00Z",
+
+        "createdBy": "user-1",
+
+        "modifiedBy": "user-1"
+
+        },
+
+        {
+
+        "id": 103,
+
+        "name": "instagram",
+
+        "displayName": "Instagram",
+
+        "ref": "eyJhY2NvdW50...",
+
+        "parentId": 101,
+
+        "status": "ACTIVE",
+
+        "description": "Instagram specific content",
+
+        "fullPath": "marketing::social_media::instagram",
+
+        "pathIds": [100, 101, 103],
+
+        "createdAt": "2026-01-16T09:00:00Z",
+
+        "modifiedAt": "2026-01-16T09:00:00Z",
+
+        "createdBy": "user-1",
+
+        "modifiedBy": "user-1"
+
+        }
+
+        ],
+
+        "nextCursor": "....."
+
+        }
+
+        ```
+
+
+        #### List newly discovered tag candidates (pending review)
+
+        Tags with `PENDING` status are auto-discovered tags that have not yet been approved or rejected. Use this to power editorial review and governance workflows.
+
+        ```json
+
+        {
+
+        "status": "PENDING",
+
+        "limit": 50
+
+        }
+
+        ```
+
+
+        #### Response
+
+        ```json
+
+        {
+
+        "tags": [
+
+        {
+
+        "id": 215,
+
+        "name": "bedroom_pop",
+
+        "displayName": "Bedroom Pop",
+
+        "ref": "eyJhY2NvdW50...",
+
+        "parentId": 100,
+
+        "status": "PENDING",
+
+        "description": "Lo-fi pop music produced in home studios",
+
+        "fullPath": "marketing::bedroom_pop",
+
+        "pathIds": [100, 215],
+
+        "createdAt": "2026-02-08T14:30:00Z",
+
+        "modifiedAt": "2026-02-08T14:30:00Z",
+
+        "createdBy": "user-1",
+
+        "modifiedBy": "user-1"
+
+        }
+
+        ],
+
+        "nextCursor": "cursor-abc123"
+
+        }
+
+        ```'
   /profile-service/accounts/{accountId}/tags/{tagId}:
     get:
       tags:
@@ -346,6 +644,25 @@ paths:
       summary: Delete Tag
 components:
   schemas:
+    SearchTagDetails:
+      description: Tag details returned when searching tags. Includes all fields from TagDetails plus the full hierarchy path.
+      allOf:
+      - $ref: '#/components/schemas/TagDetails'
+      - type: object
+        properties:
+          fullPath:
+            type: string
+            description: ':: delimited path of tag names from root to this tag. E.g., marketing::social_media::instagram
+
+              '
+          pathIds:
+            type: array
+            items:
+              type: integer
+              format: int64
+            description: 'Ordered list of tag IDs corresponding to each segment in fullPath, from root to this tag. E.g., [100, 101, 103]
+
+              '
     SearchTagsRequestBody:
       type: object
       properties:
@@ -375,42 +692,6 @@ components:
           description: 'Maximum number of tags to return.
 
             '
-    PatchTagRequestBody:
-      type: object
-      description: Request body for patching a tag. Supports 'replace' operation on '/name', '/displayName', '/status', and '/description' paths.
-      properties:
-        operations:
-          type: array
-          items:
-            type: object
-            properties:
-              op:
-                type: string
-                enum:
-                - replace
-              path:
-                type: string
-                enum:
-                - /name
-                - /displayName
-                - /status
-                - /description
-                description: 'The field to update.
-
-                  - `/name` — Update the tag''s identifier name.
-
-                  - `/displayName` — Update the tag''s human-readable display name.
-
-                  - `/status` — Update the tag''s status. Allowed values are `ACTIVE`, `INACTIVE`, `DEPRECATED`, `REJECTED`, or `PENDING`.
-
-                  - `/description` — Update the tag''s description.
-
-                  '
-              value:
-                type: string
-                description: 'The new value for the field specified in `path`.
-
-                  '
     CreateTagsRequestBody:
       type: object
       required:
@@ -501,25 +782,6 @@ components:
           type: string
         modifiedBy:
           type: string
-    SearchTagDetails:
-      description: Tag details returned when searching tags. Includes all fields from TagDetails plus the full hierarchy path.
-      allOf:
-      - $ref: '#/components/schemas/TagDetails'
-      - type: object
-        properties:
-          fullPath:
-            type: string
-            description: ':: delimited path of tag names from root to this tag. E.g., marketing::social_media::instagram
-
-              '
-          pathIds:
-            type: array
-            items:
-              type: integer
-              format: int64
-            description: 'Ordered list of tag IDs corresponding to each segment in fullPath, from root to this tag. E.g., [100, 101, 103]
-
-              '
     SearchTagsResponseBody:
       type: object
       properties:
@@ -529,6 +791,42 @@ components:
             $ref: '#/components/schemas/SearchTagDetails'
         nextCursor:
           type: string
+    PatchTagRequestBody:
+      type: object
+      description: Request body for patching a tag. Supports 'replace' operation on '/name', '/displayName', '/status', and '/description' paths.
+      properties:
+        operations:
+          type: array
+          items:
+            type: object
+            properties:
+              op:
+                type: string
+                enum:
+                - replace
+              path:
+                type: string
+                enum:
+                - /name
+                - /displayName
+                - /status
+                - /description
+                description: 'The field to update.
+
+                  - `/name` — Update the tag''s identifier name.
+
+                  - `/displayName` — Update the tag''s human-readable display name.
+
+                  - `/status` — Update the tag''s status. Allowed values are `ACTIVE`, `INACTIVE`, `DEPRECATED`, `REJECTED`, or `PENDING`.
+
+                  - `/description` — Update the tag''s description.
+
+                  '
+              value:
+                type: string
+                description: 'The new value for the field specified in `path`.
+
+                  '
   securitySchemes:
     BearerAuth:
       type: http

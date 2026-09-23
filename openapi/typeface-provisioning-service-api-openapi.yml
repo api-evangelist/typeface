@@ -1,12 +1,10 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Typeface Audiences Provisioning Service API
-  version: v0
+  title: Team users Provisioning Service API
+  description: API for fetching the team users.
+  version: 1.0.0
 servers:
 - url: https://api-us.typeface.ai
-  description: Generated server url
-security:
-- BearerAuth: []
 tags:
 - name: Provisioning Service
 paths:
@@ -79,6 +77,4 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
-x-readme:
-  explorer-enabled: true
-  proxy-enabled: true
+      description: Authorization header with Bearer token.
