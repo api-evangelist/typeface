@@ -582,67 +582,43 @@ paths:
       description: A unified API to search for assets within a team (and Organization) using various filters.
 components:
   schemas:
+    Metadata:
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
     JsonNode:
       type: object
-    SearchAssetsResponseBody:
+    QueryAssetsV2InAccountResponseBody:
       type: object
       properties:
         assets:
           type: array
           items:
-            $ref: '#/components/schemas/SearchedAsset'
-        nextCursor:
-          type: string
-    SearchedAsset:
+            $ref: '#/components/schemas/EntityModelAssetV2'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    AssetMetadataResponeBody:
       type: object
       properties:
-        id:
+        assetId:
           type: integer
-        name:
-          type: string
-        assetType:
-          $ref: '#/components/schemas/AssetV2ContentType'
-        subType:
-          type: string
-          enum:
-          - GENERATED_IMAGE
-          - DOCUMENT
-          - IMAGE
-          - URL
-          - FILE
-          - PRODUCT
-          - VIDEO
-          - VIDEO_SHOT
-          - VIDEO_SCRIPT
-          - VIDEO_EXPORT
-          - LAYOUT
-          - COLLECTION
-          - AUDIENCE_SEGMENT
-        workspaceId:
-          type: integer
-        workspaceType:
-          type: string
-          enum:
-          - PROJECT
-          - ASSET_LIBRARY
-          - LIBRARY
-          - INSIGHTS_CATALOG
-        accountId:
-          type: string
-        isOrgAsset:
-          type: boolean
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        modifiedBy:
-          type: string
-        ref:
-          type: string
+          format: int64
+        metadata:
+          $ref: '#/components/schemas/Metadata'
+    AssetV2ContentType:
+      type: string
+      enum:
+      - IMAGE
+      - FILE
+      - PRODUCT
+      - URL
+      - VIDEO
+      - LAYOUT
+      - AUDIENCE_SEGMENT
     SearchAssetsRequestBody:
       type: object
       properties:
@@ -776,25 +752,98 @@ components:
                 description: 'Required for ''replace'' and ''remove'' operations. Optional for ''add''. If not provided in ''add'', the tag is appended at the end.
 
                   '
-    QueryAssetsV2InAccountResponseBody:
+    SearchedAsset:
       type: object
       properties:
-        assets:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityModelAssetV2'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    AssetMetadataResponeBody:
+        id:
+          type: integer
+        name:
+          type: string
+        assetType:
+          $ref: '#/components/schemas/AssetV2ContentType'
+        subType:
+          type: string
+          enum:
+          - GENERATED_IMAGE
+          - DOCUMENT
+          - IMAGE
+          - URL
+          - FILE
+          - PRODUCT
+          - VIDEO
+          - VIDEO_SHOT
+          - VIDEO_SCRIPT
+          - VIDEO_EXPORT
+          - LAYOUT
+          - COLLECTION
+          - AUDIENCE_SEGMENT
+        workspaceId:
+          type: integer
+        workspaceType:
+          type: string
+          enum:
+          - PROJECT
+          - ASSET_LIBRARY
+          - LIBRARY
+          - INSIGHTS_CATALOG
+        accountId:
+          type: string
+        isOrgAsset:
+          type: boolean
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+        ref:
+          type: string
+    CreateAssetV2RequestBody:
       type: object
       properties:
-        assetId:
+        name:
+          type: string
+        type:
+          type: string
+          deprecated: true
+          enum:
+          - IMAGE
+        contentUrl:
+          type: string
+          description: URL from where the content can be downloaded. This should be a pre-signed url
+        content:
+          type: string
+          description: File to be uploaded. Either the contentUrl or content field should be passed in a single request
+          format: binary
+        contentType:
+          type: string
+          enum:
+          - IMAGE
+          - FILE
+    Tag:
+      type: object
+      properties:
+        id:
           type: integer
           format: int64
-        metadata:
-          $ref: '#/components/schemas/Metadata'
+          description: Unique identifier of the tag
+        name:
+          type: string
+          description: Identifier of the tag (e.g., social_media)
+        displayName:
+          type: string
+          description: Human-readable display name of the tag (e.g., Social Media)
+        tagSource:
+          type: string
+          enum:
+          - user
+          - auto
+          - tagRef
+          description: How the tag was associated with the asset (manually by a user, auto-generated, or via tag reference)
     EntityModelAssetV2:
       type: object
       properties:
@@ -834,38 +883,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    AssetV2ContentType:
-      type: string
-      enum:
-      - IMAGE
-      - FILE
-      - PRODUCT
-      - URL
-      - VIDEO
-      - LAYOUT
-      - AUDIENCE_SEGMENT
-    CreateAssetV2RequestBody:
-      type: object
-      properties:
-        name:
-          type: string
-        type:
-          type: string
-          deprecated: true
-          enum:
-          - IMAGE
-        contentUrl:
-          type: string
-          description: URL from where the content can be downloaded. This should be a pre-signed url
-        content:
-          type: string
-          description: File to be uploaded. Either the contentUrl or content field should be passed in a single request
-          format: binary
-        contentType:
-          type: string
-          enum:
-          - IMAGE
-          - FILE
     Link:
       type: object
       properties:
@@ -887,26 +904,6 @@ components:
           type: string
         name:
           type: string
-    Tag:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-          description: Unique identifier of the tag
-        name:
-          type: string
-          description: Identifier of the tag (e.g., social_media)
-        displayName:
-          type: string
-          description: Human-readable display name of the tag (e.g., Social Media)
-        tagSource:
-          type: string
-          enum:
-          - user
-          - auto
-          - tagRef
-          description: How the tag was associated with the asset (manually by a user, auto-generated, or via tag reference)
     UpdateAssetV2RequestBody:
       type: object
       properties:
@@ -924,12 +921,15 @@ components:
           enum:
           - IMAGE
           - FILE
-    Metadata:
+    SearchAssetsResponseBody:
+      type: object
       properties:
-        tags:
+        assets:
           type: array
           items:
-            $ref: '#/components/schemas/Tag'
+            $ref: '#/components/schemas/SearchedAsset'
+        nextCursor:
+          type: string
   securitySchemes:
     BearerAuth:
       type: http

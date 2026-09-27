@@ -204,83 +204,19 @@ paths:
       summary: Project - Get Layout
 components:
   schemas:
-    ProjectDetails:
+    ImageProperties:
       type: object
       properties:
-        id:
-          $ref: '#/components/schemas/WorkspaceId'
-        ownerId:
-          type: string
-        name:
-          type: string
-        image:
-          $ref: '#/components/schemas/Image'
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        discarded:
-          type: boolean
-        properties:
-          $ref: '#/components/schemas/JsonNode'
-        workspaceSubType:
-          type: string
-          enum:
-          - ALCHEMIST
-          - WEAVER
-          - BATCH_OUTPUT
-          - DEFAULT
-          - BRAND_KIT_LIBRARY
-          - DECORATION_LIBRARY
-          - AUDIENCE_LIBRARY
-          - LOGO_LIBRARY
-    LayoutManifestProperties:
-      type: object
-      properties:
-        layoutData:
-          type: object
-          additionalProperties:
-            type: object
         blobId:
           $ref: '#/components/schemas/BlobId'
     JsonNode:
       type: object
-    EntityModelProject:
+    EntityId:
       type: object
       properties:
         id:
           type: integer
           format: int64
-        name:
-          type: string
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    CreateProjectRequestBody:
-      type: object
-      properties:
-        name:
-          type: string
-    QueryProjectResponseBody:
-      type: object
-      properties:
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityModelProject'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     LayoutManifest:
       required:
       - id
@@ -322,13 +258,20 @@ components:
           - GENERATED_IMAGE_PARENT
           - DOCUMENT_INTERMEDIATE
           - DOCUMENT_LAYOUT_HTML
-    QueryProjectsResponseBody:
+    UpdateProjectRequestBody:
       type: object
       properties:
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/ProjectDetails'
+        name:
+          type: string
+    LayoutManifestProperties:
+      type: object
+      properties:
+        layoutData:
+          type: object
+          additionalProperties:
+            type: object
+        blobId:
+          $ref: '#/components/schemas/BlobId'
     Image:
       type: object
       properties:
@@ -356,6 +299,49 @@ components:
           type: string
         modifiedBy:
           type: string
+    ProjectDetails:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/WorkspaceId'
+        ownerId:
+          type: string
+        name:
+          type: string
+        image:
+          $ref: '#/components/schemas/Image'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        discarded:
+          type: boolean
+        properties:
+          $ref: '#/components/schemas/JsonNode'
+        workspaceSubType:
+          type: string
+          enum:
+          - ALCHEMIST
+          - WEAVER
+          - BATCH_OUTPUT
+          - DEFAULT
+          - BRAND_KIT_LIBRARY
+          - DECORATION_LIBRARY
+          - AUDIENCE_LIBRARY
+          - LOGO_LIBRARY
+    QueryProjectResponseBody:
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelProject'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     QueryLayoutManifestResponseBody:
       type: object
       properties:
@@ -366,11 +352,35 @@ components:
               type: boolean
           items:
             $ref: '#/components/schemas/LayoutManifest'
-    ImageProperties:
+    GetLayoutManifestResponseBody:
       type: object
       properties:
-        blobId:
-          $ref: '#/components/schemas/BlobId'
+        layoutManifest:
+          $ref: '#/components/schemas/LayoutManifest'
+    BlobId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    WorkspaceId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    CreateProjectRequestBody:
+      type: object
+      properties:
+        name:
+          type: string
+    QueryProjectsResponseBody:
+      type: object
+      properties:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/ProjectDetails'
     Link:
       type: object
       properties:
@@ -392,34 +402,24 @@ components:
           type: string
         name:
           type: string
-    UpdateProjectRequestBody:
+    EntityModelProject:
       type: object
       properties:
+        id:
+          type: integer
+          format: int64
         name:
           type: string
-    EntityId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-    WorkspaceId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-    GetLayoutManifestResponseBody:
-      type: object
-      properties:
-        layoutManifest:
-          $ref: '#/components/schemas/LayoutManifest'
-    BlobId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
   securitySchemes:
     BearerAuth:
       type: http

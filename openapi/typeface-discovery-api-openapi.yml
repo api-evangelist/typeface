@@ -134,6 +134,11 @@ paths:
         ```'
 components:
   schemas:
+    GetUserResponseBody:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
     EntityModelUserAccount:
       type: object
       properties:
@@ -166,6 +171,25 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    QueryAccountsInOrgResponseBody:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrgUser'
+        page:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int64
+        totalAccounts:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int64
     ScaleUnitEndpoints:
       type: object
       properties:
@@ -186,11 +210,6 @@ components:
           type: string
         email:
           type: string
-    GetUserResponseBody:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
     User:
       type: object
       properties:
@@ -218,6 +237,26 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserOrg'
+    UserOrg:
+      type: object
+      properties:
+        orgId:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+          enum:
+          - MEMBER
+          - ADMIN
+        storageId:
+          type: string
+        endpoints:
+          $ref: '#/components/schemas/ScaleUnitEndpoints'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     Link:
       type: object
       properties:
@@ -264,45 +303,6 @@ components:
           format: int64
         accountUser:
           type: boolean
-    QueryAccountsInOrgResponseBody:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrgUser'
-        page:
-          type: integer
-          format: int64
-        size:
-          type: integer
-          format: int64
-        totalAccounts:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int64
-    UserOrg:
-      type: object
-      properties:
-        orgId:
-          type: string
-        name:
-          type: string
-        role:
-          type: string
-          enum:
-          - MEMBER
-          - ADMIN
-        storageId:
-          type: string
-        endpoints:
-          $ref: '#/components/schemas/ScaleUnitEndpoints'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
   securitySchemes:
     BearerAuth:
       type: http

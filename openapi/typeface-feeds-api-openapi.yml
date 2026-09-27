@@ -208,39 +208,15 @@ paths:
       summary: Delete Feed Item
 components:
   schemas:
-    PatchOperation:
-      type: object
-      properties:
-        op:
-          type: string
-          enum:
-          - replace
-          - add
-        path:
-          type: string
-        value:
-          type: object
     JsonNode:
       type: object
-    QueryFeedItemsResponseBody:
+    PatchFeedRequestBody:
       type: object
       properties:
-        feedItems:
+        operations:
           type: array
           items:
-            $ref: '#/components/schemas/EntityModelFeedItem'
-        nextCursor:
-          type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    SseEmitter:
-      type: object
-      properties:
-        timeout:
-          type: integer
-          format: int64
+            $ref: '#/components/schemas/PatchOperation'
     GenerateFeedItemRequestBody:
       type: object
       properties:
@@ -273,34 +249,19 @@ components:
           type: object
           additionalProperties:
             type: object
-    PatchFeedRequestBody:
+    QueryFeedItemsResponseBody:
       type: object
       properties:
-        operations:
+        feedItems:
           type: array
           items:
-            $ref: '#/components/schemas/PatchOperation'
-    Link:
-      type: object
-      properties:
-        rel:
+            $ref: '#/components/schemas/EntityModelFeedItem'
+        nextCursor:
           type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        media:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        profile:
-          type: string
-        name:
-          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     EntityModelFeedItem:
       type: object
       properties:
@@ -353,6 +314,45 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    PatchOperation:
+      type: object
+      properties:
+        op:
+          type: string
+          enum:
+          - replace
+          - add
+        path:
+          type: string
+        value:
+          type: object
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+    SseEmitter:
+      type: object
+      properties:
+        timeout:
+          type: integer
+          format: int64
   securitySchemes:
     BearerAuth:
       type: http
