@@ -122,6 +122,34 @@ paths:
       summary: Rotate Application Secret
 components:
   schemas:
+    ApplicationCredential:
+      type: object
+      properties:
+        ordinal:
+          type: string
+          enum:
+          - PRIMARY
+          - SECONDARY
+        applicationSecret:
+          type: string
+    CreateApplicationResponseBody:
+      type: object
+      properties:
+        applicationId:
+          type: string
+        displayName:
+          type: string
+        credentials:
+          type: array
+          items:
+            $ref: '#/components/schemas/ApplicationCredential'
+    RotateApplicationKeyResponseBody:
+      type: object
+      properties:
+        applicationId:
+          type: string
+        credential:
+          $ref: '#/components/schemas/ApplicationCredential'
     CreateApplicationRequestBody:
       type: object
       properties:
@@ -141,34 +169,6 @@ components:
           type: array
           items:
             type: string
-    ApplicationCredential:
-      type: object
-      properties:
-        ordinal:
-          type: string
-          enum:
-          - PRIMARY
-          - SECONDARY
-        applicationSecret:
-          type: string
-    RotateApplicationKeyResponseBody:
-      type: object
-      properties:
-        applicationId:
-          type: string
-        credential:
-          $ref: '#/components/schemas/ApplicationCredential'
-    CreateApplicationResponseBody:
-      type: object
-      properties:
-        applicationId:
-          type: string
-        displayName:
-          type: string
-        credentials:
-          type: array
-          items:
-            $ref: '#/components/schemas/ApplicationCredential'
     RotateApplicationKeyRequestBody:
       type: object
   securitySchemes:

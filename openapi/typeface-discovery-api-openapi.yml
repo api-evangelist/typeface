@@ -134,11 +134,47 @@ paths:
         ```'
 components:
   schemas:
-    GetUserResponseBody:
+    Link:
       type: object
       properties:
-        user:
-          $ref: '#/components/schemas/User'
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+    UserOrg:
+      type: object
+      properties:
+        orgId:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+          enum:
+          - MEMBER
+          - ADMIN
+        storageId:
+          type: string
+        endpoints:
+          $ref: '#/components/schemas/ScaleUnitEndpoints'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     EntityModelUserAccount:
       type: object
       properties:
@@ -171,45 +207,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    QueryAccountsInOrgResponseBody:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrgUser'
-        page:
-          type: integer
-          format: int64
-        size:
-          type: integer
-          format: int64
-        totalAccounts:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int64
-    ScaleUnitEndpoints:
-      type: object
-      properties:
-        socketIOHost:
-          type: string
-        apiWSEndpoint:
-          type: string
-        apiHttpEndpoint:
-          type: string
-    OrgCreatedBy:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        picture:
-          type: string
-        email:
-          type: string
     User:
       type: object
       properties:
@@ -237,47 +234,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserOrg'
-    UserOrg:
-      type: object
-      properties:
-        orgId:
-          type: string
-        name:
-          type: string
-        role:
-          type: string
-          enum:
-          - MEMBER
-          - ADMIN
-        storageId:
-          type: string
-        endpoints:
-          $ref: '#/components/schemas/ScaleUnitEndpoints'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        media:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        profile:
-          type: string
-        name:
-          type: string
     OrgUser:
       type: object
       properties:
@@ -303,6 +259,50 @@ components:
           format: int64
         accountUser:
           type: boolean
+    ScaleUnitEndpoints:
+      type: object
+      properties:
+        socketIOHost:
+          type: string
+        apiWSEndpoint:
+          type: string
+        apiHttpEndpoint:
+          type: string
+    OrgCreatedBy:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        picture:
+          type: string
+        email:
+          type: string
+    GetUserResponseBody:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    QueryAccountsInOrgResponseBody:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrgUser'
+        page:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int64
+        totalAccounts:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int64
   securitySchemes:
     BearerAuth:
       type: http

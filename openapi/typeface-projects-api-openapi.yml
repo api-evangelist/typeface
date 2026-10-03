@@ -204,19 +204,95 @@ paths:
       summary: Project - Get Layout
 components:
   schemas:
-    ImageProperties:
+    Link:
       type: object
       properties:
-        blobId:
-          $ref: '#/components/schemas/BlobId'
-    JsonNode:
-      type: object
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
     EntityId:
       type: object
       properties:
         id:
           type: integer
           format: int64
+    QueryLayoutManifestResponseBody:
+      type: object
+      properties:
+        layoutManifests:
+          type: array
+          properties:
+            empty:
+              type: boolean
+          items:
+            $ref: '#/components/schemas/LayoutManifest'
+    LayoutManifestProperties:
+      type: object
+      properties:
+        layoutData:
+          type: object
+          additionalProperties:
+            type: object
+        blobId:
+          $ref: '#/components/schemas/BlobId'
+    WorkspaceId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    Image:
+      type: object
+      properties:
+        workspaceId:
+          $ref: '#/components/schemas/WorkspaceId'
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/ImageProperties'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+    UpdateProjectRequestBody:
+      type: object
+      properties:
+        name:
+          type: string
+    ImageProperties:
+      type: object
+      properties:
+        blobId:
+          $ref: '#/components/schemas/BlobId'
     LayoutManifest:
       required:
       - id
@@ -258,47 +334,30 @@ components:
           - GENERATED_IMAGE_PARENT
           - DOCUMENT_INTERMEDIATE
           - DOCUMENT_LAYOUT_HTML
-    UpdateProjectRequestBody:
+    GetLayoutManifestResponseBody:
       type: object
       properties:
-        name:
-          type: string
-    LayoutManifestProperties:
+        layoutManifest:
+          $ref: '#/components/schemas/LayoutManifest'
+    JsonNode:
+      type: object
+    QueryProjectResponseBody:
       type: object
       properties:
-        layoutData:
-          type: object
-          additionalProperties:
-            type: object
-        blobId:
-          $ref: '#/components/schemas/BlobId'
-    Image:
+        projects:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelProject'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    BlobId:
       type: object
       properties:
-        workspaceId:
-          $ref: '#/components/schemas/WorkspaceId'
         id:
-          $ref: '#/components/schemas/EntityId'
-        name:
-          type: string
-        sourcePath:
-          type: string
-        ingestionSource:
-          type: string
-        properties:
-          $ref: '#/components/schemas/ImageProperties'
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        renditionId:
-          $ref: '#/components/schemas/EntityId'
-        createdBy:
-          type: string
-        modifiedBy:
-          type: string
+          type: integer
+          format: int64
     ProjectDetails:
       type: object
       properties:
@@ -331,49 +390,6 @@ components:
           - DECORATION_LIBRARY
           - AUDIENCE_LIBRARY
           - LOGO_LIBRARY
-    QueryProjectResponseBody:
-      type: object
-      properties:
-        projects:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityModelProject'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    QueryLayoutManifestResponseBody:
-      type: object
-      properties:
-        layoutManifests:
-          type: array
-          properties:
-            empty:
-              type: boolean
-          items:
-            $ref: '#/components/schemas/LayoutManifest'
-    GetLayoutManifestResponseBody:
-      type: object
-      properties:
-        layoutManifest:
-          $ref: '#/components/schemas/LayoutManifest'
-    BlobId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-    WorkspaceId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-    CreateProjectRequestBody:
-      type: object
-      properties:
-        name:
-          type: string
     QueryProjectsResponseBody:
       type: object
       properties:
@@ -381,25 +397,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ProjectDetails'
-    Link:
+    CreateProjectRequestBody:
       type: object
       properties:
-        rel:
-          type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        media:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        profile:
-          type: string
         name:
           type: string
     EntityModelProject:

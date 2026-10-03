@@ -208,8 +208,27 @@ paths:
       summary: Delete Feed Item
 components:
   schemas:
-    JsonNode:
+    Link:
       type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
     PatchFeedRequestBody:
       type: object
       properties:
@@ -217,6 +236,19 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PatchOperation'
+    QueryFeedItemsResponseBody:
+      type: object
+      properties:
+        feedItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelFeedItem'
+        nextCursor:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
     GenerateFeedItemRequestBody:
       type: object
       properties:
@@ -249,19 +281,6 @@ components:
           type: object
           additionalProperties:
             type: object
-    QueryFeedItemsResponseBody:
-      type: object
-      properties:
-        feedItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityModelFeedItem'
-        nextCursor:
-          type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     EntityModelFeedItem:
       type: object
       properties:
@@ -314,6 +333,14 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    JsonNode:
+      type: object
+    SseEmitter:
+      type: object
+      properties:
+        timeout:
+          type: integer
+          format: int64
     PatchOperation:
       type: object
       properties:
@@ -326,33 +353,6 @@ components:
           type: string
         value:
           type: object
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        media:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        profile:
-          type: string
-        name:
-          type: string
-    SseEmitter:
-      type: object
-      properties:
-        timeout:
-          type: integer
-          format: int64
   securitySchemes:
     BearerAuth:
       type: http

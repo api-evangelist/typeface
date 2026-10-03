@@ -644,6 +644,99 @@ paths:
       summary: Delete Tag
 components:
   schemas:
+    SearchTagsRequestBody:
+      type: object
+      properties:
+        query:
+          type: string
+          description: 'Search query string. If a tag has child tags, searching for it also returns all tags under it. When omitted or empty, all tags are returned.
+
+            '
+        status:
+          type: string
+          enum:
+          - ACTIVE
+          - INACTIVE
+          - DEPRECATED
+          - REJECTED
+          - PENDING
+          description: 'Filter tags by status. When omitted, defaults to ACTIVE. Use PENDING to list newly discovered tag candidates that have not yet been reviewed.
+
+            '
+        cursor:
+          type: string
+          description: 'Cursor for pagination.
+
+            '
+        limit:
+          type: integer
+          description: 'Maximum number of tags to return.
+
+            '
+    SearchTagsResponseBody:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchTagDetails'
+        nextCursor:
+          type: string
+    SearchTagDetails:
+      description: Tag details returned when searching tags. Includes all fields from TagDetails plus the full hierarchy path.
+      allOf:
+      - $ref: '#/components/schemas/TagDetails'
+      - type: object
+        properties:
+          fullPath:
+            type: string
+            description: ':: delimited path of tag names from root to this tag. E.g., marketing::social_media::instagram
+
+              '
+          pathIds:
+            type: array
+            items:
+              type: integer
+              format: int64
+            description: 'Ordered list of tag IDs corresponding to each segment in fullPath, from root to this tag. E.g., [100, 101, 103]
+
+              '
+    PatchTagRequestBody:
+      type: object
+      description: Request body for patching a tag. Supports 'replace' operation on '/name', '/displayName', '/status', and '/description' paths.
+      properties:
+        operations:
+          type: array
+          items:
+            type: object
+            properties:
+              op:
+                type: string
+                enum:
+                - replace
+              path:
+                type: string
+                enum:
+                - /name
+                - /displayName
+                - /status
+                - /description
+                description: 'The field to update.
+
+                  - `/name` — Update the tag''s identifier name.
+
+                  - `/displayName` — Update the tag''s human-readable display name.
+
+                  - `/status` — Update the tag''s status. Allowed values are `ACTIVE`, `INACTIVE`, `DEPRECATED`, `REJECTED`, or `PENDING`.
+
+                  - `/description` — Update the tag''s description.
+
+                  '
+              value:
+                type: string
+                description: 'The new value for the field specified in `path`.
+
+                  '
     TagDetails:
       type: object
       properties:
@@ -686,15 +779,6 @@ components:
           type: string
         modifiedBy:
           type: string
-    SearchTagsResponseBody:
-      type: object
-      properties:
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchTagDetails'
-        nextCursor:
-          type: string
     CreateTagsRequestBody:
       type: object
       required:
@@ -722,54 +806,6 @@ components:
               description:
                 type: string
                 description: Human-readable description of what the tag represents
-    SearchTagDetails:
-      description: Tag details returned when searching tags. Includes all fields from TagDetails plus the full hierarchy path.
-      allOf:
-      - $ref: '#/components/schemas/TagDetails'
-      - type: object
-        properties:
-          fullPath:
-            type: string
-            description: ':: delimited path of tag names from root to this tag. E.g., marketing::social_media::instagram
-
-              '
-          pathIds:
-            type: array
-            items:
-              type: integer
-              format: int64
-            description: 'Ordered list of tag IDs corresponding to each segment in fullPath, from root to this tag. E.g., [100, 101, 103]
-
-              '
-    SearchTagsRequestBody:
-      type: object
-      properties:
-        query:
-          type: string
-          description: 'Search query string. If a tag has child tags, searching for it also returns all tags under it. When omitted or empty, all tags are returned.
-
-            '
-        status:
-          type: string
-          enum:
-          - ACTIVE
-          - INACTIVE
-          - DEPRECATED
-          - REJECTED
-          - PENDING
-          description: 'Filter tags by status. When omitted, defaults to ACTIVE. Use PENDING to list newly discovered tag candidates that have not yet been reviewed.
-
-            '
-        cursor:
-          type: string
-          description: 'Cursor for pagination.
-
-            '
-        limit:
-          type: integer
-          description: 'Maximum number of tags to return.
-
-            '
     CreateTagsResponseBody:
       type: object
       description: Response for bulk tag creation. Each tag in the request is processed independently. The top-level `success` field is `true` only when every tag was created successfully. If any tag fails, `success` is `false` and the failed items include an `errorMessage`.
@@ -791,42 +827,6 @@ components:
               errorMessage:
                 type: string
                 description: Error detail when `success` is `false`. Not present on successful items.
-    PatchTagRequestBody:
-      type: object
-      description: Request body for patching a tag. Supports 'replace' operation on '/name', '/displayName', '/status', and '/description' paths.
-      properties:
-        operations:
-          type: array
-          items:
-            type: object
-            properties:
-              op:
-                type: string
-                enum:
-                - replace
-              path:
-                type: string
-                enum:
-                - /name
-                - /displayName
-                - /status
-                - /description
-                description: 'The field to update.
-
-                  - `/name` — Update the tag''s identifier name.
-
-                  - `/displayName` — Update the tag''s human-readable display name.
-
-                  - `/status` — Update the tag''s status. Allowed values are `ACTIVE`, `INACTIVE`, `DEPRECATED`, `REJECTED`, or `PENDING`.
-
-                  - `/description` — Update the tag''s description.
-
-                  '
-              value:
-                type: string
-                description: 'The new value for the field specified in `path`.
-
-                  '
   securitySchemes:
     BearerAuth:
       type: http
