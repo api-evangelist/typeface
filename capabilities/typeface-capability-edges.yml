@@ -1,0 +1,38 @@
+slug: typeface
+provider: Typeface
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 2
+edges:
+- tag: Brand Kits
+  spec_file: typeface-brand-kits-api-openapi.yml
+  capability_id: BC-400.20
+  capability_id_l1: BC-400
+  capability_name: Brand Management
+  confidence: 0.8
+  evidence: POST /workspace-resolver-service/accounts/{accountId}/libraries  createBrandKitInAccount  Create
+    Brand Kit; POST .../brand-kits/{brandKitId}/style-types/image/{styleId}/train  Train Brand-kit image
+    style
+  reason: Operations define and govern brand kits and brand styles (text/image styles) that constrain
+    on-brand content generation — brand identity and governance assets. Maps to Brand Management; slight
+    ambiguity only because the artefacts also feed content production tooling.
+- tag: Content Generation
+  spec_file: typeface-content-generation-api-openapi.yml
+  capability_id: BC-400.70
+  capability_id_l1: BC-400
+  capability_name: Content Marketing Management
+  confidence: 0.7
+  evidence: POST /batch-service/.../generate  Generate Content; GET /content-service/workspace/{projectId}/documents/{documentId}/read-only  Get
+    Generated Content
+  reason: Operations submit content generation jobs and retrieve the generated marketing document content,
+    i.e. marketing content production. Mapped to Content Marketing Management; the batch-job polling is
+    plumbing but the generated artefact is marketing content.

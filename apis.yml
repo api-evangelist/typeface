@@ -290,6 +290,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/typeface-capability-edges.yml
+  name: Typeface Business Capability Map
 - type: Overlay
   url: overlays/typeface-api-overlay.yaml
 - type: Website
