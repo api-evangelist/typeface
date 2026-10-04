@@ -122,6 +122,8 @@ paths:
       summary: Rotate Application Secret
 components:
   schemas:
+    RotateApplicationKeyRequestBody:
+      type: object
     ApplicationCredential:
       type: object
       properties:
@@ -169,8 +171,6 @@ components:
           type: array
           items:
             type: string
-    RotateApplicationKeyRequestBody:
-      type: object
   securitySchemes:
     BearerAuth:
       type: http

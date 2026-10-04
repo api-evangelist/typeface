@@ -208,6 +208,19 @@ paths:
       summary: Delete Feed Item
 components:
   schemas:
+    SseEmitter:
+      type: object
+      properties:
+        timeout:
+          type: integer
+          format: int64
+    PatchFeedRequestBody:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/PatchOperation'
     Link:
       type: object
       properties:
@@ -229,13 +242,6 @@ components:
           type: string
         name:
           type: string
-    PatchFeedRequestBody:
-      type: object
-      properties:
-        operations:
-          type: array
-          items:
-            $ref: '#/components/schemas/PatchOperation'
     QueryFeedItemsResponseBody:
       type: object
       properties:
@@ -249,6 +255,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    PatchOperation:
+      type: object
+      properties:
+        op:
+          type: string
+          enum:
+          - replace
+          - add
+        path:
+          type: string
+        value:
+          type: object
+    JsonNode:
+      type: object
     GenerateFeedItemRequestBody:
       type: object
       properties:
@@ -333,26 +353,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    JsonNode:
-      type: object
-    SseEmitter:
-      type: object
-      properties:
-        timeout:
-          type: integer
-          format: int64
-    PatchOperation:
-      type: object
-      properties:
-        op:
-          type: string
-          enum:
-          - replace
-          - add
-        path:
-          type: string
-        value:
-          type: object
   securitySchemes:
     BearerAuth:
       type: http

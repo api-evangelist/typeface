@@ -419,6 +419,60 @@ paths:
       summary: Train Brand-kit image style
 components:
   schemas:
+    ImageProperties:
+      type: object
+      properties:
+        blobId:
+          $ref: '#/components/schemas/BlobId'
+    CreateLibraryResponseBody:
+      type: object
+      properties:
+        libraryDetails:
+          $ref: '#/components/schemas/LibraryDetails'
+    QueryBrandKitStylesResponseBody:
+      type: object
+      properties:
+        styles:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelBrandKitStyle'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    UploadImageToBrandKitStyleRequestBody:
+      type: object
+      properties:
+        contentUrl:
+          type: string
+          description: URL from where the content can be downloaded. This should be a pre-signed url
+        content:
+          type: string
+          description: File to be uploaded. Either the contentUrl or content field should be passed in a single request
+          format: binary
+    GetLibrariesResponseBody:
+      type: object
+      properties:
+        libraries:
+          type: array
+          items:
+            $ref: '#/components/schemas/LibraryDetails'
+    LibraryProperties:
+      type: object
+      properties:
+        hideBrandKit:
+          type: boolean
+        defaultTextStyleId:
+          type: integer
+          format: int64
+        defaultImageStyleId:
+          type: integer
+          format: int64
+        defaultColorPaletteId:
+          type: integer
+          format: int64
+        defaultLanguage:
+          type: string
     EntityModelBrandKitStyle:
       type: object
       properties:
@@ -509,36 +563,14 @@ components:
           - DECORATION_LIBRARY
           - AUDIENCE_LIBRARY
           - LOGO_LIBRARY
-    EntityId:
+    CreateBrandKitStyleRequestBody:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-    QueryBrandKitStylesResponseBody:
-      type: object
-      properties:
-        styles:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityModelBrandKitStyle'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    GetLibrariesResponseBody:
-      type: object
-      properties:
-        libraries:
-          type: array
-          items:
-            $ref: '#/components/schemas/LibraryDetails'
-    WorkspaceId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
+        name:
+          type: string
+        subType:
+          type: string
+          default: BRAND_KIT_LIBRARY
     Image:
       type: object
       properties:
@@ -566,58 +598,26 @@ components:
           type: string
         modifiedBy:
           type: string
-    ImageProperties:
-      type: object
-      properties:
-        blobId:
-          $ref: '#/components/schemas/BlobId'
-    UploadImageToBrandKitStyleRequestBody:
-      type: object
-      properties:
-        contentUrl:
-          type: string
-          description: URL from where the content can be downloaded. This should be a pre-signed url
-        content:
-          type: string
-          description: File to be uploaded. Either the contentUrl or content field should be passed in a single request
-          format: binary
-    CreateBrandKitStyleRequestBody:
-      type: object
-      properties:
-        name:
-          type: string
-        subType:
-          type: string
-          default: BRAND_KIT_LIBRARY
-    JsonNode:
-      type: object
     BlobId:
       type: object
       properties:
         id:
           type: integer
           format: int64
-    CreateLibraryResponseBody:
+    WorkspaceId:
       type: object
       properties:
-        libraryDetails:
-          $ref: '#/components/schemas/LibraryDetails'
-    LibraryProperties:
+        id:
+          type: integer
+          format: int64
+    JsonNode:
+      type: object
+    EntityId:
       type: object
       properties:
-        hideBrandKit:
-          type: boolean
-        defaultTextStyleId:
+        id:
           type: integer
           format: int64
-        defaultImageStyleId:
-          type: integer
-          format: int64
-        defaultColorPaletteId:
-          type: integer
-          format: int64
-        defaultLanguage:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

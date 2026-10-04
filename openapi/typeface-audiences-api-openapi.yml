@@ -239,19 +239,52 @@ paths:
       summary: Delete Audience
 components:
   schemas:
-    UpdateAudienceRequestBody:
+    CreateAudienceResponseBody:
+      required:
+      - audienceSegment
       type: object
       properties:
+        audienceSegment:
+          $ref: '#/components/schemas/AudienceSegment'
+    ImageProperties:
+      type: object
+      properties:
+        blobId:
+          $ref: '#/components/schemas/BlobId'
+    UpdateAudienceResponseBody:
+      type: object
+      properties:
+        audienceSegment:
+          $ref: '#/components/schemas/AudienceSegment'
+    AudienceSegment:
+      type: object
+      properties:
+        workspaceId:
+          $ref: '#/components/schemas/WorkspaceId'
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
         sourcePath:
           type: string
         ingestionSource:
           type: string
         properties:
           $ref: '#/components/schemas/AudienceSegmentProperties'
-        name:
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        createdBy:
+          type: string
+        modifiedBy:
           type: string
         renditionId:
           $ref: '#/components/schemas/EntityId'
+        ref:
+          type: string
         entitySubType:
           type: string
           enum:
@@ -259,6 +292,29 @@ components:
           - GENERATED_IMAGE_PARENT
           - DOCUMENT_INTERMEDIATE
           - DOCUMENT_LAYOUT_HTML
+    GetLibrariesResponseBody:
+      type: object
+      properties:
+        libraries:
+          type: array
+          items:
+            $ref: '#/components/schemas/LibraryDetails'
+    LibraryProperties:
+      type: object
+      properties:
+        hideBrandKit:
+          type: boolean
+        defaultTextStyleId:
+          type: integer
+          format: int64
+        defaultImageStyleId:
+          type: integer
+          format: int64
+        defaultColorPaletteId:
+          type: integer
+          format: int64
+        defaultLanguage:
+          type: string
     LibraryDetails:
       type: object
       properties:
@@ -291,32 +347,46 @@ components:
           - DECORATION_LIBRARY
           - AUDIENCE_LIBRARY
           - LOGO_LIBRARY
-    EntityId:
+    CreateAudienceRequestBody:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-    GetLibrariesResponseBody:
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/AudienceSegmentProperties'
+        name:
+          type: string
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        entitySubType:
+          type: string
+          enum:
+          - DEFAULT
+          - GENERATED_IMAGE_PARENT
+          - DOCUMENT_INTERMEDIATE
+          - DOCUMENT_LAYOUT_HTML
+    UpdateAudienceRequestBody:
       type: object
       properties:
-        libraries:
-          type: array
-          items:
-            $ref: '#/components/schemas/LibraryDetails'
-    CreateAudienceResponseBody:
-      required:
-      - audienceSegment
-      type: object
-      properties:
-        audienceSegment:
-          $ref: '#/components/schemas/AudienceSegment'
-    WorkspaceId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/AudienceSegmentProperties'
+        name:
+          type: string
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        entitySubType:
+          type: string
+          enum:
+          - DEFAULT
+          - GENERATED_IMAGE_PARENT
+          - DOCUMENT_INTERMEDIATE
+          - DOCUMENT_LAYOUT_HTML
     Image:
       type: object
       properties:
@@ -344,11 +414,24 @@ components:
           type: string
         modifiedBy:
           type: string
-    ImageProperties:
+    BlobId:
       type: object
       properties:
-        blobId:
-          $ref: '#/components/schemas/BlobId'
+        id:
+          type: integer
+          format: int64
+    WorkspaceId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
     QueryAudienceResponseBody:
       type: object
       properties:
@@ -390,89 +473,6 @@ components:
             - Luxury
             - Experimental
             - Impulsive
-    CreateAudienceRequestBody:
-      type: object
-      properties:
-        sourcePath:
-          type: string
-        ingestionSource:
-          type: string
-        properties:
-          $ref: '#/components/schemas/AudienceSegmentProperties'
-        name:
-          type: string
-        renditionId:
-          $ref: '#/components/schemas/EntityId'
-        entitySubType:
-          type: string
-          enum:
-          - DEFAULT
-          - GENERATED_IMAGE_PARENT
-          - DOCUMENT_INTERMEDIATE
-          - DOCUMENT_LAYOUT_HTML
-    UpdateAudienceResponseBody:
-      type: object
-      properties:
-        audienceSegment:
-          $ref: '#/components/schemas/AudienceSegment'
-    BlobId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-    AudienceSegment:
-      type: object
-      properties:
-        workspaceId:
-          $ref: '#/components/schemas/WorkspaceId'
-        id:
-          $ref: '#/components/schemas/EntityId'
-        name:
-          type: string
-        sourcePath:
-          type: string
-        ingestionSource:
-          type: string
-        properties:
-          $ref: '#/components/schemas/AudienceSegmentProperties'
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        createdBy:
-          type: string
-        modifiedBy:
-          type: string
-        renditionId:
-          $ref: '#/components/schemas/EntityId'
-        ref:
-          type: string
-        entitySubType:
-          type: string
-          enum:
-          - DEFAULT
-          - GENERATED_IMAGE_PARENT
-          - DOCUMENT_INTERMEDIATE
-          - DOCUMENT_LAYOUT_HTML
-    LibraryProperties:
-      type: object
-      properties:
-        hideBrandKit:
-          type: boolean
-        defaultTextStyleId:
-          type: integer
-          format: int64
-        defaultImageStyleId:
-          type: integer
-          format: int64
-        defaultColorPaletteId:
-          type: integer
-          format: int64
-        defaultLanguage:
-          type: string
   securitySchemes:
     BearerAuth:
       type: http

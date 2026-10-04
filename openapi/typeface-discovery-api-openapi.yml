@@ -134,6 +134,36 @@ paths:
         ```'
 components:
   schemas:
+    GetUserResponseBody:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    OrgUser:
+      type: object
+      properties:
+        accountId:
+          type: string
+        displayName:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/OrgCreatedBy'
+        accountCreatedAt:
+          type: string
+          format: date-time
+        accountModifiedAt:
+          type: string
+          format: date-time
+        scaleUnitId:
+          type: integer
+          format: int64
+        orgId:
+          type: string
+        activeMembers:
+          type: integer
+          format: int64
+        accountUser:
+          type: boolean
     Link:
       type: object
       properties:
@@ -155,26 +185,6 @@ components:
           type: string
         name:
           type: string
-    UserOrg:
-      type: object
-      properties:
-        orgId:
-          type: string
-        name:
-          type: string
-        role:
-          type: string
-          enum:
-          - MEMBER
-          - ADMIN
-        storageId:
-          type: string
-        endpoints:
-          $ref: '#/components/schemas/ScaleUnitEndpoints'
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     EntityModelUserAccount:
       type: object
       properties:
@@ -207,6 +217,56 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
+    UserOrg:
+      type: object
+      properties:
+        orgId:
+          type: string
+        name:
+          type: string
+        role:
+          type: string
+          enum:
+          - MEMBER
+          - ADMIN
+        storageId:
+          type: string
+        endpoints:
+          $ref: '#/components/schemas/ScaleUnitEndpoints'
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    QueryAccountsInOrgResponseBody:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrgUser'
+        page:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int64
+        totalAccounts:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int64
+    OrgCreatedBy:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        picture:
+          type: string
+        email:
+          type: string
     User:
       type: object
       properties:
@@ -234,31 +294,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/UserOrg'
-    OrgUser:
-      type: object
-      properties:
-        accountId:
-          type: string
-        displayName:
-          type: string
-        createdBy:
-          $ref: '#/components/schemas/OrgCreatedBy'
-        accountCreatedAt:
-          type: string
-          format: date-time
-        accountModifiedAt:
-          type: string
-          format: date-time
-        scaleUnitId:
-          type: integer
-          format: int64
-        orgId:
-          type: string
-        activeMembers:
-          type: integer
-          format: int64
-        accountUser:
-          type: boolean
     ScaleUnitEndpoints:
       type: object
       properties:
@@ -268,41 +303,6 @@ components:
           type: string
         apiHttpEndpoint:
           type: string
-    OrgCreatedBy:
-      type: object
-      properties:
-        id:
-          type: string
-        name:
-          type: string
-        picture:
-          type: string
-        email:
-          type: string
-    GetUserResponseBody:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-    QueryAccountsInOrgResponseBody:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrgUser'
-        page:
-          type: integer
-          format: int64
-        size:
-          type: integer
-          format: int64
-        totalAccounts:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int64
   securitySchemes:
     BearerAuth:
       type: http
