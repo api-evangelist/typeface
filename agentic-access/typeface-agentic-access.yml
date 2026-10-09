@@ -1,23 +1,98 @@
-generated: '2026-07-21'
+generated: '2026-09-23'
 method: generated
-source: openapi/typeface-api-openapi.json, openapi/typeface-content-workflow-openapi.json, openapi/typeface-documents-search-openapi.json,
-  openapi/typeface-team-users-openapi.json
+source: openapi/typeface-audiences-api-openapi.yml, openapi/typeface-authentication-api-openapi.yml,
+  openapi/typeface-basic-services-api-openapi.yml, openapi/typeface-brand-kits-api-openapi.yml,
+  openapi/typeface-content-generation-api-openapi.yml, openapi/typeface-content-service-api-openapi.yml,
+  openapi/typeface-digital-assets-api-openapi.yml, openapi/typeface-discovery-api-openapi.yml,
+  openapi/typeface-feeds-api-openapi.yml, openapi/typeface-profile-service-api-openapi.yml,
+  openapi/typeface-projects-api-openapi.yml, openapi/typeface-provisioning-api-openapi.yml,
+  openapi/typeface-provisioning-service-api-openapi.yml, openapi/typeface-search-service-api-openapi.yml,
+  openapi/typeface-tag-library-api-openapi.yml
 description: Recommended x-agentic-access execution contracts, classified heuristically from
   the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
   audience per deployment. See research/curity/agentic-governance/.
 summary:
   operations: 64
   by_action_class:
-    acting: 38
-    connected: 26
+    connected: 29
+    acting: 35
   by_consequence:
-    write: 36
-    read: 26
+    read: 29
+    write: 33
     physical: 2
   human_in_the_loop_required: 0
 operations:
+- path: /workspace-resolver-service/accounts/{accountId}/libraries/sub-types/AUDIENCE_LIBRARY
+  method: get
+  operationId: queryAudienceCatalogsInAccount
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /profile-service/accounts/{accountId}/audience-catalogs/{audienceCatalogId}/audience-segments
+  method: get
+  operationId: queryAudiencesInAccount
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /profile-service/accounts/{accountId}/audience-catalogs/{audienceCatalogId}/audience-segments
+  method: post
+  operationId: createAudienceInAccount
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /profile-service/accounts/{accountId}/audience-catalogs/{audienceCatalogId}/audience-segments/{audienceId}
+  method: put
+  operationId: manageAudienceInAccount
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /profile-service/accounts/{accountId}/audience-catalogs/{audienceCatalogId}/audience-segments/{audienceId}
+  method: delete
+  operationId: deleteAudienceInAccount
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /oauth2/token
   method: post
+  operationId: postOauth2Token
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -63,9 +138,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /identity-service/discover
+- path: /basic-services/document-export-service/accounts/{accountId}/workspaces/{projectId}/document/{documentId}/export/pdf
   method: get
-  operationId: discoverIdentity
+  operationId: getDocumentPdf
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -73,9 +148,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /orgs/{orgId}/accounts
+- path: /workspace-resolver-service/accounts/{accountId}/libraries/sub-types/BRAND_KIT_LIBRARY
   method: get
-  operationId: queryAccountsInOrg
+  operationId: queryBrandsInAccount
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -83,55 +158,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /provisioning-service/account
+- path: /workspace-resolver-service/accounts/{accountId}/libraries
   method: post
-  operationId: createAccount
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /provisioning-service/account/{accountId}
-  method: delete
-  operationId: deleteAccountById
-  x-agentic-access:
-    action-class: acting
-    consequence: physical
-    subject: required
-    audience: null
-    token:
-      max-ttl: 300
-      exchange: true
-      purpose-required: true
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workspace-service/accounts/{accountId}/projects
-  method: get
-  operationId: queryProjectsInAccount_1
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /workspace-service/accounts/{accountId}/projects
-  method: post
-  operationId: createProjectInAccount
+  operationId: createBrandKitInAccount
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -145,9 +174,25 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workspace-service/accounts/{accountId}/projects/{projectId}
+- path: /workspace-resolver-service/accounts/{accountId}/libraries/{brandKitId}
+  method: delete
+  operationId: deleteBrandKitInAccount
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /profile-service/accounts/{accountId}/brand-kits/{brandKitId}/style-types/{styleType}
   method: get
-  operationId: getProjectInAccount
+  operationId: getStyleinBrandkit
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -155,9 +200,103 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /workspace-service/accounts/{accountId}/projects/{projectId}
+- path: /profile-service/accounts/{accountId}/brand-kits/{brandKitId}/style-types/{styleType}
+  method: post
+  operationId: createStyleinBrandkit
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /profile-service/accounts/{accountId}/brand-kits/{brandKitId}/style-types/{styleType}/{styleId}/images
+  method: post
+  operationId: uploadImageInBrandKitStyle
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /profile-service/accounts/{accountId}/brand-kits/{brandKitId}/style-types/image/{styleId}/train
+  method: post
+  operationId: trainBrandKitImagestyle
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /batch-service/accounts/{accountId}/projects/{projectId}/generate
+  method: post
+  operationId: postBatchServiceAccountsByAccountIdProjectsByProjectIdGenerate
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /batch-service/accounts/{accountId}/projects/{projectId}/batch-jobs/{monitorId}
+  method: get
+  operationId: getBatchServiceAccountsByAccountIdProjectsByProjectIdBatchJobsByMonitorId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /content-service/workspace/{projectId}/documents/{documentId}/read-only
+  method: get
+  operationId: getReadOnlyDocument
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /content-service/accounts/{accountId}/projects/{projectId}/documents/{documentId}/assignees
+  method: get
+  operationId: getDocumentAssignees
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /content-service/accounts/{accountId}/projects/{projectId}/documents/{documentId}/assignees
   method: put
-  operationId: updateProjectInAccount
+  operationId: updateDocumentAssignees
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -171,9 +310,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workspace-service/accounts/{accountId}/projects/{projectId}
-  method: delete
-  operationId: deleteProjectInAccount
+- path: /content-service/accounts/{accountId}/projects/{projectId}/documents/{documentId}/workflow
+  method: post
+  operationId: addDocumentWorkflow
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -187,26 +326,38 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /content-service/workspace/{projectId}/layout-manifests
-  method: get
-  operationId: queryLayoutManifestsInProject
+- path: /content-service/accounts/{accountId}/projects/{projectId}/documents/{documentId}/workflow
+  method: patch
+  operationId: updateDocumentWorkflowStatusCopy
   x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
     token:
-      max-ttl: 3600
-    audit: none
-- path: /content-service/workspace/{projectId}/layout-manifests/{layoutId}
-  method: get
-  operationId: getLayoutManifestsInProject
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /content-service/workspace/{projectId}/documents
+  method: post
+  operationId: createDocument
   x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
     token:
-      max-ttl: 3600
-    audit: none
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
 - path: /profile-service/accounts/{accountId}/projects/{projectId}/assets
   method: get
   operationId: queryAssetsInProject
@@ -395,6 +546,36 @@ operations:
       - abnormal
       - high-value
     audit: required
+- path: /search-service/accounts/{accountId}/all-assets
+  method: post
+  operationId: searchAssets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /identity-service/discover
+  method: get
+  operationId: discoverIdentity
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /orgs/{orgId}/accounts
+  method: get
+  operationId: queryAccountsInOrg
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /feed-service/accounts/{accountId}/projects/{projectId}/feeds/{feedId}/feedItems
   method: get
   operationId: queryFeedItems
@@ -463,9 +644,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workspace-resolver-service/accounts/{accountId}/libraries/sub-types/AUDIENCE_LIBRARY
+- path: /profile-service/accounts/{accountId}/workflows
   method: get
-  operationId: queryAudienceCatalogsInAccount
+  operationId: getWorkflows
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -473,9 +654,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /profile-service/accounts/{accountId}/audience-catalogs/{audienceCatalogId}/audience-segments
+- path: /profile-service/accounts/{accountId}/workflows/{workflowId}/workflow-steps
   method: get
-  operationId: queryAudiencesInAccount
+  operationId: getWorkflowsSteps
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -483,9 +664,19 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /profile-service/accounts/{accountId}/audience-catalogs/{audienceCatalogId}/audience-segments
+- path: /workspace-service/accounts/{accountId}/projects
+  method: get
+  operationId: queryProjectsInAccount_1
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspace-service/accounts/{accountId}/projects
   method: post
-  operationId: createAudienceInAccount
+  operationId: createProjectInAccount
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -499,9 +690,19 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /profile-service/accounts/{accountId}/audience-catalogs/{audienceCatalogId}/audience-segments/{audienceId}
+- path: /workspace-service/accounts/{accountId}/projects/{projectId}
+  method: get
+  operationId: getProjectInAccount
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /workspace-service/accounts/{accountId}/projects/{projectId}
   method: put
-  operationId: manageAudienceInAccount
+  operationId: updateProjectInAccount
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -515,9 +716,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /profile-service/accounts/{accountId}/audience-catalogs/{audienceCatalogId}/audience-segments/{audienceId}
+- path: /workspace-service/accounts/{accountId}/projects/{projectId}
   method: delete
-  operationId: deleteAudienceInAccount
+  operationId: deleteProjectInAccount
   x-agentic-access:
     action-class: acting
     consequence: write
@@ -531,9 +732,9 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /workspace-resolver-service/accounts/{accountId}/libraries/sub-types/BRAND_KIT_LIBRARY
+- path: /content-service/workspace/{projectId}/layout-manifests
   method: get
-  operationId: queryBrandsInAccount
+  operationId: queryLayoutManifestsInProject
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -541,41 +742,9 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /workspace-resolver-service/accounts/{accountId}/libraries
-  method: post
-  operationId: createBrandKitInAccount
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /workspace-resolver-service/accounts/{accountId}/libraries/{brandKitId}
-  method: delete
-  operationId: deleteBrandKitInAccount
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /profile-service/accounts/{accountId}/brand-kits/{brandKitId}/style-types/{styleType}
+- path: /content-service/workspace/{projectId}/layout-manifests/{layoutId}
   method: get
-  operationId: getStyleinBrandkit
+  operationId: getLayoutManifestsInProject
   x-agentic-access:
     action-class: connected
     consequence: read
@@ -583,54 +752,62 @@ operations:
     token:
       max-ttl: 3600
     audit: none
-- path: /profile-service/accounts/{accountId}/brand-kits/{brandKitId}/style-types/{styleType}
+- path: /provisioning-service/account
   method: post
-  operationId: createStyleinBrandkit
+  operationId: createAccount
   x-agentic-access:
     action-class: acting
-    consequence: write
+    consequence: physical
     subject: required
     audience: null
     token:
-      max-ttl: 900
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
       - high-value
     audit: required
-- path: /profile-service/accounts/{accountId}/brand-kits/{brandKitId}/style-types/{styleType}/{styleId}/images
-  method: post
-  operationId: uploadImageInBrandKitStyle
+- path: /provisioning-service/account/{accountId}
+  method: delete
+  operationId: deleteAccountById
   x-agentic-access:
     action-class: acting
-    consequence: write
+    consequence: physical
     subject: required
     audience: null
     token:
-      max-ttl: 900
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
     escalation:
       human-in-the-loop: conditional
       triggers:
       - abnormal
       - high-value
     audit: required
-- path: /profile-service/accounts/{accountId}/brand-kits/{brandKitId}/style-types/image/{styleId}/train
-  method: post
-  operationId: trainBrandKitImagestyle
+- path: /provisioning-service/accounts/{accountId}/users
+  method: get
+  operationId: getUsers
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
+- path: /search-service/accounts/{accountId}/projects/{projectId}/all-assets
+  method: post
+  operationId: searchDocuments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
 - path: /profile-service/accounts/{accountId}/tags
   method: post
   operationId: createTags
@@ -651,18 +828,12 @@ operations:
   method: post
   operationId: searchTags
   x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
+    action-class: connected
+    consequence: read
+    subject: optional
     token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
+      max-ttl: 3600
+    audit: none
 - path: /profile-service/accounts/{accountId}/tags/{tagId}
   method: get
   operationId: getTag
@@ -705,183 +876,3 @@ operations:
       - abnormal
       - high-value
     audit: required
-- path: /batch-service/accounts/{accountId}/projects/{projectId}/generate
-  method: post
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /batch-service/accounts/{accountId}/projects/{projectId}/batch-jobs/{monitorId}
-  method: get
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /content-service/workspace/{projectId}/documents/{documentId}/read-only
-  method: get
-  operationId: getReadOnlyDocument
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /search-service/accounts/{accountId}/all-assets
-  method: post
-  operationId: searchAssets
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /profile-service/accounts/{accountId}/workflows
-  method: get
-  operationId: getWorkflows
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /profile-service/accounts/{accountId}/workflows/{workflowId}/workflow-steps
-  method: get
-  operationId: getWorkflowsSteps
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /content-service/accounts/{accountId}/projects/{projectId}/documents/{documentId}/assignees
-  method: get
-  operationId: getDocumentAssignees
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /content-service/accounts/{accountId}/projects/{projectId}/documents/{documentId}/assignees
-  method: put
-  operationId: updateDocumentAssignees
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /content-service/accounts/{accountId}/projects/{projectId}/documents/{documentId}/workflow
-  method: post
-  operationId: addDocumentWorkflow
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /content-service/accounts/{accountId}/projects/{projectId}/documents/{documentId}/workflow
-  method: patch
-  operationId: updateDocumentWorkflowStatusCopy
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /content-service/workspace/{projectId}/documents
-  method: post
-  operationId: createDocument
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /basic-services/document-export-service/accounts/{accountId}/workspaces/{projectId}/document/{documentId}/export/pdf
-  method: get
-  operationId: getDocumentPdf
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
-- path: /search-service/accounts/{accountId}/projects/{projectId}/all-assets
-  method: post
-  operationId: searchDocuments
-  x-agentic-access:
-    action-class: acting
-    consequence: write
-    subject: required
-    audience: null
-    token:
-      max-ttl: 900
-    escalation:
-      human-in-the-loop: conditional
-      triggers:
-      - abnormal
-      - high-value
-    audit: required
-- path: /provisioning-service/accounts/{accountId}/users
-  method: get
-  operationId: getUsers
-  x-agentic-access:
-    action-class: connected
-    consequence: read
-    subject: optional
-    token:
-      max-ttl: 3600
-    audit: none
