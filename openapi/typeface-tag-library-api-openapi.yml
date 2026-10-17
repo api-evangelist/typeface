@@ -644,6 +644,72 @@ paths:
       summary: Delete Tag
 components:
   schemas:
+    PatchTagRequestBody:
+      type: object
+      description: Request body for patching a tag. Supports 'replace' operation on '/name', '/displayName', '/status', and '/description' paths.
+      properties:
+        operations:
+          type: array
+          items:
+            type: object
+            properties:
+              op:
+                type: string
+                enum:
+                - replace
+              path:
+                type: string
+                enum:
+                - /name
+                - /displayName
+                - /status
+                - /description
+                description: 'The field to update.
+
+                  - `/name` — Update the tag''s identifier name.
+
+                  - `/displayName` — Update the tag''s human-readable display name.
+
+                  - `/status` — Update the tag''s status. Allowed values are `ACTIVE`, `INACTIVE`, `DEPRECATED`, `REJECTED`, or `PENDING`.
+
+                  - `/description` — Update the tag''s description.
+
+                  '
+              value:
+                type: string
+                description: 'The new value for the field specified in `path`.
+
+                  '
+    SearchTagsResponseBody:
+      type: object
+      properties:
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/SearchTagDetails'
+        nextCursor:
+          type: string
+    CreateTagsResponseBody:
+      type: object
+      description: Response for bulk tag creation. Each tag in the request is processed independently. The top-level `success` field is `true` only when every tag was created successfully. If any tag fails, `success` is `false` and the failed items include an `errorMessage`.
+      properties:
+        success:
+          type: boolean
+          description: '`true` if all tags were created successfully, `false` if one or more tags failed (partial success).'
+        tags:
+          type: array
+          description: Per-item results in the same order as the request
+          items:
+            type: object
+            properties:
+              success:
+                type: boolean
+                description: Whether this individual tag was created successfully
+              tag:
+                $ref: '#/components/schemas/TagDetails'
+              errorMessage:
+                type: string
+                description: Error detail when `success` is `false`. Not present on successful items.
     TagDetails:
       type: object
       properties:
@@ -686,82 +752,6 @@ components:
           type: string
         modifiedBy:
           type: string
-    CreateTagsRequestBody:
-      type: object
-      required:
-      - tags
-      properties:
-        tags:
-          type: array
-          description: List of tags to create
-          items:
-            type: object
-            required:
-            - name
-            - displayName
-            properties:
-              name:
-                type: string
-                description: Identifier of the tag (e.g., social_media)
-              displayName:
-                type: string
-                description: Human-readable display name of the tag (e.g., Social Media)
-              parentId:
-                type: integer
-                format: int64
-                description: Optional parent tag ID. If omitted, creates a top-level tag.
-              description:
-                type: string
-                description: Human-readable description of what the tag represents
-    CreateTagsResponseBody:
-      type: object
-      description: Response for bulk tag creation. Each tag in the request is processed independently. The top-level `success` field is `true` only when every tag was created successfully. If any tag fails, `success` is `false` and the failed items include an `errorMessage`.
-      properties:
-        success:
-          type: boolean
-          description: '`true` if all tags were created successfully, `false` if one or more tags failed (partial success).'
-        tags:
-          type: array
-          description: Per-item results in the same order as the request
-          items:
-            type: object
-            properties:
-              success:
-                type: boolean
-                description: Whether this individual tag was created successfully
-              tag:
-                $ref: '#/components/schemas/TagDetails'
-              errorMessage:
-                type: string
-                description: Error detail when `success` is `false`. Not present on successful items.
-    SearchTagsResponseBody:
-      type: object
-      properties:
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/SearchTagDetails'
-        nextCursor:
-          type: string
-    SearchTagDetails:
-      description: Tag details returned when searching tags. Includes all fields from TagDetails plus the full hierarchy path.
-      allOf:
-      - $ref: '#/components/schemas/TagDetails'
-      - type: object
-        properties:
-          fullPath:
-            type: string
-            description: ':: delimited path of tag names from root to this tag. E.g., marketing::social_media::instagram
-
-              '
-          pathIds:
-            type: array
-            items:
-              type: integer
-              format: int64
-            description: 'Ordered list of tag IDs corresponding to each segment in fullPath, from root to this tag. E.g., [100, 101, 103]
-
-              '
     SearchTagsRequestBody:
       type: object
       properties:
@@ -791,42 +781,52 @@ components:
           description: 'Maximum number of tags to return.
 
             '
-    PatchTagRequestBody:
+    CreateTagsRequestBody:
       type: object
-      description: Request body for patching a tag. Supports 'replace' operation on '/name', '/displayName', '/status', and '/description' paths.
+      required:
+      - tags
       properties:
-        operations:
+        tags:
           type: array
+          description: List of tags to create
           items:
             type: object
+            required:
+            - name
+            - displayName
             properties:
-              op:
+              name:
                 type: string
-                enum:
-                - replace
-              path:
+                description: Identifier of the tag (e.g., social_media)
+              displayName:
                 type: string
-                enum:
-                - /name
-                - /displayName
-                - /status
-                - /description
-                description: 'The field to update.
-
-                  - `/name` — Update the tag''s identifier name.
-
-                  - `/displayName` — Update the tag''s human-readable display name.
-
-                  - `/status` — Update the tag''s status. Allowed values are `ACTIVE`, `INACTIVE`, `DEPRECATED`, `REJECTED`, or `PENDING`.
-
-                  - `/description` — Update the tag''s description.
-
-                  '
-              value:
+                description: Human-readable display name of the tag (e.g., Social Media)
+              parentId:
+                type: integer
+                format: int64
+                description: Optional parent tag ID. If omitted, creates a top-level tag.
+              description:
                 type: string
-                description: 'The new value for the field specified in `path`.
+                description: Human-readable description of what the tag represents
+    SearchTagDetails:
+      description: Tag details returned when searching tags. Includes all fields from TagDetails plus the full hierarchy path.
+      allOf:
+      - $ref: '#/components/schemas/TagDetails'
+      - type: object
+        properties:
+          fullPath:
+            type: string
+            description: ':: delimited path of tag names from root to this tag. E.g., marketing::social_media::instagram
 
-                  '
+              '
+          pathIds:
+            type: array
+            items:
+              type: integer
+              format: int64
+            description: 'Ordered list of tag IDs corresponding to each segment in fullPath, from root to this tag. E.g., [100, 101, 103]
+
+              '
   securitySchemes:
     BearerAuth:
       type: http

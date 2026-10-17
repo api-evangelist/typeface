@@ -134,89 +134,6 @@ paths:
         ```'
 components:
   schemas:
-    GetUserResponseBody:
-      type: object
-      properties:
-        user:
-          $ref: '#/components/schemas/User'
-    OrgUser:
-      type: object
-      properties:
-        accountId:
-          type: string
-        displayName:
-          type: string
-        createdBy:
-          $ref: '#/components/schemas/OrgCreatedBy'
-        accountCreatedAt:
-          type: string
-          format: date-time
-        accountModifiedAt:
-          type: string
-          format: date-time
-        scaleUnitId:
-          type: integer
-          format: int64
-        orgId:
-          type: string
-        activeMembers:
-          type: integer
-          format: int64
-        accountUser:
-          type: boolean
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        media:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        profile:
-          type: string
-        name:
-          type: string
-    EntityModelUserAccount:
-      type: object
-      properties:
-        accountId:
-          type: string
-        displayName:
-          type: string
-        createdBy:
-          type: string
-        accountCreatedAt:
-          type: string
-          format: date-time
-        accountModifiedAt:
-          type: string
-          format: date-time
-        scaleUnitId:
-          type: integer
-          format: int64
-        subscriptionProvider:
-          type: string
-          enum:
-          - STRIPE
-          - GCP
-          - TYPEFACE
-        endpoints:
-          $ref: '#/components/schemas/ScaleUnitEndpoints'
-        orgId:
-          type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
     UserOrg:
       type: object
       properties:
@@ -237,25 +154,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    QueryAccountsInOrgResponseBody:
-      type: object
-      properties:
-        accounts:
-          type: array
-          items:
-            $ref: '#/components/schemas/OrgUser'
-        page:
-          type: integer
-          format: int64
-        size:
-          type: integer
-          format: int64
-        totalAccounts:
-          type: integer
-          format: int64
-        totalPages:
-          type: integer
-          format: int64
     OrgCreatedBy:
       type: object
       properties:
@@ -303,6 +201,108 @@ components:
           type: string
         apiHttpEndpoint:
           type: string
+    EntityModelUserAccount:
+      type: object
+      properties:
+        accountId:
+          type: string
+        displayName:
+          type: string
+        createdBy:
+          type: string
+        accountCreatedAt:
+          type: string
+          format: date-time
+        accountModifiedAt:
+          type: string
+          format: date-time
+        scaleUnitId:
+          type: integer
+          format: int64
+        subscriptionProvider:
+          type: string
+          enum:
+          - STRIPE
+          - GCP
+          - TYPEFACE
+        endpoints:
+          $ref: '#/components/schemas/ScaleUnitEndpoints'
+        orgId:
+          type: string
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    QueryAccountsInOrgResponseBody:
+      type: object
+      properties:
+        accounts:
+          type: array
+          items:
+            $ref: '#/components/schemas/OrgUser'
+        page:
+          type: integer
+          format: int64
+        size:
+          type: integer
+          format: int64
+        totalAccounts:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int64
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+    GetUserResponseBody:
+      type: object
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+    OrgUser:
+      type: object
+      properties:
+        accountId:
+          type: string
+        displayName:
+          type: string
+        createdBy:
+          $ref: '#/components/schemas/OrgCreatedBy'
+        accountCreatedAt:
+          type: string
+          format: date-time
+        accountModifiedAt:
+          type: string
+          format: date-time
+        scaleUnitId:
+          type: integer
+          format: int64
+        orgId:
+          type: string
+        activeMembers:
+          type: integer
+          format: int64
+        accountUser:
+          type: boolean
   securitySchemes:
     BearerAuth:
       type: http

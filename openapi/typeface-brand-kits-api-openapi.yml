@@ -419,16 +419,49 @@ paths:
       summary: Train Brand-kit image style
 components:
   schemas:
-    ImageProperties:
+    Image:
       type: object
       properties:
-        blobId:
-          $ref: '#/components/schemas/BlobId'
-    CreateLibraryResponseBody:
+        workspaceId:
+          $ref: '#/components/schemas/WorkspaceId'
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/ImageProperties'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+    UploadImageToBrandKitStyleRequestBody:
       type: object
       properties:
-        libraryDetails:
-          $ref: '#/components/schemas/LibraryDetails'
+        contentUrl:
+          type: string
+          description: URL from where the content can be downloaded. This should be a pre-signed url
+        content:
+          type: string
+          description: File to be uploaded. Either the contentUrl or content field should be passed in a single request
+          format: binary
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
     QueryBrandKitStylesResponseBody:
       type: object
       properties:
@@ -440,16 +473,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Link'
-    UploadImageToBrandKitStyleRequestBody:
+    CreateLibraryResponseBody:
       type: object
       properties:
-        contentUrl:
-          type: string
-          description: URL from where the content can be downloaded. This should be a pre-signed url
-        content:
-          type: string
-          description: File to be uploaded. Either the contentUrl or content field should be passed in a single request
-          format: binary
+        libraryDetails:
+          $ref: '#/components/schemas/LibraryDetails'
+    JsonNode:
+      type: object
     GetLibrariesResponseBody:
       type: object
       properties:
@@ -457,6 +487,49 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LibraryDetails'
+    LibraryDetails:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/WorkspaceId'
+        ownerId:
+          type: string
+        name:
+          type: string
+        image:
+          $ref: '#/components/schemas/Image'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        discarded:
+          type: boolean
+        properties:
+          $ref: '#/components/schemas/LibraryProperties'
+        workspaceSubType:
+          type: string
+          enum:
+          - ALCHEMIST
+          - WEAVER
+          - BATCH_OUTPUT
+          - DEFAULT
+          - BRAND_KIT_LIBRARY
+          - DECORATION_LIBRARY
+          - AUDIENCE_LIBRARY
+          - LOGO_LIBRARY
+    WorkspaceId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    ImageProperties:
+      type: object
+      properties:
+        blobId:
+          $ref: '#/components/schemas/BlobId'
     LibraryProperties:
       type: object
       properties:
@@ -473,6 +546,20 @@ components:
           format: int64
         defaultLanguage:
           type: string
+    BlobId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    CreateBrandKitStyleRequestBody:
+      type: object
+      properties:
+        name:
+          type: string
+        subType:
+          type: string
+          default: BRAND_KIT_LIBRARY
     EntityModelBrandKitStyle:
       type: object
       properties:
@@ -531,93 +618,6 @@ components:
           type: string
         name:
           type: string
-    LibraryDetails:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/WorkspaceId'
-        ownerId:
-          type: string
-        name:
-          type: string
-        image:
-          $ref: '#/components/schemas/Image'
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        discarded:
-          type: boolean
-        properties:
-          $ref: '#/components/schemas/LibraryProperties'
-        workspaceSubType:
-          type: string
-          enum:
-          - ALCHEMIST
-          - WEAVER
-          - BATCH_OUTPUT
-          - DEFAULT
-          - BRAND_KIT_LIBRARY
-          - DECORATION_LIBRARY
-          - AUDIENCE_LIBRARY
-          - LOGO_LIBRARY
-    CreateBrandKitStyleRequestBody:
-      type: object
-      properties:
-        name:
-          type: string
-        subType:
-          type: string
-          default: BRAND_KIT_LIBRARY
-    Image:
-      type: object
-      properties:
-        workspaceId:
-          $ref: '#/components/schemas/WorkspaceId'
-        id:
-          $ref: '#/components/schemas/EntityId'
-        name:
-          type: string
-        sourcePath:
-          type: string
-        ingestionSource:
-          type: string
-        properties:
-          $ref: '#/components/schemas/ImageProperties'
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        renditionId:
-          $ref: '#/components/schemas/EntityId'
-        createdBy:
-          type: string
-        modifiedBy:
-          type: string
-    BlobId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-    WorkspaceId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
-    JsonNode:
-      type: object
-    EntityId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
   securitySchemes:
     BearerAuth:
       type: http

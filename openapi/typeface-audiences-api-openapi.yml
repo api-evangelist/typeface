@@ -239,6 +239,46 @@ paths:
       summary: Delete Audience
 components:
   schemas:
+    Image:
+      type: object
+      properties:
+        workspaceId:
+          $ref: '#/components/schemas/WorkspaceId'
+        id:
+          $ref: '#/components/schemas/EntityId'
+        name:
+          type: string
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/ImageProperties'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        createdBy:
+          type: string
+        modifiedBy:
+          type: string
+    EntityId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+    QueryAudienceResponseBody:
+      type: object
+      properties:
+        audienceSegments:
+          type: array
+          items:
+            $ref: '#/components/schemas/AudienceSegment'
     CreateAudienceResponseBody:
       required:
       - audienceSegment
@@ -246,16 +286,65 @@ components:
       properties:
         audienceSegment:
           $ref: '#/components/schemas/AudienceSegment'
-    ImageProperties:
+    UpdateAudienceRequestBody:
       type: object
       properties:
-        blobId:
-          $ref: '#/components/schemas/BlobId'
-    UpdateAudienceResponseBody:
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/AudienceSegmentProperties'
+        name:
+          type: string
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        entitySubType:
+          type: string
+          enum:
+          - DEFAULT
+          - GENERATED_IMAGE_PARENT
+          - DOCUMENT_INTERMEDIATE
+          - DOCUMENT_LAYOUT_HTML
+    GetLibrariesResponseBody:
       type: object
       properties:
-        audienceSegment:
-          $ref: '#/components/schemas/AudienceSegment'
+        libraries:
+          type: array
+          items:
+            $ref: '#/components/schemas/LibraryDetails'
+    LibraryDetails:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/WorkspaceId'
+        ownerId:
+          type: string
+        name:
+          type: string
+        image:
+          $ref: '#/components/schemas/Image'
+        createdAt:
+          type: string
+          format: date-time
+        modifiedAt:
+          type: string
+          format: date-time
+        discarded:
+          type: boolean
+        properties:
+          $ref: '#/components/schemas/LibraryProperties'
+        workspaceSubType:
+          type: string
+          enum:
+          - ALCHEMIST
+          - WEAVER
+          - BATCH_OUTPUT
+          - DEFAULT
+          - BRAND_KIT_LIBRARY
+          - DECORATION_LIBRARY
+          - AUDIENCE_LIBRARY
+          - LOGO_LIBRARY
     AudienceSegment:
       type: object
       properties:
@@ -292,153 +381,22 @@ components:
           - GENERATED_IMAGE_PARENT
           - DOCUMENT_INTERMEDIATE
           - DOCUMENT_LAYOUT_HTML
-    GetLibrariesResponseBody:
-      type: object
-      properties:
-        libraries:
-          type: array
-          items:
-            $ref: '#/components/schemas/LibraryDetails'
-    LibraryProperties:
-      type: object
-      properties:
-        hideBrandKit:
-          type: boolean
-        defaultTextStyleId:
-          type: integer
-          format: int64
-        defaultImageStyleId:
-          type: integer
-          format: int64
-        defaultColorPaletteId:
-          type: integer
-          format: int64
-        defaultLanguage:
-          type: string
-    LibraryDetails:
-      type: object
-      properties:
-        id:
-          $ref: '#/components/schemas/WorkspaceId'
-        ownerId:
-          type: string
-        name:
-          type: string
-        image:
-          $ref: '#/components/schemas/Image'
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        discarded:
-          type: boolean
-        properties:
-          $ref: '#/components/schemas/LibraryProperties'
-        workspaceSubType:
-          type: string
-          enum:
-          - ALCHEMIST
-          - WEAVER
-          - BATCH_OUTPUT
-          - DEFAULT
-          - BRAND_KIT_LIBRARY
-          - DECORATION_LIBRARY
-          - AUDIENCE_LIBRARY
-          - LOGO_LIBRARY
-    CreateAudienceRequestBody:
-      type: object
-      properties:
-        sourcePath:
-          type: string
-        ingestionSource:
-          type: string
-        properties:
-          $ref: '#/components/schemas/AudienceSegmentProperties'
-        name:
-          type: string
-        renditionId:
-          $ref: '#/components/schemas/EntityId'
-        entitySubType:
-          type: string
-          enum:
-          - DEFAULT
-          - GENERATED_IMAGE_PARENT
-          - DOCUMENT_INTERMEDIATE
-          - DOCUMENT_LAYOUT_HTML
-    UpdateAudienceRequestBody:
-      type: object
-      properties:
-        sourcePath:
-          type: string
-        ingestionSource:
-          type: string
-        properties:
-          $ref: '#/components/schemas/AudienceSegmentProperties'
-        name:
-          type: string
-        renditionId:
-          $ref: '#/components/schemas/EntityId'
-        entitySubType:
-          type: string
-          enum:
-          - DEFAULT
-          - GENERATED_IMAGE_PARENT
-          - DOCUMENT_INTERMEDIATE
-          - DOCUMENT_LAYOUT_HTML
-    Image:
-      type: object
-      properties:
-        workspaceId:
-          $ref: '#/components/schemas/WorkspaceId'
-        id:
-          $ref: '#/components/schemas/EntityId'
-        name:
-          type: string
-        sourcePath:
-          type: string
-        ingestionSource:
-          type: string
-        properties:
-          $ref: '#/components/schemas/ImageProperties'
-        createdAt:
-          type: string
-          format: date-time
-        modifiedAt:
-          type: string
-          format: date-time
-        renditionId:
-          $ref: '#/components/schemas/EntityId'
-        createdBy:
-          type: string
-        modifiedBy:
-          type: string
-    BlobId:
-      type: object
-      properties:
-        id:
-          type: integer
-          format: int64
     WorkspaceId:
       type: object
       properties:
         id:
           type: integer
           format: int64
-    EntityId:
+    UpdateAudienceResponseBody:
       type: object
       properties:
-        id:
-          type: integer
-          format: int64
-    QueryAudienceResponseBody:
+        audienceSegment:
+          $ref: '#/components/schemas/AudienceSegment'
+    ImageProperties:
       type: object
       properties:
-        audienceSegments:
-          type: array
-          items:
-            $ref: '#/components/schemas/AudienceSegment'
+        blobId:
+          $ref: '#/components/schemas/BlobId'
     AudienceSegmentProperties:
       type: object
       properties:
@@ -473,6 +431,48 @@ components:
             - Luxury
             - Experimental
             - Impulsive
+    CreateAudienceRequestBody:
+      type: object
+      properties:
+        sourcePath:
+          type: string
+        ingestionSource:
+          type: string
+        properties:
+          $ref: '#/components/schemas/AudienceSegmentProperties'
+        name:
+          type: string
+        renditionId:
+          $ref: '#/components/schemas/EntityId'
+        entitySubType:
+          type: string
+          enum:
+          - DEFAULT
+          - GENERATED_IMAGE_PARENT
+          - DOCUMENT_INTERMEDIATE
+          - DOCUMENT_LAYOUT_HTML
+    LibraryProperties:
+      type: object
+      properties:
+        hideBrandKit:
+          type: boolean
+        defaultTextStyleId:
+          type: integer
+          format: int64
+        defaultImageStyleId:
+          type: integer
+          format: int64
+        defaultColorPaletteId:
+          type: integer
+          format: int64
+        defaultLanguage:
+          type: string
+    BlobId:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
   securitySchemes:
     BearerAuth:
       type: http

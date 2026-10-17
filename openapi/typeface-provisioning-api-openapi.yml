@@ -62,20 +62,6 @@ paths:
       summary: Delete Team
 components:
   schemas:
-    CreateAccountRequestBody:
-      type: object
-      properties:
-        workspaceName:
-          type: string
-          deprecated: true
-        displayName:
-          type: string
-        cloudProvider:
-          type: string
-          description: Specifies the cloud provider where the team's data and resources are hosted (either AZURE or GOOGLE).
-          enum:
-          - AZURE
-          - GOOGLE
     CreateAccountResponseBody:
       type: object
       properties:
@@ -91,6 +77,20 @@ components:
           format: date-time
         createdBy:
           type: string
+    CreateAccountRequestBody:
+      type: object
+      properties:
+        workspaceName:
+          type: string
+          deprecated: true
+        displayName:
+          type: string
+        cloudProvider:
+          type: string
+          description: Specifies the cloud provider where the team's data and resources are hosted (either AZURE or GOOGLE).
+          enum:
+          - AZURE
+          - GOOGLE
   securitySchemes:
     BearerAuth:
       type: http

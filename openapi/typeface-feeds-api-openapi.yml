@@ -208,99 +208,6 @@ paths:
       summary: Delete Feed Item
 components:
   schemas:
-    SseEmitter:
-      type: object
-      properties:
-        timeout:
-          type: integer
-          format: int64
-    PatchFeedRequestBody:
-      type: object
-      properties:
-        operations:
-          type: array
-          items:
-            $ref: '#/components/schemas/PatchOperation'
-    Link:
-      type: object
-      properties:
-        rel:
-          type: string
-        href:
-          type: string
-        hreflang:
-          type: string
-        media:
-          type: string
-        title:
-          type: string
-        type:
-          type: string
-        deprecation:
-          type: string
-        profile:
-          type: string
-        name:
-          type: string
-    QueryFeedItemsResponseBody:
-      type: object
-      properties:
-        feedItems:
-          type: array
-          items:
-            $ref: '#/components/schemas/EntityModelFeedItem'
-        nextCursor:
-          type: string
-        links:
-          type: array
-          items:
-            $ref: '#/components/schemas/Link'
-    PatchOperation:
-      type: object
-      properties:
-        op:
-          type: string
-          enum:
-          - replace
-          - add
-        path:
-          type: string
-        value:
-          type: object
-    JsonNode:
-      type: object
-    GenerateFeedItemRequestBody:
-      type: object
-      properties:
-        channel:
-          type: string
-          enum:
-          - IMAGE
-          - EMAIL
-          - PUSH_NOTIFICATION
-          - TYPEFACE_APP
-        feedItemType:
-          type: string
-          enum:
-          - IMAGE
-          - EMAIL
-          - EMAIL_SUBJECT_LINE
-          - PUSH_NOTIFICATION
-          - DOCUMENT
-        objective:
-          type: string
-        audience:
-          type: string
-        assetRef:
-          type: string
-        stepId:
-          type: string
-        feedItemProperties:
-          $ref: '#/components/schemas/JsonNode'
-        featureFlags:
-          type: object
-          additionalProperties:
-            type: object
     EntityModelFeedItem:
       type: object
       properties:
@@ -349,6 +256,99 @@ components:
         approvedAt:
           type: string
           format: date-time
+        links:
+          type: array
+          items:
+            $ref: '#/components/schemas/Link'
+    SseEmitter:
+      type: object
+      properties:
+        timeout:
+          type: integer
+          format: int64
+    JsonNode:
+      type: object
+    PatchOperation:
+      type: object
+      properties:
+        op:
+          type: string
+          enum:
+          - replace
+          - add
+        path:
+          type: string
+        value:
+          type: object
+    PatchFeedRequestBody:
+      type: object
+      properties:
+        operations:
+          type: array
+          items:
+            $ref: '#/components/schemas/PatchOperation'
+    GenerateFeedItemRequestBody:
+      type: object
+      properties:
+        channel:
+          type: string
+          enum:
+          - IMAGE
+          - EMAIL
+          - PUSH_NOTIFICATION
+          - TYPEFACE_APP
+        feedItemType:
+          type: string
+          enum:
+          - IMAGE
+          - EMAIL
+          - EMAIL_SUBJECT_LINE
+          - PUSH_NOTIFICATION
+          - DOCUMENT
+        objective:
+          type: string
+        audience:
+          type: string
+        assetRef:
+          type: string
+        stepId:
+          type: string
+        feedItemProperties:
+          $ref: '#/components/schemas/JsonNode'
+        featureFlags:
+          type: object
+          additionalProperties:
+            type: object
+    Link:
+      type: object
+      properties:
+        rel:
+          type: string
+        href:
+          type: string
+        hreflang:
+          type: string
+        media:
+          type: string
+        title:
+          type: string
+        type:
+          type: string
+        deprecation:
+          type: string
+        profile:
+          type: string
+        name:
+          type: string
+    QueryFeedItemsResponseBody:
+      type: object
+      properties:
+        feedItems:
+          type: array
+          items:
+            $ref: '#/components/schemas/EntityModelFeedItem'
+        nextCursor:
+          type: string
         links:
           type: array
           items:
