@@ -64,6 +64,177 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Typeface is a company surfaced as a portfolio company of gv, lightspeed-venture-partners, menlo-ventures and added to the API Evangelist network as a stub for enrichment. Sector: ai. This profile is a lead awaiting the enrichment pipeline.
+Typeface is an enterprise marketing AI platform that orchestrates AI agents, brand intelligence, and workflows to create personalized, on-brand campaigns at scale. Its developer platform exposes REST APIs (bearer JWT via application credentials) for identity discovery, teams, projects, brand kits, audiences, layouts, assets, tags, content workflows, document search, and asynchronous batch content generation, plus outbound/inbound webhooks, a hosted MCP server with OAuth 2.1, an A2A agent surface, SCIM 2.0 provisioning, and 30+ marketing-stack connectors.
 
-Backed by: gv, lightspeed-venture-partners, menlo-ventures — https://www.typeface.ai
+**Areas:** Company · Artificial Intelligence · Content Generation · Marketing · Agents · Generative AI · Brand Management · Enterprise
+
+## Typeface on APIs.io
+
+Everything profiled for Typeface is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/typeface/](https://apis.io/providers/typeface/)** — or go straight to one of the APIs or properties below.
+
+### APIs (15)
+
+- [Typeface Audiences API](https://apis.io/apis/typeface/typeface-audiences-api/) — The Audiences API from Typeface — 3 operation(s) for audiences.
+- [Typeface Authentication API](https://apis.io/apis/typeface/typeface-authentication-api/) — The Authentication API from Typeface — 3 operation(s) for authentication.
+- [Typeface Basic Services API](https://apis.io/apis/typeface/typeface-basic-services-api/) — The Basic Services API from Typeface — 1 operation(s) for basic services.
+- [Typeface Brand Kits API](https://apis.io/apis/typeface/typeface-brand-kits-api/) — The Brand Kits API from Typeface — 6 operation(s) for brand kits.
+- [Typeface Content Generation API](https://apis.io/apis/typeface/typeface-content-generation-api/) — The Content Generation API from Typeface — 3 operation(s) for content generation.
+- [Typeface Content Service API](https://apis.io/apis/typeface/typeface-content-service-api/) — The Content Service API from Typeface — 3 operation(s) for content service.
+- [Typeface Digital Assets API](https://apis.io/apis/typeface/typeface-digital-assets-api/) — The Digital Assets API from Typeface — 7 operation(s) for digital assets.
+- [Typeface Discovery API](https://apis.io/apis/typeface/typeface-discovery-api/) — The Discovery API from Typeface — 2 operation(s) for discovery.
+- [Typeface Feeds API](https://apis.io/apis/typeface/typeface-feeds-api/) — The Feeds API from Typeface — 4 operation(s) for feeds.
+- [Typeface Profile Service API](https://apis.io/apis/typeface/typeface-profile-service-api/) — The Profile Service API from Typeface — 2 operation(s) for profile service.
+- [Typeface Projects API](https://apis.io/apis/typeface/typeface-projects-api/) — The Projects API from Typeface — 4 operation(s) for projects.
+- [Typeface Provisioning API](https://apis.io/apis/typeface/typeface-provisioning-api/) — The Provisioning API from Typeface — 2 operation(s) for provisioning.
+- [Typeface Provisioning Service API](https://apis.io/apis/typeface/typeface-provisioning-service-api/) — The Provisioning Service API from Typeface — 1 operation(s) for provisioning service.
+- [Typeface Search Service API](https://apis.io/apis/typeface/typeface-search-service-api/) — The Search Service API from Typeface — 1 operation(s) for search service.
+- [Typeface Tag Library API](https://apis.io/apis/typeface/typeface-tag-library-api/) — The Tag Library API from Typeface — 3 operation(s) for tag library.
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### AsyncAPI (1)
+
+Event-driven and webhook contracts.
+
+- [Typeface Webhooks](https://apis.io/asyncapis/typeface/typeface-webhooks/)
+
+#### MCP servers (1)
+
+Model Context Protocol servers that expose the API to agents.
+
+- [typeface](https://apis.io/servers/typeface/typeface/)
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Typeface Agentic Access](https://apis.io/agentic-access/typeface/typeface-agentic-access/)
+
+#### Collections (15)
+
+Postman and Open Collection request collections.
+
+- [Typeface Audiences API](https://apis.io/collections/typeface/open-typeface-audiences-api/)
+- [Typeface Audiences Authentication API](https://apis.io/collections/typeface/open-typeface-authentication-api/)
+- [Typeface Audiences Basic Services API](https://apis.io/collections/typeface/open-typeface-basic-services-api/)
+- [Typeface Audiences Brand Kits API](https://apis.io/collections/typeface/open-typeface-brand-kits-api/)
+- [Typeface Audiences Content Generation API](https://apis.io/collections/typeface/open-typeface-content-generation-api/)
+- [Typeface Audiences Content Service API](https://apis.io/collections/typeface/open-typeface-content-service-api/)
+- [Typeface Audiences Digital Assets API](https://apis.io/collections/typeface/open-typeface-digital-assets-api/)
+- [Typeface Audiences Discovery API](https://apis.io/collections/typeface/open-typeface-discovery-api/)
+- [Typeface Audiences Feeds API](https://apis.io/collections/typeface/open-typeface-feeds-api/)
+- [Typeface Audiences Profile Service API](https://apis.io/collections/typeface/open-typeface-profile-service-api/)
+- [Typeface Audiences Projects API](https://apis.io/collections/typeface/open-typeface-projects-api/)
+- [Typeface Audiences Provisioning API](https://apis.io/collections/typeface/open-typeface-provisioning-api/)
+- [Typeface Audiences Provisioning Service API](https://apis.io/collections/typeface/open-typeface-provisioning-service-api/)
+- [Typeface Audiences Search Service API](https://apis.io/collections/typeface/open-typeface-search-service-api/)
+- [Typeface Audiences Tag Library API](https://apis.io/collections/typeface/open-typeface-tag-library-api/)
+
+#### Overlays (4)
+
+OpenAPI overlays, including conversational phrasing for each operation.
+
+- [Typeface Api Overlay](https://apis.io/overlays/typeface/typeface-api-overlay/)
+- [Typeface Content Workflow Overlay](https://apis.io/overlays/typeface/typeface-content-workflow-overlay/)
+- [Typeface Documents Search Overlay](https://apis.io/overlays/typeface/typeface-documents-search-overlay/)
+- [Typeface Team Users Overlay](https://apis.io/overlays/typeface/typeface-team-users-overlay/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Typeface Authentication](https://apis.io/security/typeface/typeface-authentication/)
+- [Typeface Domain Security](https://apis.io/security/typeface/typeface-domain-security/)
+- [Typeface Trust Center](https://apis.io/security/typeface/typeface-trust-center/)
+- [Typeface Vulnerability Disclosure](https://apis.io/security/typeface/typeface-vulnerability-disclosure/)
+
+#### OAuth scopes (1)
+
+The permissions the API asks for.
+
+- [Typeface Scopes](https://apis.io/scopes/typeface/typeface-scopes/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Typeface Plans Pricing](https://apis.io/plans/typeface/typeface-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Typeface Rate Limits](https://apis.io/rate-limits/typeface/typeface-rate-limits/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.typeface.ai)
+- [Documentation](https://developers.typeface.ai/docs)
+- [Getting started](https://developers.typeface.ai/docs/getting-started)
+- [API reference](https://developers.typeface.ai/reference)
+- [Support](https://support.typeface.ai)
+- [Blog](https://www.typeface.ai/blog)
+- [Security](https://www.typeface.ai/security-and-governance)
+- [Compliance](https://trust.typeface.ai)
+- [Terms of service](https://www.typeface.ai/terms-of-service)
+- [Privacy policy](https://www.typeface.ai/privacy)
+- [Status](https://status.typeface.ai)
+
+## API Evangelist rating
+
+**Kin Score 50.9** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 80.0 |
+| Contract quality | 54.0 |
+| Contract governance | 18.2 |
+| Operational transparency | 65.8 |
+| Developer ergonomics | 47.0 |
+| Access clarity | 35.5 |
+
+**Agent readiness 51.1** — agent-ready (gated down from agent-native)
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | documented (partial credit) |
+| Auth Clarity | served (partial credit) |
+| Idempotency | — |
+| Error Semantics | documented (partial credit) |
+| OpenAPI Examples | partial |
+| Rate Limit Signal | documented (partial credit) |
+| Event Surface Described | yes |
+| Agent Skills | derived (partial credit) |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | served (partial credit) |
+| Protected Resource Metadata | verified |
+| Dynamic Client Registration | yes |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | distinct |
+
+**Regulatory alignment 37.3** — AI & Biometrics
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/typeface/](https://apis.io/providers/typeface/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Typeface: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/typeface/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
